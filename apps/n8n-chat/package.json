@@ -1,0 +1,26 @@
+{
+  "name": "@pagami/n8n-chat",
+  "version": "0.1.0",
+  "type": "module",
+  "module": "./dist/n8n-chat.es-bundler.js",
+  "types": "./dist/types/n8n-chat.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/n8n-chat.es-bundler.js",
+      "types": "./dist/types/n8n-chat.d.ts",
+      "default": "./dist/n8n-chat.es-bundler.js"
+    },
+    "./style.css": "./dist/n8n-chat.css"
+  },
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run build:no-runtime && npm run build:runtime && npm run build:types",
+    "build:runtime": "cross-env INCLUDE_RUNTIME=true vite build",
+    "build:no-runtime": "cross-env INCLUDE_RUNTIME=false vite build",
+    "build:types": "vue-tsc --project tsconfig.declaration.json",
+    "preview": "vite preview"
+  }
+}
