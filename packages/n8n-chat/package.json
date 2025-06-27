@@ -1,6 +1,14 @@
 {
   "name": "@pagami/n8n-chat",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahsath/pagami.git",
+    "directory": "packages/n8n-chat"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "module": "./dist/n8n-chat.es-bundler.js",
   "types": "./dist/types/n8n-chat.d.ts",

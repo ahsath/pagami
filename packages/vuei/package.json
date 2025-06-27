@@ -1,9 +1,9 @@
 {
-  "name": "@n8n-stuff/vuei",
+  "name": "@pagami/vuei",
   "version": "0.1.0",
   "scripts": {
-    "dev": "deno -A npm:vite",
-    "build": "deno -A npm:vue-tsc && deno -A npm:vite build",
-    "preview": "deno -A npm:vite preview"
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
   }
 }
