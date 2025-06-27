@@ -9,7 +9,11 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    "paths": {
+      "@pagami/vuei": ["../vuei/src/vuei.ts"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.vue"]
 }

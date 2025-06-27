@@ -1,9 +1,27 @@
 {
   "name": "@pagami/vuei",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "module": "./dist/vuei.es-bundler.js",
+  "types": "./dist/types/vuei.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vuei.es-bundler.js",
+      "types": "./dist/types/vuei.d.ts",
+      "default": "./dist/vuei.es-bundler.js"
+    },
+    "./style.css": "./dist/vuei.css"
+  },
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
+    "build": "vite build && npm run build:types",
+    "build:types": "vue-tsc -p tsconfig.declaration.json",
     "preview": "vite preview"
   }
 }
