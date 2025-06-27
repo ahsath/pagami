@@ -1,6 +1,7 @@
 {
   "name": "@pagami/n8n-chat",
   "version": "0.1.0",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ahsath/pagami.git",
@@ -9,14 +10,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "type": "module",
+  "main": "./dist/n8n-chat.es-bundler.js",
   "module": "./dist/n8n-chat.es-bundler.js",
   "types": "./dist/types/n8n-chat.d.ts",
   "exports": {
     ".": {
       "import": "./dist/n8n-chat.es-bundler.js",
-      "types": "./dist/types/n8n-chat.d.ts",
-      "default": "./dist/n8n-chat.es-bundler.js"
+      "types": "./dist/types/n8n-chat.d.ts"
     },
     "./style.css": "./dist/n8n-chat.css"
   },

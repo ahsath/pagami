@@ -1,6 +1,7 @@
 {
   "name": "@pagami/vuei",
   "version": "0.1.1",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ahsath/pagami.git",
@@ -9,14 +10,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "type": "module",
+  "main": "./dist/vuei.es-bundler.js",
   "module": "./dist/vuei.es-bundler.js",
   "types": "./dist/types/vuei.d.ts",
   "exports": {
     ".": {
       "import": "./dist/vuei.es-bundler.js",
-      "types": "./dist/types/vuei.d.ts",
-      "default": "./dist/vuei.es-bundler.js"
+      "types": "./dist/types/vuei.d.ts"
     },
     "./style.css": "./dist/vuei.css"
   },
