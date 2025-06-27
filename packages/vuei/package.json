@@ -1,6 +1,11 @@
 {
   "name": "@pagami/vuei",
   "version": "0.1.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahsath/pagami.git",
+    "directory": "packages/vuei"
+  },
   "publishConfig": {
     "access": "public"
   },
