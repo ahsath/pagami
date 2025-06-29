@@ -32,6 +32,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@pagami/vuei": "^0.1.0"
+    "@pagami/vuei": "^0.1.2"
   }
 }

@@ -9,20 +9,24 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue(), tailwindcss()],
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "./src"),
+    },
+  },
   build: {
     lib: {
-      entry: resolve(__dirname, "src/vuei.ts"),
+      entry: {
+        index: resolve(__dirname, "src/index.ts"),
+        "vuei.css": resolve(__dirname, "src/assets/css/index.css"),
+        "vuei.base.css": resolve(__dirname, "src/assets/css/index.base.css"),
+      },
       fileName: (format) => `vuei.${format}-bundler.js`,
       formats: ["es"],
-      cssFileName: "vuei",
     },
+    cssCodeSplit: true,
     rollupOptions: {
       external: ["vue"],
-      output: {
-        globals: {
-          vue: "Vue",
-        },
-      },
     },
   },
 });

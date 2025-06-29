@@ -1,9 +1,7 @@
-<template>
-  <h1 class="text-red-500">n8n chat</h1>
-  <p>{{ msg }}</p>
-</template>
+<script setup lang="ts">
+import { ButtonTest } from "@pagami/vuei";
+import "@pagami/vuei/styles/vuei.base.css";
 
-<script lang="ts" setup>
 export interface Props {
   webhookUrl: string;
   webhookConfig?: {
@@ -22,14 +20,13 @@ export interface Props {
   i18n?: {
     [key: string]: Record<string, string>;
   };
-  msg?: string;
 }
 
 defineProps<Props>();
 </script>
 
-<style>
-h1 {
-  font-size: 24px;
-}
-</style>
+<template>
+  <div class="text-red-50">
+    <ButtonTest>N8nChat Button </ButtonTest>
+  </div>
+</template>

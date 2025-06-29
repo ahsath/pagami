@@ -3,5 +3,14 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+
+  // Required for shadcn-vue (https://www.shadcn-vue.com/docs/installation/vite.html#edit-tsconfig-app-json-file)
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+    // "composite": true
+  }
 }

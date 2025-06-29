@@ -12,7 +12,13 @@
     "noUncheckedSideEffectImports": true,
 
     "paths": {
-      "@pagami/vuei": ["../vuei/src/vuei.ts"]
+      // This maps "@pagami/vuei" to its main source entry point
+      "@pagami/vuei": ["../vuei/src/index.ts"], // Adjust if your main entry is src/index.ts
+
+      // This maps sub-paths like "@pagami/vuei/styles/vuei.base.css" to their source locations
+      "@pagami/vuei/styles/vuei.base.css": [
+        "../vuei/src/assets/css/index.base.css"
+      ]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.vue"]
