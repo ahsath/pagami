@@ -17,7 +17,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: {
-        index: resolve(__dirname, "src/index.ts"),
+        vuei: resolve(__dirname, "src/vuei.ts"),
         "vuei.css": resolve(__dirname, "src/assets/css/index.css"),
         "vuei.base.css": resolve(__dirname, "src/assets/css/index.base.css"),
       },

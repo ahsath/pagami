@@ -3,13 +3,12 @@
   "compilerOptions": {
     "declaration": true,
     "emitDeclarationOnly": true,
-    "declarationDir": "./dist/types",
-    "outDir": "./dist/types",
+    "declarationDir": "dist/types",
     "isolatedModules": false,
     "noEmit": false,
     "types": ["vite/client"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/n8n-chat.ts"],
   "exclude": [
     "node_modules",
     "dist",

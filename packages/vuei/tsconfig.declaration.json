@@ -9,6 +9,6 @@
     "noEmit": false,
     "types": ["vite/client"]
   },
-  "include": ["src/index.ts"],
+  "include": ["src/vuei.ts"],
   "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"]
 }

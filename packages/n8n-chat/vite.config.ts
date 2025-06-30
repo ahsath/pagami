@@ -34,13 +34,4 @@ export default defineConfig({
     },
     emptyOutDir: !includesRuntime,
   },
-  resolve: {
-    alias: {
-      "@pagami/vuei/styles/vuei.base.css": resolve(
-        __dirname,
-        "../vuei/src/assets/css/index.base.css"
-      ),
-      "@pagami/vuei": resolve(__dirname, "../vuei/src/index.ts"),
-    },
-  },
 });
