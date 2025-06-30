@@ -1,8 +1,8 @@
 import { createApp } from "vue";
-import N8nChat, { type Props } from "./components/N8nChat.vue";
-
-export { N8nChat };
+import App, { type Props } from "./App.vue";
+import "./assets/css/index.css";
+import "@pagami/vuei/styles/vuei.base.css";
 
 export function createChat(props: Props) {
-  createApp(N8nChat, { ...props }).mount(props?.target || "#n8n-chat");
+  createApp(App, { ...props }).mount(props?.target || "#n8n-chat");
 }
