@@ -1,0 +1,5 @@
+@theme inline {
+  --font-sans: var(--md-ref-font-family-body);
+  --color-primary: var(--md-sys-color-primary);
+  --color-on-primary: var(--md-sys-color-on-primary);
+}

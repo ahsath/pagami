@@ -1,37 +1,17 @@
-@layer theme, base, components, utilities;
+@import "tailwindcss" source("../../components/ui");
+@import "tw-animate-css";
 
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/utilities.css" layer(utilities) source(none);
+/* TODO: add light/dark mode toggle */
+@custom-variant dark (&:is(.dark *));
 
-@theme inline {
-  --color-primary: var(--md-sys-color-primary);
-  --color-on-primary: var(--md-sys-color-on-primary);
-}
+@import "./theme.css";
 
 @layer base {
-  :root {
-    /* ref tokens */
-    --md-ref-palette-primary20: #002e69;
-    --md-ref-palette-primary40: #0058bb;
-    --md-ref-palette-primary80: #adc6ff;
-    --md-ref-palette-primary100: #ffffff;
-
-    --md-ref-font-family-body: Ubuntu, Roboto;
-
-    /* sys tokens */
-    --md-sys-color-primary: var(--md-ref-palette-primary40);
-    --md-sys-color-on-primary: var(--md-ref-palette-primary100);
-  }
-
-  .dark {
-    @apply scheme-light-dark;
-    --md-sys-color-primary: var(--md-ref-palette-primary80);
-    --md-sys-color-on-primary: var(--md-ref-palette-primary20);
-  }
+  @import "./tokens.fonts.css";
+  @import "./tokens.light.css";
+  @import "./tokens.dark.css";
 }
 
 @layer components {
-  @import "./ButtonTest.css";
+  /* @import "./ButtonTest.css"; */
 }
-
-@source "../../components/ButtonTest.vue";

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed } from "vue";
 import { Primitive, type PrimitiveProps } from "reka-ui";
 import { cn } from "@/lib/utils";
@@ -28,7 +28,7 @@ const buttonClasses = computed(() => {
   const variantClasses = {
     default: "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
     destructive:
-      "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+      "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive",
     outline:
       "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
     secondary:
@@ -63,12 +63,4 @@ const buttonClasses = computed(() => {
   >
     <slot />
   </Primitive>
-
-  <button class="btn-primary">button 2</button>
 </template>
-
-<!-- <style>
-@reference "../../../assets/css/tailwind.css"
-
-
-</style> -->

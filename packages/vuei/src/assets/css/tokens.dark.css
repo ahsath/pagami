@@ -1,0 +1,7 @@
+.dark {
+  @apply scheme-light-dark;
+
+  /* sys tokens */
+  --md-sys-color-primary: var(--md-ref-palette-primary80);
+  --md-sys-color-on-primary: var(--md-ref-palette-primary20);
+}

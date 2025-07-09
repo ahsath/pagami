@@ -1,7 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* @custom-variant dark (&:is(.dark *)); */
+/* TODO: add light/dark mode toggle */
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
