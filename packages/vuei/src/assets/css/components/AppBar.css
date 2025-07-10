@@ -1,0 +1,7 @@
+.app-bar {
+  @apply flex items-center gap-4 h-16 px-4;
+
+  & > :nth-child(2) {
+    @apply grow;
+  }
+}

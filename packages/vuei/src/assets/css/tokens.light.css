@@ -4,8 +4,27 @@
   --md-ref-palette-primary40: #0058bb;
   --md-ref-palette-primary80: #adc6ff;
   --md-ref-palette-primary100: #ffffff;
+  --md-ref-palette-neutral-variant30: oklch(39.805% 0.0174 303.644);
+
+  /* state layers */
+  --md-sys-state-hover-state-layer-opacity: 0.08;
+  --md-sys-state-focused-state-layer-opacity: 0.12;
+  --md-sys-state-focused-state-layer-pressed: 0.1;
 
   /* sys tokens */
   --md-sys-color-primary: var(--md-ref-palette-primary40);
   --md-sys-color-on-primary: var(--md-ref-palette-primary100);
+  --md-sys-color-on-surface-variant: var(--md-ref-palette-neutral-variant30);
+  --md-sys-color-on-surface-variant-hover: oklch(
+    from var(--md-ref-palette-neutral-variant30) l c h /
+      var(--md-sys-state-hover-state-layer-opacity)
+  );
+  --md-sys-color-on-surface-variant-focused: oklch(
+    from var(--md-ref-palette-neutral-variant30) l c h /
+      var(--md-sys-state-focused-state-layer-opacity)
+  );
+  --md-sys-color-on-surface-variant-pressed: oklch(
+    from var(--md-ref-palette-neutral-variant30) l c h /
+      var(--md-sys-state-pressed-state-layer-opacity)
+  );
 }

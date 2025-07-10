@@ -1,5 +1,16 @@
 @theme inline {
   --font-sans: var(--md-ref-font-family-body);
+
   --color-primary: var(--md-sys-color-primary);
   --color-on-primary: var(--md-sys-color-on-primary);
+  --color-on-surface-variant: var(--md-sys-color-on-surface-variant);
+  --color-on-surface-variant-hover: var(
+    --md-sys-color-on-surface-variant-hover
+  );
+  --color-on-surface-variant-focused: var(
+    --md-sys-color-on-surface-variant-focused
+  );
+  --color-on-surface-variant-pressed: var(
+    --md-sys-color-on-surface-variant-focused
+  );
 }

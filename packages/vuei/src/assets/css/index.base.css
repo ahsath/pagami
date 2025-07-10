@@ -13,5 +13,6 @@
 }
 
 @layer components {
-  /* @import "./ButtonTest.css"; */
+  @import "./components/AppBar.css";
+  @import "./components/IconButton.css";
 }
