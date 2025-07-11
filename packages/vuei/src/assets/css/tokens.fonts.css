@@ -1,9 +1,8 @@
-/* ubuntu-sans-latin-wght-normal */
 @font-face {
   font-family: "Ubuntu Sans Variable";
   font-style: normal;
   font-display: swap;
-  font-weight: 400 500;
+  font-weight: 400 500 700;
   src: url(https://cdn.jsdelivr.net/fontsource/fonts/ubuntu-sans:vf@latest/latin-wght-normal.woff2)
     format("woff2-variations");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
@@ -13,7 +12,16 @@
 
 :root {
   /* ref tokens */
-  --md-ref-font-family-body: "Ubuntu Sans Variable", ui-sans-serif, system-ui,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji";
+  --md-ref-typeface-brand: "Ubuntu Sans Variable";
+  --md-ref-typeface-fallback: ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --md-ref-conversion-ratio: 0.0625rem; /* 1px/16(root em size) = 0.0625rem */
+
+  /* sys tokens */
+  --md-sys-typescale-title-large-size: calc(
+    22 * var(--md-ref-conversion-ratio)
+  );
+  --md-sys-typescale-title-large-line-height: calc(
+    28 * var(--md-ref-conversion-ratio)
+  );
 }

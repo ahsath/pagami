@@ -1,17 +1,9 @@
-<script lang="ts" setup>
-// import { Menu } from "lucide-vue-next";
-import IconButton from "../button/IconButton.vue";
-
-// defineProps<{ id: string }>();
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <header class="app-bar">
-    <div>
-      <!-- <Menu /> -->
-      <IconButton></IconButton>
-    </div>
-    <div>content</div>
-    <div>trailing</div>
+    <div class="app-bar__leading"><slot name="leading" /></div>
+    <div class="app-bar__content"><slot name="content" /></div>
+    <div class="app-bar__trailing"><slot name="trailing" /></div>
   </header>
 </template>

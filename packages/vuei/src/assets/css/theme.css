@@ -1,8 +1,19 @@
 @theme inline {
-  --font-sans: var(--md-ref-font-family-body);
+  /* Typography */
+  --font-sans: var(--md-ref-typeface-brand, --md-ref-typeface-fallback);
 
+  /* Typescale */
+
+  /* Title large */
+  --text-title-large: var(--md-sys-typescale-title-large-size);
+  --text-title-large--line-height: var(
+    --md-sys-typescale-title-large-line-height
+  );
+
+  /* Colors */
   --color-primary: var(--md-sys-color-primary);
   --color-on-primary: var(--md-sys-color-on-primary);
+  --color-on-surface: var(--md-sys-color-on-surface);
   --color-on-surface-variant: var(--md-sys-color-on-surface-variant);
   --color-on-surface-variant-hover: var(
     --md-sys-color-on-surface-variant-hover

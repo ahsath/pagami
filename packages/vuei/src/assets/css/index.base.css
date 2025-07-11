@@ -10,6 +10,10 @@
   @import "./tokens.fonts.css";
   @import "./tokens.light.css";
   @import "./tokens.dark.css";
+
+  body {
+    @apply text-on-surface;
+  }
 }
 
 @layer components {

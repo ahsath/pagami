@@ -1,9 +1,7 @@
 <template>
   <button class="icon-button">
-    <Menu />
+    <slot />
   </button>
 </template>
 
-<script lang="ts" setup>
-import { Menu } from "lucide-vue-next";
-</script>
+<script lang="ts" setup></script>

@@ -1,19 +1,18 @@
 :root {
   /* ref tokens */
-  --md-ref-palette-primary20: #002e69;
-  --md-ref-palette-primary40: #0058bb;
-  --md-ref-palette-primary80: #adc6ff;
-  --md-ref-palette-primary100: #ffffff;
-  --md-ref-palette-neutral-variant30: oklch(39.805% 0.0174 303.644);
-
-  /* state layers */
-  --md-sys-state-hover-state-layer-opacity: 0.08;
-  --md-sys-state-focused-state-layer-opacity: 0.12;
-  --md-sys-state-focused-state-layer-pressed: 0.1;
+  --md-ref-palette-primary20: oklch(31.355% 0.11364 257.514);
+  --md-ref-palette-primary40: oklch(47.828% 0.17204 257.334);
+  --md-ref-palette-primary80: oklch(82.811% 0.08519 266.18);
+  --md-ref-palette-primary100: #fff;
+  --md-ref-palette-neutral10: oklch(22.317% 0.01401 272.683);
+  --md-ref-palette-neutral90: oklch(91.464% 0.01231 280.992);
+  --md-ref-palette-neutral-variant30: oklch(39.797% 0.02135 267.507);
+  --md-ref-palette-neutral-variant80: oklch(82.802% 0.02146 273.98);
 
   /* sys tokens */
   --md-sys-color-primary: var(--md-ref-palette-primary40);
   --md-sys-color-on-primary: var(--md-ref-palette-primary100);
+  --md-sys-color-on-surface: var(--md-ref-palette-neutral10);
   --md-sys-color-on-surface-variant: var(--md-ref-palette-neutral-variant30);
   --md-sys-color-on-surface-variant-hover: oklch(
     from var(--md-ref-palette-neutral-variant30) l c h /
@@ -27,4 +26,9 @@
     from var(--md-ref-palette-neutral-variant30) l c h /
       var(--md-sys-state-pressed-state-layer-opacity)
   );
+
+  /* state layers */
+  --md-sys-state-hover-state-layer-opacity: 0.08;
+  --md-sys-state-focused-state-layer-opacity: 0.12;
+  --md-sys-state-focused-state-layer-pressed: 0.1;
 }
