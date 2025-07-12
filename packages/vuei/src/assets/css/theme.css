@@ -13,6 +13,7 @@
   /* Colors */
   --color-primary: var(--md-sys-color-primary);
   --color-on-primary: var(--md-sys-color-on-primary);
+  --color-surface: var(--md-sys-color-surface);
   --color-on-surface: var(--md-sys-color-on-surface);
   --color-on-surface-variant: var(--md-sys-color-on-surface-variant);
   --color-on-surface-variant-hover: var(

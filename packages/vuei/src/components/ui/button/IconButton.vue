@@ -1,7 +1,5 @@
 <template>
-  <button class="icon-button">
+  <button class="icon-button" type="button">
     <slot />
   </button>
 </template>
-
-<script lang="ts" setup></script>

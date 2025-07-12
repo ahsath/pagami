@@ -1,5 +1,5 @@
 .app-bar {
-  @apply flex items-center gap-1 h-16 px-1;
+  @apply flex items-center gap-1 h-16 px-1 bg-surface;
 }
 
 .app-bar__content {

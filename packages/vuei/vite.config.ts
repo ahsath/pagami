@@ -17,7 +17,7 @@ export default defineConfig({
     lib: {
       entry: {
         vuei: resolve(__dirname, "src/vuei.ts"),
-        "vuei.css": resolve(__dirname, "src/assets/css/index.base.css"),
+        "vuei.css": resolve(__dirname, "src/assets/css/index.css"),
       },
       fileName: (format) => `vuei.${format}-bundler.js`,
       formats: ["es"],
