@@ -76,3 +76,9 @@
     @apply bg-on-secondary-container-pressed;
   }
 }
+
+.button--style-elevated {
+  &::before {
+    @apply bg-surface-container-low drop-shadow-xs/40;
+  }
+}

@@ -62,4 +62,5 @@
   --color-on-surface-variant-pressed: var(
     --md-sys-color-on-surface-variant-focused
   );
+  --color-surface-container-low: var(--md-sys-color-surface-container-low);
 }

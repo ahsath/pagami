@@ -43,5 +43,11 @@ import {
       <Star />
       <span>Filled with icon - Size: M</span>
     </button>
+    <button class="button button--style-elevated">
+      <span>Elevated</span>
+    </button>
+    <button class="button button--style-elevated button--size-m">
+      <span>Elevated - Size: M</span>
+    </button>
   </div>
 </template>

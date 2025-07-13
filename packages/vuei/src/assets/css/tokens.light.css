@@ -9,6 +9,7 @@
   --md-ref-palette-neutral6: oklch(0.1879 0.01465 272.464);
   --md-ref-palette-neutral10: oklch(0.2232 0.01401 272.683);
   --md-ref-palette-neutral90: oklch(0.9146 0.01231 280.992);
+  --md-ref-palette-neutral96: oklch(0.966 0.012 281.08);
   --md-ref-palette-neutral98: oklch(0.9838 0.0079 286.25);
   --md-ref-palette-neutral-variant30: oklch(0.398 0.02135 267.507);
   --md-ref-palette-neutral-variant80: oklch(0.828 0.02146 273.98);
@@ -69,8 +70,9 @@
     from var(--md-ref-palette-neutral-variant30) l c h /
       var(--md-sys-state-pressed-state-layer-opacity)
   );
+  --md-sys-color-surface-container-low: var(--md-ref-palette-neutral96);
 
-  /* state layers */
+  /* State layers */
   --md-sys-state-hover-state-layer-opacity: 0.08;
   --md-sys-state-focused-state-layer-opacity: 0.1;
   --md-sys-state-pressed-state-layer-opacity: 0.1;
