@@ -29,7 +29,8 @@ import {
       <div class="text-title-large">Vuei</div>
     </template>
     <template #trailing>
-      <button class="button">Label</button>
+      <button class="button"><span>Text</span></button>
+      <button class="button button--style-tonal"><span>Tonal</span></button>
     </template>
   </AppBar>
 </template>

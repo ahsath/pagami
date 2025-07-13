@@ -26,6 +26,17 @@
   --color-primary-focused: var(--md-sys-color-primary-focused);
   --color-primary-pressed: var(--md-sys-color-primary-pressed);
   --color-on-primary: var(--md-sys-color-on-primary);
+  --color-secondary-container: var(--md-sys-color-secondary-container);
+  --color-on-secondary-container: var(--md-sys-color-on-secondary-container);
+  --color-on-secondary-container-hover: var(
+    --md-sys-color-on-secondary-container-hover
+  );
+  --color-on-secondary-container-focused: var(
+    --md-sys-color-on-secondary-container-focused
+  );
+  --color-on-secondary-container-pressed: var(
+    --md-sys-color-on-secondary-container-pressed
+  );
   --color-surface: var(--md-sys-color-surface);
   --color-on-surface: var(--md-sys-color-on-surface);
   --color-on-surface-variant: var(--md-sys-color-on-surface-variant);

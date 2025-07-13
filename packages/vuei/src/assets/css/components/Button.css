@@ -25,26 +25,22 @@
   }
 }
 
-.button--type-icon {
-  @apply text-on-surface w-12 px-0;
+.button--style-tonal {
+  @apply text-on-secondary-container;
 
-  &::before,
-  &::after {
-    @apply w-10;
+  &::before {
+    @apply bg-secondary-container;
   }
-}
 
-.button--type-outline,
-.button--type-icon {
   &:hover::after {
-    @apply bg-on-surface-variant-hover;
+    @apply bg-on-secondary-container-hover;
   }
 
   &:focus-visible::after {
-    @apply bg-on-surface-variant-focused outline-on-surface-variant;
+    @apply bg-on-secondary-container-focused outline-on-secondary-container;
   }
 
   &:active::after {
-    @apply bg-on-surface-variant-pressed;
+    @apply bg-on-secondary-container-pressed;
   }
 }

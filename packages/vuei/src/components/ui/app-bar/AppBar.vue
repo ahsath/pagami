@@ -1,5 +1,3 @@
-<script lang="ts" setup></script>
-
 <template>
   <header class="app-bar">
     <div class="app-bar__leading"><slot name="leading" /></div>

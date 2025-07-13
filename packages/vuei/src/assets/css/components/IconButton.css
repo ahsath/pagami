@@ -1,0 +1,20 @@
+.icon-button {
+  @apply text-on-surface w-12 px-0;
+
+  &::before,
+  &::after {
+    @apply w-10;
+  }
+
+  &:hover::after {
+    @apply bg-on-surface-variant-hover;
+  }
+
+  &:focus-visible::after {
+    @apply bg-on-surface-variant-focused outline-on-surface-variant;
+  }
+
+  &:active::after {
+    @apply bg-on-surface-variant-pressed;
+  }
+}

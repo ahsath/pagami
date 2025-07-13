@@ -5,3 +5,7 @@
 .app-bar__content {
   @apply grow;
 }
+
+.app-bar__trailing {
+  @apply flex gap-2;
+}
