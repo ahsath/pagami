@@ -9,7 +9,7 @@ import { X } from "lucide-vue-next";
       <slot name="headline" />
     </DialogTitle>
 
-    <DialogClose class="icon-button" aria-label="Cerrar sheet">
+    <DialogClose class="button button--type-icon" aria-label="Cerrar sheet">
       <X />
     </DialogClose>
   </div>

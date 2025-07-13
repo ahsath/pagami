@@ -1,0 +1,50 @@
+.button {
+  @apply flex items-center justify-center relative text-label-large text-primary h-12 px-4 cursor-pointer outline-none *:relative *:z-2 before:z-0 after:z-1;
+
+  &::before,
+  &::after {
+    content: "";
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-10 rounded-full;
+  }
+
+  &:hover::after {
+    @apply bg-primary-hover;
+  }
+
+  &:focus-visible::after {
+    @apply bg-primary-focused outline-2 outline-offset-2 outline-primary;
+  }
+
+  &:active::after {
+    @apply bg-primary-pressed;
+  }
+
+  &:active::before,
+  &:active::after {
+    @apply rounded-lg;
+  }
+}
+
+.button--type-icon {
+  @apply text-on-surface w-12 px-0;
+
+  &::before,
+  &::after {
+    @apply w-10;
+  }
+}
+
+.button--type-outline,
+.button--type-icon {
+  &:hover::after {
+    @apply bg-on-surface-variant-hover;
+  }
+
+  &:focus-visible::after {
+    @apply bg-on-surface-variant-focused outline-on-surface-variant;
+  }
+
+  &:active::after {
+    @apply bg-on-surface-variant-pressed;
+  }
+}

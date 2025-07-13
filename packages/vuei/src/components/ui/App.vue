@@ -28,5 +28,8 @@ import {
     <template #content>
       <div class="text-title-large">Vuei</div>
     </template>
+    <template #trailing>
+      <button class="button">Label</button>
+    </template>
   </AppBar>
 </template>

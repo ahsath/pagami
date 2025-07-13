@@ -10,8 +10,21 @@
     --md-sys-typescale-title-large-line-height
   );
 
+  /* Label large */
+  --text-label-large: var(--md-sys-typescale-label-large-size);
+  --text-label-large--line-height: var(
+    --md-sys-typescale-label-large-line-height
+  );
+  --text-label-large--letter-spacing: var(
+    --md-sys-typescale-label-large-tracking
+  );
+  --text-label-large--font-weight: var(--md-sys-typescale-label-large-weight);
+
   /* Colors */
   --color-primary: var(--md-sys-color-primary);
+  --color-primary-hover: var(--md-sys-color-primary-hover);
+  --color-primary-focused: var(--md-sys-color-primary-focused);
+  --color-primary-pressed: var(--md-sys-color-primary-pressed);
   --color-on-primary: var(--md-sys-color-on-primary);
   --color-surface: var(--md-sys-color-surface);
   --color-on-surface: var(--md-sys-color-on-surface);

@@ -18,6 +18,6 @@
 
 @layer components {
   @import "./components/AppBar.css";
-  @import "./components/IconButton.css";
+  @import "./components/Button.css";
   @import "./components/Sheet.css";
 }
