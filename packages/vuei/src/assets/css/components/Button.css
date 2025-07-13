@@ -1,5 +1,9 @@
 .button {
-  @apply flex items-center justify-center relative text-label-large text-primary h-12 px-4 cursor-pointer outline-none *:relative *:z-2 before:z-0 after:z-1;
+  @apply flex gap-2 items-center justify-center relative text-label-large text-primary h-12 px-4 cursor-pointer outline-none *:relative *:z-2 before:z-0 after:z-1;
+
+  & > svg {
+    @apply size-5;
+  }
 
   &::before,
   &::after {
@@ -22,6 +26,14 @@
   &:active::before,
   &:active::after {
     @apply rounded-lg;
+  }
+}
+
+.button--size-m {
+  @apply h-14 px-6 text-title-medium before:h-14 after:h-14;
+
+  & > svg {
+    @apply size-6;
   }
 }
 

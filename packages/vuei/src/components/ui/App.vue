@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import AppBar from "./app-bar/AppBar.vue";
 import IconButton from "./button/IconButton.vue";
-import { Menu } from "lucide-vue-next";
+import { Menu, Star } from "lucide-vue-next";
 import {
   Sheet,
   SheetContent,
@@ -34,4 +34,14 @@ import {
       <button class="button"><span>Text</span></button>
     </template>
   </AppBar>
+  <div class="p-4">
+    <button class="button button--style-filled">
+      <Star />
+      <span>Filled with icon</span>
+    </button>
+    <button class="button button--style-filled button--size-m">
+      <Star />
+      <span>Filled with icon - Size: M</span>
+    </button>
+  </div>
 </template>

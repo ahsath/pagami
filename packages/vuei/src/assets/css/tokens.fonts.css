@@ -2,7 +2,7 @@
   font-family: "Ubuntu Sans Variable";
   font-style: normal;
   font-display: swap;
-  font-weight: 400 600;
+  font-weight: 400 500 600;
   src: url(https://cdn.jsdelivr.net/fontsource/fonts/ubuntu-sans:vf@latest/latin-wght-normal.woff2)
     format("woff2-variations");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
@@ -30,6 +30,18 @@
     28 * var(--md-ref-font-size-conversion-ratio)
   );
 
+  /* Title medium */
+  --md-sys-typescale-title-medium-size: calc(
+    16 * var(--md-ref-font-size-conversion-ratio)
+  );
+  --md-sys-typescale-title-medium-line-height: calc(
+    24 * var(--md-ref-font-size-conversion-ratio)
+  );
+  --md-sys-typescale-title-medium-tracking: calc(
+    1.5 * var(--md-ref-letter-spacing-conversion-ratio)
+  );
+  --md-sys-typescale-title-medium-weight: 500;
+
   /* Label large  */
   --md-sys-typescale-label-large-size: calc(
     14 * var(--md-ref-font-size-conversion-ratio)
@@ -40,5 +52,5 @@
   --md-sys-typescale-label-large-tracking: calc(
     1 * var(--md-ref-letter-spacing-conversion-ratio)
   );
-  --md-sys-typescale-label-large-weight: 600;
+  --md-sys-typescale-label-large-weight: 500;
 }

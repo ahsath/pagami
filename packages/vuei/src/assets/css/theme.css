@@ -20,6 +20,16 @@
   );
   --text-label-large--font-weight: var(--md-sys-typescale-label-large-weight);
 
+  /* Title medium */
+  --text-title-medium: var(--md-sys-typescale-title-medium-size);
+  --text-title-medium--line-height: var(
+    --md-sys-typescale-title-medium-line-height
+  );
+  --text-title-medium--letter-spacing: var(
+    --md-sys-typescale-title-medium-tracking
+  );
+  --text-title-medium--font-weight: var(--md-sys-typescale-title-medium-weight);
+
   /* Colors */
   --color-primary: var(--md-sys-color-primary);
   --color-primary-hover: var(--md-sys-color-primary-hover);
