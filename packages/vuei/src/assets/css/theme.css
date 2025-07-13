@@ -26,6 +26,9 @@
   --color-primary-focused: var(--md-sys-color-primary-focused);
   --color-primary-pressed: var(--md-sys-color-primary-pressed);
   --color-on-primary: var(--md-sys-color-on-primary);
+  --color-on-primary-hover: var(--md-sys-color-on-primary-hover);
+  --color-on-primary-focused: var(--md-sys-color-on-primary-focused);
+  --color-on-primary-pressed: var(--md-sys-color-on-primary-pressed);
   --color-secondary-container: var(--md-sys-color-secondary-container);
   --color-on-secondary-container: var(--md-sys-color-on-secondary-container);
   --color-on-secondary-container-hover: var(

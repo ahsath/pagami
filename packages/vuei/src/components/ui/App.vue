@@ -29,8 +29,9 @@ import {
       <div class="text-title-large">Vuei</div>
     </template>
     <template #trailing>
-      <button class="button"><span>Text</span></button>
+      <button class="button button--style-filled"><span>Filled</span></button>
       <button class="button button--style-tonal"><span>Tonal</span></button>
+      <button class="button"><span>Text</span></button>
     </template>
   </AppBar>
 </template>

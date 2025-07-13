@@ -16,6 +16,18 @@
       var(--md-sys-state-pressed-state-layer-opacity)
   );
   --md-sys-color-on-primary: var(--md-ref-palette-primary20);
+  --md-sys-color-on-primary-hover: oklch(
+    from var(--md-ref-palette-primary20) l c h /
+      var(--md-sys-state-hover-state-layer-opacity)
+  );
+  --md-sys-color-on-primary-focused: oklch(
+    from var(--md-ref-palette-primary20) l c h /
+      var(--md-sys-state-focused-state-layer-opacity)
+  );
+  --md-sys-color-on-primary-pressed: oklch(
+    from var(--md-ref-palette-primary20) l c h /
+      var(--md-sys-state-pressed-state-layer-opacity)
+  );
   --md-sys-color-secondary-container: var(--md-ref-palette-secondary30);
   --md-sys-color-on-secondary-container: var(--md-ref-palette-secondary90);
   --md-sys-color-on-secondary-container-hover: oklch(

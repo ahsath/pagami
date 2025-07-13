@@ -25,6 +25,26 @@
   }
 }
 
+.button--style-filled {
+  @apply text-on-primary;
+
+  &::before {
+    @apply bg-primary;
+  }
+
+  &:hover::after {
+    @apply bg-on-primary-hover;
+  }
+
+  &:focus-visible::after {
+    @apply bg-on-primary-focused outline-primary;
+  }
+
+  &:active::after {
+    @apply bg-on-primary-pressed;
+  }
+}
+
 .button--style-tonal {
   @apply text-on-secondary-container;
 
