@@ -1,17 +1,17 @@
 :root {
   /* ref tokens */
-  --md-ref-palette-primary20: oklch(31.355% 0.11364 257.514);
+  --md-ref-palette-primary20: oklch(0.3135 0.1136 257.5);
   --md-ref-palette-primary40: oklch(0.4783 0.172 257.32);
   --md-ref-palette-primary80: oklch(0.8281 0.0851 266.17);
   --md-ref-palette-primary100: #fff;
   --md-ref-palette-secondary30: oklch(0.397 0.0726 263.26);
   --md-ref-palette-secondary90: oklch(0.8547 0.0697 266.07);
-  --md-ref-palette-neutral6: oklch(18.794% 0.01465 272.464);
-  --md-ref-palette-neutral10: oklch(22.317% 0.01401 272.683);
-  --md-ref-palette-neutral90: oklch(91.464% 0.01231 280.992);
+  --md-ref-palette-neutral6: oklch(0.1879 0.01465 272.464);
+  --md-ref-palette-neutral10: oklch(0.2232 0.01401 272.683);
+  --md-ref-palette-neutral90: oklch(0.9146 0.01231 280.992);
   --md-ref-palette-neutral98: oklch(0.9838 0.0079 286.25);
-  --md-ref-palette-neutral-variant30: oklch(39.797% 0.02135 267.507);
-  --md-ref-palette-neutral-variant80: oklch(82.802% 0.02146 273.98);
+  --md-ref-palette-neutral-variant30: oklch(0.398 0.02135 267.507);
+  --md-ref-palette-neutral-variant80: oklch(0.828 0.02146 273.98);
 
   /* sys tokens */
   --md-sys-color-primary: var(--md-ref-palette-primary40);
