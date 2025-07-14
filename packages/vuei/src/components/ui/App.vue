@@ -52,6 +52,7 @@ import {
       <button class="button button--style-elevated button--size-m">
         <span>Elevated - Size: M</span>
       </button>
+      <button class="button"><Star /><span>Text with icon</span></button>
     </div>
   </section>
 </template>
