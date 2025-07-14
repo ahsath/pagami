@@ -1,0 +1,13 @@
+:root {
+  /* Window size classes */
+  --md-sys-window-size-class-md: 37.5rem; /* 600px */
+  --md-sys-window-size-class-ex: 52.5rem; /* 840px */
+  --md-sys-window-size-class-lg: 75rem; /* 1200px */
+  --md-sys-window-size-class-xl: 100rem; /* 1600px */
+
+  /* State layers opacity */
+  --md-sys-state-hover-state-layer-opacity: 0.08;
+  --md-sys-state-focused-state-layer-opacity: 0.1;
+  --md-sys-state-pressed-state-layer-opacity: 0.1;
+  --md-sys-state-disabled-state-layer-opacity: 0.1;
+}

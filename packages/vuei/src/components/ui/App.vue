@@ -34,20 +34,24 @@ import {
       <button class="button"><span>Text</span></button>
     </template>
   </AppBar>
-  <div class="p-4">
-    <button class="button button--style-filled">
-      <Star />
-      <span>Filled with icon</span>
-    </button>
-    <button class="button button--style-filled button--size-m">
-      <Star />
-      <span>Filled with icon - Size: M</span>
-    </button>
-    <button class="button button--style-elevated">
-      <span>Elevated</span>
-    </button>
-    <button class="button button--style-elevated button--size-m">
-      <span>Elevated - Size: M</span>
-    </button>
-  </div>
+  <section
+    class="pane grid grid-cols-4 md:grid-cols-8 ex:grid-cols-12 gap-4 md:gap-6"
+  >
+    <div class="col-span-full md:col-[2/8] ex:col-[3/11] lg:col-[4/10]">
+      <button class="button button--style-filled">
+        <Star />
+        <span>Filled with icon</span>
+      </button>
+      <button class="button button--style-filled button--size-m">
+        <Star />
+        <span>Filled with icon - Size: M</span>
+      </button>
+      <button class="button button--style-elevated">
+        <span>Elevated</span>
+      </button>
+      <button class="button button--style-elevated button--size-m">
+        <span>Elevated - Size: M</span>
+      </button>
+    </div>
+  </section>
 </template>

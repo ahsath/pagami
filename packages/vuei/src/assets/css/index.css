@@ -10,6 +10,7 @@
   @import "./tokens.fonts.css";
   @import "./tokens.light.css";
   @import "./tokens.dark.css";
+  @import "./tokens.misc.css";
 
   body {
     @apply bg-surface text-on-surface;
@@ -21,4 +22,5 @@
   @import "./components/Button.css";
   @import "./components/IconButton.css";
   @import "./components/Sheet.css";
+  @import "./components/Pane.css";
 }

@@ -1,4 +1,17 @@
 @theme inline {
+  /* Spacing */
+  --spacing-md: var(--md-sys-window-size-class-md); /* 600px */
+  --spacing-ex: var(--md-sys-window-size-class-ex); /* 840px */
+  --spacing-lg: var(--md-sys-window-size-class-lg); /* 1200px */
+  --spacing-xl: var(--md-sys-window-size-class-xl); /* 1600px */
+
+  /* Breakpoints */
+  --breakpoint-*: initial;
+  --breakpoint-md: 37.5rem;
+  --breakpoint-ex: 52.5rem;
+  --breakpoint-lg: 75rem;
+  --breakpoint-xl: 100rem;
+
   /* Typography */
   --font-sans: var(--md-ref-typeface-brand, --md-ref-typeface-fallback);
 
