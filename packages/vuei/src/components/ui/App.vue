@@ -1,13 +1,16 @@
 <script lang="ts" setup>
+import { ref } from "vue";
 import AppBar from "./app-bar/AppBar.vue";
 import IconButton from "./button/IconButton.vue";
-import { Menu, Star } from "lucide-vue-next";
+import { Menu, Star, Search } from "lucide-vue-next";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import InputFieldSimple from "./InputFieldSimple.vue";
+const inputFieldModel = ref("");
 </script>
 
 <template>
@@ -53,6 +56,16 @@ import {
         <span>Elevated - Size: M</span>
       </button>
       <button class="button"><Star /><span>Text with icon</span></button>
+      <InputFieldSimple
+        label="Label"
+        id="input-field"
+        placeholder="Placeholder"
+        prefix="$"
+        #leading-icon
+        v-model="inputFieldModel"
+      >
+        <Search />
+      </InputFieldSimple>
     </div>
   </section>
 </template>

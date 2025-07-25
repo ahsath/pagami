@@ -43,6 +43,15 @@
   );
   --text-title-medium--font-weight: var(--md-sys-typescale-title-medium-weight);
 
+  /* Body small */
+  --text-body-small: var(--md-sys-typescale-body-small-size);
+  --text-body-small--line-height: var(
+    --md-sys-typescale-body-small-line-height
+  );
+  --text-body-small--letter-spacing: var(
+    --md-sys-typescale-body-small-tracking
+  );
+
   /* Colors */
   --color-primary: var(--md-sys-color-primary);
   --color-primary-hover: var(--md-sys-color-primary-hover);
@@ -76,4 +85,5 @@
     --md-sys-color-on-surface-variant-focused
   );
   --color-surface-container-low: var(--md-sys-color-surface-container-low);
+  --color-outline: var(--md-sys-color-outline);
 }

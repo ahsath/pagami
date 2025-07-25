@@ -53,4 +53,15 @@
     1 * var(--md-ref-letter-spacing-conversion-ratio)
   );
   --md-sys-typescale-label-large-weight: 500;
+
+  /* Body small */
+  --md-sys-typescale-body-small-size: calc(
+    12 * var(--md-ref-font-size-conversion-ratio)
+  );
+  --md-sys-typescale-body-small-line-height: calc(
+    16 * var(--md-ref-font-size-conversion-ratio)
+  );
+  --md-sys-typescale-body-small-tracking: calc(
+    4 * var(--md-ref-letter-spacing-conversion-ratio)
+  );
 }

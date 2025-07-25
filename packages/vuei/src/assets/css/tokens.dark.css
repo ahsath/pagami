@@ -58,4 +58,5 @@
       var(--md-sys-state-pressed-state-layer-opacity)
   );
   --md-sys-color-surface-container-low: var(--md-ref-palette-neutral10);
+  --md-sys-color-outline: var(--md-ref-palette-neutral-variant60);
 }
