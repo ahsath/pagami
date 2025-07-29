@@ -1,6 +1,10 @@
 .icon-button {
   @apply text-on-surface w-12 px-0;
 
+  & > svg {
+    @apply size-6;
+  }
+
   &::before,
   &::after {
     @apply w-10;

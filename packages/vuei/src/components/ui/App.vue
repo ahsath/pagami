@@ -2,14 +2,17 @@
 import { ref } from "vue";
 import AppBar from "./app-bar/AppBar.vue";
 import IconButton from "./button/IconButton.vue";
-import { Menu, Star, Search } from "lucide-vue-next";
+import SearchRounded from "~icons/material-symbols/search-rounded?width=24&height=24";
+import StarsRounded from "~icons/material-symbols/stars-rounded?width=24&height=24";
+import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
+
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import InputFieldSimple from "./InputFieldSimple.vue";
+import InputFieldSimple from "./input-field/InputFieldSimple.vue";
 const inputFieldModel = ref("");
 </script>
 
@@ -19,7 +22,7 @@ const inputFieldModel = ref("");
       <Sheet>
         <SheetTrigger as-child>
           <IconButton aria-label="Abrir menu">
-            <Menu />
+            <MenuRounded />
           </IconButton>
         </SheetTrigger>
         <SheetContent>
@@ -42,11 +45,11 @@ const inputFieldModel = ref("");
   >
     <div class="col-span-full md:col-[2/8] ex:col-[3/11] lg:col-[4/10]">
       <button class="button button--style-filled">
-        <Star />
+        <StarsRounded />
         <span>Filled with icon</span>
       </button>
       <button class="button button--style-filled button--size-m">
-        <Star />
+        <StarsRounded />
         <span>Filled with icon - Size: M</span>
       </button>
       <button class="button button--style-elevated">
@@ -55,17 +58,24 @@ const inputFieldModel = ref("");
       <button class="button button--style-elevated button--size-m">
         <span>Elevated - Size: M</span>
       </button>
-      <button class="button"><Star /><span>Text with icon</span></button>
-      <InputFieldSimple
-        label="Label"
-        id="input-field"
-        placeholder="Placeholder"
-        prefix="$"
-        #leading-icon
-        v-model="inputFieldModel"
-      >
-        <Search />
-      </InputFieldSimple>
+      <button class="button">
+        <StarsRounded /><span>Text with icon</span>
+      </button>
+      <form @submit.prevent novalidate>
+        <InputFieldSimple
+          v-model="inputFieldModel"
+          id="input-field"
+          label="Label"
+          prefix="$"
+          placeholder="Placeholder"
+          supporting-text="Supporting text"
+          required
+          disabled
+          #leading-icon
+        >
+          <SearchRounded aria-hidden="true" />
+        </InputFieldSimple>
+      </form>
     </div>
   </section>
 </template>

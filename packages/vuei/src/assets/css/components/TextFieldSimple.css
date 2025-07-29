@@ -1,9 +1,13 @@
 .input-field-simple {
-  @apply flex flex-col gap-1 text-on-surface-variant;
+  @apply flex flex-col gap-1 text-on-surface-variant has-disabled:text-on-surface has-disabled:opacity-38 has-disabled:pointer-events-none;
 
   &:has(.input-field-simple__container:focus-within)
     .input-field-simple__label {
     @apply text-primary;
+  }
+
+  &:has(.input-field-simple__input:required) .input-field-simple__label::after {
+    @apply content-['*'];
   }
 }
 

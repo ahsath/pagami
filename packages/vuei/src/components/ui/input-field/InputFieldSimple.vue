@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import { useTemplateRef } from "vue";
+
+defineOptions({ inheritAttrs: false });
+
 defineProps<{
   id: string;
   label?: string;
@@ -7,6 +10,7 @@ defineProps<{
   placeholder?: string;
   supportingText?: string;
 }>();
+
 const model = defineModel();
 
 const inputRef = useTemplateRef("inputRef");
@@ -29,18 +33,19 @@ function focusInput() {
       >
         <slot name="leading-icon" />
       </div>
-      <div
+      <span
         class="input-field-simple__prefix"
         v-if="prefix"
         @click.stop="focusInput"
       >
         {{ prefix }}
-      </div>
+      </span>
       <input
         type="text"
         class="input-field-simple__input"
         ref="inputRef"
         v-model="model"
+        :="$attrs"
         :id
         :placeholder
       />

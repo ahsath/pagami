@@ -4,11 +4,12 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import tailwindcss from "@tailwindcss/vite";
 import vueDevTools from "vite-plugin-vue-devtools";
+import Icons from "unplugin-icons/vite";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [vue(), vueDevTools(), tailwindcss()],
+  plugins: [vue(), vueDevTools(), tailwindcss(), Icons({ compiler: "vue3" })],
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src"),

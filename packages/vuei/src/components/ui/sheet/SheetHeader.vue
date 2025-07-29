@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { DialogTitle, DialogClose } from "reka-ui";
-import { X } from "lucide-vue-next";
+import CloseRounded from "~icons/material-symbols/close-rounded?width=24&height=24";
 </script>
 
 <template>
@@ -10,7 +10,7 @@ import { X } from "lucide-vue-next";
     </DialogTitle>
 
     <DialogClose class="button icon-button" aria-label="Cerrar sheet">
-      <X />
+      <CloseRounded />
     </DialogClose>
   </div>
 </template>

@@ -7,7 +7,7 @@
     "outDir": "./dist/types",
     "isolatedModules": false,
     "noEmit": false,
-    "types": ["vite/client"]
+    "types": ["vite/client", "unplugin-icons/types/vue3"]
   },
   "include": ["src/vuei.ts"],
   "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"]
