@@ -1,13 +1,48 @@
 .input-field-simple {
   @apply flex flex-col gap-1 text-on-surface-variant has-disabled:text-on-surface has-disabled:opacity-38 has-disabled:pointer-events-none;
 
-  &:has(.input-field-simple__container:focus-within)
+  &:hover { 
     .input-field-simple__label {
-    @apply text-primary;
+      @apply text-on-surface;
+    }
+
+    .input-field-simple__container {
+      @apply outline-on-surface;
+    }
   }
 
-  &:has(.input-field-simple__input:required) .input-field-simple__label::after {
-    @apply content-['*'];
+  &:focus-within { 
+    .input-field-simple__label {
+      @apply text-primary;
+    }
+
+    .input-field-simple__container {
+      @apply outline-3 -outline-offset-3 outline-primary;
+    }
+  }
+
+  &.input-field-simple--state-error {
+    &:has(.input-field-simple__container:focus-within) .input-field-simple__label,
+    & .input-field-simple__label,
+    & .input-field-simple__supporting-text {
+      @apply text-error;
+    }
+
+    &:hover .input-field-simple__label {
+      @apply text-on-error-container;
+    }
+
+    &:hover .input-field-simple__container {
+      @apply outline-on-error-container;
+    }
+
+    & .input-field-simple__container {
+      @apply outline-error focus-within:outline-error;
+    }
+
+    & .input-field-simple__input {
+      @apply caret-error;
+    }
   }
 }
 
@@ -17,14 +52,6 @@
 
 .input-field-simple__container {
   @apply flex outline outline-outline -outline-offset-1 rounded-sm cursor-text;
-
-  &:hover {
-    @apply outline-on-surface;
-  }
-
-  &:focus-within {
-    @apply outline-3 -outline-offset-3 outline-primary;
-  }
 }
 
 .input-field-simple__leading-icon {
@@ -33,6 +60,7 @@
 
 .input-field-simple__prefix {
   @apply min-w-fit my-auto px-1;
+
   &:not(.input-field-simple__leading-icon ~ &) {
     @apply pl-4;
   }
@@ -46,10 +74,8 @@
   }
 }
 
-.input-field-simple__leading-icon + .input-field-simple__input {
-  &.input-field-simple__input:not(.input-field-simple__prefix ~ &) {
-    @apply pl-1;
-  }
+.input-field-simple__leading-icon + .input-field-simple__input:not(.input-field-simple__prefix ~ &) {
+  @apply pl-1;
 }
 
 .input-field-simple__supporting-text {

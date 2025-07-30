@@ -59,4 +59,6 @@
   );
   --md-sys-color-surface-container-low: var(--md-ref-palette-neutral10);
   --md-sys-color-outline: var(--md-ref-palette-neutral-variant60);
+  --md-sys-color-error: var(--md-ref-palette-error80);
+  --md-sys-color-on-error-container: var(--md-ref-palette-error90);
 }

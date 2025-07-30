@@ -6,7 +6,10 @@ defineOptions({ inheritAttrs: false });
 defineProps<{
   id: string;
   label?: string;
+  error?: string;
   prefix?: string;
+  disabled?: boolean;
+  clearable?: boolean;
   placeholder?: string;
   supportingText?: string;
 }>();
@@ -21,7 +24,10 @@ function focusInput() {
 </script>
 
 <template>
-  <div class="input-field-simple">
+  <div
+    class="input-field-simple"
+    :class="{ 'input-field-simple--state-error': !disabled && error }"
+  >
     <label :for="id" class="input-field-simple__label" v-show="label">
       {{ label }}
     </label>
@@ -29,15 +35,10 @@ function focusInput() {
       <div
         class="input-field-simple__leading-icon"
         v-if="$slots['leading-icon']"
-        @click.stop="focusInput"
       >
         <slot name="leading-icon" />
       </div>
-      <span
-        class="input-field-simple__prefix"
-        v-if="prefix"
-        @click.stop="focusInput"
-      >
+      <span class="input-field-simple__prefix" v-if="prefix">
         {{ prefix }}
       </span>
       <input
@@ -47,11 +48,25 @@ function focusInput() {
         v-model="model"
         :="$attrs"
         :id
+        :disabled
         :placeholder
       />
+      <div
+        class="input-field-simple__trailing-icon"
+        v-if="$slots['trailing-icon']"
+      >
+        <slot name="trailing-icon" />
+      </div>
     </div>
-    <div class="input-field-simple__supporting-text" v-show="supportingText">
+    <p
+      class="input-field-simple__supporting-text"
+      v-if="!disabled && error"
+      role="alert"
+    >
+      {{ error }}
+    </p>
+    <p class="input-field-simple__supporting-text" v-else-if="supportingText">
       {{ supportingText }}
-    </div>
+    </p>
   </div>
 </template>

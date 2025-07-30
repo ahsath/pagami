@@ -86,4 +86,6 @@
   );
   --color-surface-container-low: var(--md-sys-color-surface-container-low);
   --color-outline: var(--md-sys-color-outline);
+  --color-error: var(--md-sys-color-error);
+  --color-on-error-container: var(--md-sys-color-on-error-container);
 }

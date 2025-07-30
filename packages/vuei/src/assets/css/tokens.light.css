@@ -15,6 +15,10 @@
   --md-ref-palette-neutral-variant50: oklch(0.5695 0.0209 268.93);
   --md-ref-palette-neutral-variant60: oklch(0.6546 0.0212 273.08);
   --md-ref-palette-neutral-variant80: oklch(0.828 0.02146 273.98);
+  --md-ref-palette-error30: oklch(0.4171 0.170153 27.3788);
+  --md-ref-palette-error40: oklch(0.506 0.1927 27.7);
+  --md-ref-palette-error80: oklch(0.8383 0.0891 26.76);
+  --md-ref-palette-error90: oklch(0.9183 0.041771 25.2259);
 
   /* sys tokens */
   --md-sys-color-primary: var(--md-ref-palette-primary40);
@@ -74,4 +78,6 @@
   );
   --md-sys-color-surface-container-low: var(--md-ref-palette-neutral96);
   --md-sys-color-outline: var(--md-ref-palette-neutral-variant50);
+  --md-sys-color-error: var(--md-ref-palette-error40);
+  --md-sys-color-on-error-container: var(--md-ref-palette-error30);
 }

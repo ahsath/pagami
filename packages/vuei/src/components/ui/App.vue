@@ -1,18 +1,18 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import AppBar from "./app-bar/AppBar.vue";
-import IconButton from "./button/IconButton.vue";
-import SearchRounded from "~icons/material-symbols/search-rounded?width=24&height=24";
-import StarsRounded from "~icons/material-symbols/stars-rounded?width=24&height=24";
-import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
-
+import AppBar from "@/components/ui/app-bar/AppBar.vue";
+import IconButton from "@/components/ui/button/IconButton.vue";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import InputFieldSimple from "./input-field/InputFieldSimple.vue";
+import { InputFieldSimple } from "@/components/ui/input-field";
+import SearchRounded from "~icons/material-symbols/search-rounded?width=24&height=24";
+import StarsRounded from "~icons/material-symbols/stars-rounded?width=24&height=24";
+import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
+
 const inputFieldModel = ref("");
 </script>
 
@@ -65,15 +65,15 @@ const inputFieldModel = ref("");
         <InputFieldSimple
           v-model="inputFieldModel"
           id="input-field"
-          label="Label"
+          label="Label*"
           prefix="$"
           placeholder="Placeholder"
           supporting-text="Supporting text"
           required
-          disabled
-          #leading-icon
         >
-          <SearchRounded aria-hidden="true" />
+          <template #leading-icon>
+            <SearchRounded aria-hidden="true" />
+          </template>
         </InputFieldSimple>
       </form>
     </div>
