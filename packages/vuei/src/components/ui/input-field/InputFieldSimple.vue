@@ -8,6 +8,7 @@ defineProps<{
   label?: string;
   error?: string;
   prefix?: string;
+  suffix?: string;
   disabled?: boolean;
   clearable?: boolean;
   placeholder?: string;
@@ -51,6 +52,9 @@ function focusInput() {
         :disabled
         :placeholder
       />
+      <span class="input-field-simple__suffix" v-if="suffix">
+        {{ suffix }}
+      </span>
       <div
         class="input-field-simple__trailing-icon"
         v-if="$slots['trailing-icon']"

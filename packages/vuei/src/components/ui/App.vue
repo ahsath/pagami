@@ -12,6 +12,7 @@ import { InputFieldSimple } from "@/components/ui/input-field";
 import SearchRounded from "~icons/material-symbols/search-rounded?width=24&height=24";
 import StarsRounded from "~icons/material-symbols/stars-rounded?width=24&height=24";
 import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
+import MoneyBagRounded from "~icons/material-symbols/money-bag-rounded?width=24&height=24";
 
 const inputFieldModel = ref("");
 </script>
@@ -67,12 +68,17 @@ const inputFieldModel = ref("");
           id="input-field"
           label="Label*"
           prefix="$"
+          suffix=".00"
           placeholder="Placeholder"
+          error="Error message"
           supporting-text="Supporting text"
           required
         >
           <template #leading-icon>
             <SearchRounded aria-hidden="true" />
+          </template>
+          <template #trailing-icon>
+            <MoneyBagRounded aria-hidden="true" />
           </template>
         </InputFieldSimple>
       </form>
