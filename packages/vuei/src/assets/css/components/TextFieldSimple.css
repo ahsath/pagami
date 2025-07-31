@@ -11,7 +11,7 @@
     }
   }
 
-  &:focus-within {
+  &:has(.input-field-simple__input:focus) {
     .input-field-simple__label {
       @apply text-primary;
     }
@@ -24,17 +24,23 @@
   &.input-field-simple--state-error {
     &:has(.input-field-simple__container:focus-within)
       .input-field-simple__label,
+    &:has(.input-field-simple__container:focus-within)
+      .input-field-simple__trailing-icon,
     & .input-field-simple__label,
-    & .input-field-simple__supporting-text {
+    & .input-field-simple__supporting-text,
+    & .input-field-simple__trailing-icon {
       @apply text-error;
     }
 
-    &:hover .input-field-simple__label {
-      @apply text-on-error-container;
-    }
+    &:hover {
+      .input-field-simple__label,
+      .input-field-simple__trailing-icon {
+        @apply text-on-error-container;
+      }
 
-    &:hover .input-field-simple__container {
-      @apply outline-on-error-container;
+      .input-field-simple__container {
+        @apply outline-on-error-container;
+      }
     }
 
     & .input-field-simple__container {

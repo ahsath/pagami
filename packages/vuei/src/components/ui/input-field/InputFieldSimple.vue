@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { useTemplateRef } from "vue";
+import ErrorRounded from "~icons/material-symbols/error-rounded?width=24&height=24";
+import CancelOutlineRounded from "~icons/material-symbols/cancel-outline-rounded?width=24&height=24";
 
 defineOptions({ inheritAttrs: false });
 
@@ -18,6 +20,10 @@ defineProps<{
 const model = defineModel();
 
 const inputRef = useTemplateRef("inputRef");
+
+function clearInput() {
+  model.value = ""; // Set the v-model value to empty
+}
 
 function focusInput() {
   inputRef.value?.focus();
@@ -55,9 +61,25 @@ function focusInput() {
       <span class="input-field-simple__suffix" v-if="suffix">
         {{ suffix }}
       </span>
+      <div class="input-field-simple__trailing-icon" v-if="error">
+        <ErrorRounded aria-hidden="true" />
+      </div>
+      <div
+        class="input-field-simple__trailing-icon px-0"
+        v-else-if="clearable && model"
+      >
+        <button
+          class="button icon-button text-inherit"
+          aria-label="Limpiar campo"
+          type="button"
+          @click.stop="clearInput"
+        >
+          <CancelOutlineRounded />
+        </button>
+      </div>
       <div
         class="input-field-simple__trailing-icon"
-        v-if="$slots['trailing-icon']"
+        v-else-if="$slots['trailing-icon']"
       >
         <slot name="trailing-icon" />
       </div>

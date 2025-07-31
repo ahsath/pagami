@@ -70,9 +70,9 @@ const inputFieldModel = ref("");
           prefix="$"
           suffix=".00"
           placeholder="Placeholder"
-          error="Error message"
           supporting-text="Supporting text"
           required
+          clearable
         >
           <template #leading-icon>
             <SearchRounded aria-hidden="true" />
