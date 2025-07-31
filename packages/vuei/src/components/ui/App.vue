@@ -81,6 +81,17 @@ const inputFieldModel = ref("");
             <MoneyBagRounded aria-hidden="true" />
           </template>
         </InputFieldSimple>
+        <InputFieldSimple
+          id="input-field-2"
+          label="Label*"
+          error="Error message"
+          required
+          clearable
+        >
+          <template #trailing-icon>
+            <MoneyBagRounded aria-hidden="true" />
+          </template>
+        </InputFieldSimple>
       </form>
     </div>
   </section>
