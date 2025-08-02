@@ -22,7 +22,7 @@ const model = defineModel();
 const inputRef = useTemplateRef("inputRef");
 
 function clearInput() {
-  model.value = ""; // Set the v-model value to empty
+  model.value = "";
 }
 
 function focusInput() {

@@ -8,13 +8,15 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { InputFieldSimple } from "@/components/ui/input-field";
+import SelectSimple from "./select/SelectSimple.vue";
+import InputFieldSimple from "@/components/ui/input-field/InputFieldSimple.vue";
 import SearchRounded from "~icons/material-symbols/search-rounded?width=24&height=24";
 import StarsRounded from "~icons/material-symbols/stars-rounded?width=24&height=24";
 import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
 import MoneyBagRounded from "~icons/material-symbols/money-bag-rounded?width=24&height=24";
 
 const inputFieldModel = ref("");
+const selectModel = ref("VE");
 </script>
 
 <template>
@@ -36,8 +38,18 @@ const inputFieldModel = ref("");
       <div class="text-title-large">Vuei</div>
     </template>
     <template #trailing>
-      <button class="button button--style-filled"><span>Filled</span></button>
-      <button class="button button--style-tonal"><span>Tonal</span></button>
+      <SelectSimple
+        v-model="selectModel"
+        id="country-selector"
+        :options="[
+          { value: 'EC', label: 'Ecuador' },
+          { value: 'VE', label: 'Venezuela' },
+        ]"
+        #leading-icon
+      >
+        <img v-show="selectModel === 'EC'" src="/ecuador.svg" alt="" />
+        <img v-show="selectModel === 'VE'" src="/venezuela.svg" alt="" />
+      </SelectSimple>
       <button class="button"><span>Text</span></button>
     </template>
   </AppBar>
@@ -45,6 +57,8 @@ const inputFieldModel = ref("");
     class="pane grid grid-cols-4 md:grid-cols-8 ex:grid-cols-12 gap-4 md:gap-6"
   >
     <div class="col-span-full md:col-[2/8] ex:col-[3/11] lg:col-[4/10]">
+      <button class="button button--style-filled"><span>Filled</span></button>
+      <button class="button button--style-tonal"><span>Tonal</span></button>
       <button class="button button--style-filled">
         <StarsRounded />
         <span>Filled with icon</span>
@@ -62,37 +76,34 @@ const inputFieldModel = ref("");
       <button class="button">
         <StarsRounded /><span>Text with icon</span>
       </button>
-      <form @submit.prevent novalidate>
-        <InputFieldSimple
-          v-model="inputFieldModel"
-          id="input-field"
-          label="Label*"
-          prefix="$"
-          suffix=".00"
-          placeholder="Placeholder"
-          supporting-text="Supporting text"
-          required
-          clearable
-        >
-          <template #leading-icon>
-            <SearchRounded aria-hidden="true" />
-          </template>
-          <template #trailing-icon>
-            <MoneyBagRounded aria-hidden="true" />
-          </template>
-        </InputFieldSimple>
-        <InputFieldSimple
-          id="input-field-2"
-          label="Label*"
-          error="Error message"
-          required
-          clearable
-        >
-          <template #trailing-icon>
-            <MoneyBagRounded aria-hidden="true" />
-          </template>
-        </InputFieldSimple>
-      </form>
+      <InputFieldSimple
+        v-model="inputFieldModel"
+        id="input-field"
+        label="Label*"
+        prefix="$"
+        placeholder="Placeholder"
+        supporting-text="Supporting text"
+        required
+        clearable
+      >
+        <template #leading-icon>
+          <SearchRounded aria-hidden="true" />
+        </template>
+        <template #trailing-icon>
+          <MoneyBagRounded aria-hidden="true" />
+        </template>
+      </InputFieldSimple>
+      <InputFieldSimple
+        id="input-field-2"
+        label="Label*"
+        error="Error message"
+        required
+        clearable
+      >
+        <template #trailing-icon>
+          <MoneyBagRounded aria-hidden="true" />
+        </template>
+      </InputFieldSimple>
     </div>
   </section>
 </template>

@@ -104,8 +104,7 @@
     @apply pl-1;
   }
 
-  &:has(+ .input-field-simple__suffix),
-  &:has(+ .input-field-simple__trailing-icon) {
+  &:has(+ .input-field-simple__suffix, + .input-field-simple__trailing-icon) {
     @apply pr-0;
   }
 

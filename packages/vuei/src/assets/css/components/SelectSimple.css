@@ -1,0 +1,35 @@
+.select-simple {
+  @apply relative text-on-surface-variant outline outline-outline -outline-offset-1 rounded-sm;
+
+  &:has(.select-simple__select:open) .select-simple__trailing-icon {
+    @apply rotate-180;
+  }
+
+  &:hover {
+    @apply outline-on-surface;
+  }
+
+  &:focus-within {
+    @apply outline-3 -outline-offset-3 outline-primary;
+
+    .select-simple__trailing-icon {
+      @apply text-primary;
+    }
+  }
+}
+
+.select-simple__leading-icon {
+  @apply absolute inset-y-0 left-0 px-3 flex items-center pointer-events-none;
+}
+
+.select-simple__select {
+  @apply appearance-none w-full outline-none py-3 pl-4 pr-12 text-on-surface;
+
+  .select-simple__leading-icon + & {
+    @apply pl-12;
+  }
+}
+
+.select-simple__trailing-icon {
+  @apply absolute inset-y-0 right-0 px-3 flex items-center pointer-events-none;
+}
