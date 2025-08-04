@@ -1,0 +1,86 @@
+.list {
+  @apply flex items-center relative bg-surface min-h-14 py-2 rounded-sm cursor-text has-[input]:cursor-pointer has-checked:bg-secondary-container has-checked:text-on-secondary-container *:relative *:z-1 after:z-0;
+
+  &:has(.list__supporting-text) {
+    @apply min-h-18;
+  }
+
+  &.list--checked .list__supporting-text {
+    @apply text-on-secondary-container;
+  }
+
+  &::after {
+    @apply absolute inset-0 rounded-sm;
+  }
+
+  &:hover {
+    &:has(.list__input:not(:checked))::after {
+      @apply bg-on-surface-hover;
+    }
+
+    &:has(.list__input:checked)::after {
+      @apply bg-on-secondary-container-hover;
+    }
+  }
+
+  &:has(.list__input:focus-visible)::after {
+    @apply outline-3 -outline-offset-3 outline-secondary;
+  }
+
+  &:has(.list__input:focus-visible:not(:checked))::after {
+    @apply bg-on-surface-focused;
+  }
+
+  &:has(.list__input:focus-visible:checked)::after {
+    @apply bg-on-secondary-container-focused;
+  }
+
+  &:has(.list__input:active:not(:checked))::after {
+    @apply bg-on-surface-pressed;
+  }
+
+  &:has(.list__input:active:checked)::after {
+    @apply bg-on-secondary-container-pressed;
+  }
+}
+
+.list__leading,
+.list__trailing {
+  @apply px-4 text-on-surface-variant;
+}
+
+.list__leading {
+  &:has(~ *:checked) {
+    @apply text-on-secondary-container;
+  }
+}
+
+.list__content {
+  @apply px-4 grow;
+
+  .list__leading + & {
+    @apply pl-0;
+  }
+
+  &:has(+ .list__trailing) {
+    @apply pr-0;
+  }
+}
+
+.list__supporting-text {
+  @apply text-body-medium text-on-surface-variant;
+}
+
+.list__trailing {
+  &:has(~ *:checked) {
+    @apply text-on-secondary-container;
+  }
+
+  &:has(.icon-button) {
+    @apply px-1;
+  }
+}
+
+.list__input {
+  @apply sr-only;
+}

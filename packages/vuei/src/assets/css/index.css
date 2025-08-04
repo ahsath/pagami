@@ -13,7 +13,7 @@
   @import "./tokens.misc.css";
 
   body {
-    @apply bg-surface text-on-surface;
+    @apply bg-surface text-body-large text-on-surface;
   }
 }
 
@@ -25,4 +25,5 @@
   @import "./components/Pane.css";
   @import "./components/TextFieldSimple.css";
   @import "./components/SelectSimple.css";
+  @import "./components/List.css";
 }

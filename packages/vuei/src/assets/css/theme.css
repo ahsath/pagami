@@ -22,6 +22,9 @@
   --text-title-large--line-height: var(
     --md-sys-typescale-title-large-line-height
   );
+  --text-title-large--letter-spacing: var(
+    --md-sys-typescale-title-large-tracking
+  );
 
   /* Label large */
   --text-label-large: var(--md-sys-typescale-label-large-size);
@@ -43,6 +46,24 @@
   );
   --text-title-medium--font-weight: var(--md-sys-typescale-title-medium-weight);
 
+  /* Body large */
+  --text-body-large: var(--md-sys-typescale-body-large-size);
+  --text-body-large--line-height: var(
+    --md-sys-typescale-body-large-line-height
+  );
+  --text-body-large--letter-spacing: var(
+    --md-sys-typescale-body-large-tracking
+  );
+
+  /* Body medium */
+  --text-body-medium: var(--md-sys-typescale-body-medium-size);
+  --text-body-medium--line-height: var(
+    --md-sys-typescale-body-medium-line-height
+  );
+  --text-body-medium--letter-spacing: var(
+    --md-sys-typescale-body-medium-tracking
+  );
+
   /* Body small */
   --text-body-small: var(--md-sys-typescale-body-small-size);
   --text-body-small--line-height: var(
@@ -54,6 +75,7 @@
 
   /* Colors */
   --color-primary: var(--md-sys-color-primary);
+  --color-secondary: var(--md-sys-color-secondary);
   --color-primary-hover: var(--md-sys-color-primary-hover);
   --color-primary-focused: var(--md-sys-color-primary-focused);
   --color-primary-pressed: var(--md-sys-color-primary-pressed);
@@ -74,6 +96,9 @@
   );
   --color-surface: var(--md-sys-color-surface);
   --color-on-surface: var(--md-sys-color-on-surface);
+  --color-on-surface-hover: var(--md-sys-color-on-surface-hover);
+  --color-on-surface-focused: var(--md-sys-color-on-surface-focused);
+  --color-on-surface-pressed: var(--md-sys-color-on-surface-pressed);
   --color-on-surface-variant: var(--md-sys-color-on-surface-variant);
   --color-on-surface-variant-hover: var(
     --md-sys-color-on-surface-variant-hover

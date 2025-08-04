@@ -8,15 +8,41 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import SelectSimple from "./select/SelectSimple.vue";
+import SelectSimple from "@/components/ui/select/SelectSimple.vue";
+import {
+  List,
+  ListContent,
+  ListLeading,
+  ListTrailing,
+  ListSupportingText,
+} from "@/components/ui/list";
 import InputFieldSimple from "@/components/ui/input-field/InputFieldSimple.vue";
 import SearchRounded from "~icons/material-symbols/search-rounded?width=24&height=24";
 import StarsRounded from "~icons/material-symbols/stars-rounded?width=24&height=24";
 import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
 import MoneyBagRounded from "~icons/material-symbols/money-bag-rounded?width=24&height=24";
+import PersonOutlineRounded from "~icons/material-symbols/person-outline-rounded?width=24&height=24";
+import CircleOutline from "~icons/material-symbols/circle-outline?width=24&height=24";
+import RadioButtonCheckedOutline from "~icons/material-symbols/radio-button-checked-outline?width=24&height=24";
+import CheckBoxOutlineBlank from "~icons/material-symbols/check-box-outline-blank?width=24&height=24";
+import Checkbox from "~icons/material-symbols/check-box?width=24&height=24";
+import ContentCopyOutlineRounded from "~icons/material-symbols/content-copy-outline-rounded?width=24&height=24";
 
-const inputFieldModel = ref("");
+const inputFieldModel = ref();
 const selectModel = ref("VE");
+const radioModel = ref();
+const checkboxModel1 = ref("");
+const checkboxModel2 = ref([]);
+
+const listRadioGroup1 = [
+  { value: "list-radio-group-1" },
+  { value: "list-radio-group-2" },
+];
+
+const listCheckboxGroup1 = [
+  { value: "list-checkbox-group-1" },
+  { value: "list-checkbox-group-2" },
+];
 </script>
 
 <template>
@@ -104,6 +130,83 @@ const selectModel = ref("VE");
           <MoneyBagRounded aria-hidden="true" />
         </template>
       </InputFieldSimple>
+      <br />
+      <List
+        v-for="radioItem in listRadioGroup1"
+        v-model:radio="radioModel"
+        :value="radioItem.value"
+        name="list-radio-group"
+        :id="radioItem.value"
+        type="radio"
+        #="{ checked }"
+      >
+        <ListLeading>
+          <PersonOutlineRounded />
+        </ListLeading>
+        <ListContent>
+          <div>Headline</div>
+          <ListSupportingText>Supporting text</ListSupportingText>
+        </ListContent>
+        <ListTrailing>
+          <RadioButtonCheckedOutline v-show="checked" />
+          <CircleOutline v-show="!checked" />
+        </ListTrailing>
+      </List>
+      <br />
+      <List
+        v-model:checkbox="checkboxModel1"
+        type="checkbox"
+        id="list-checkbox"
+        value="list-checkbox-group-1"
+        true-value="si"
+        false-value="no"
+        #="{ checked }"
+      >
+        <ListLeading>
+          <PersonOutlineRounded />
+        </ListLeading>
+        <ListContent>
+          <div>Headline</div>
+        </ListContent>
+        <ListTrailing>
+          <Checkbox v-show="checked" />
+          <CheckBoxOutlineBlank v-show="!checked" />
+        </ListTrailing>
+      </List>
+      <br />
+      <List
+        v-for="checkboxItem in listCheckboxGroup1"
+        v-model:checkbox="checkboxModel2"
+        :id="checkboxItem.value"
+        :value="checkboxItem.value"
+        type="checkbox"
+        #="{ checked }"
+      >
+        <ListLeading>
+          <PersonOutlineRounded />
+        </ListLeading>
+        <ListContent> <div>Headline</div> </ListContent>
+        <ListTrailing>
+          <Checkbox v-show="checked" />
+          <CheckBoxOutlineBlank v-show="!checked" />
+        </ListTrailing>
+      </List>
+      <br />
+      <List>
+        <ListLeading>
+          <PersonOutlineRounded />
+        </ListLeading>
+        <ListContent>
+          <div>Headline</div>
+          <ListSupportingText>Supporting text</ListSupportingText>
+        </ListContent>
+        <ListTrailing>
+          <IconButton aria-label="Copiar">
+            <ContentCopyOutlineRounded />
+          </IconButton>
+        </ListTrailing>
+      </List>
+      <br />
     </div>
   </section>
 </template>
