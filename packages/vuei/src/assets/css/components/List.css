@@ -1,16 +1,28 @@
 .list {
   @apply flex items-center relative bg-surface min-h-14 py-2 rounded-sm cursor-text has-[input]:cursor-pointer has-checked:bg-secondary-container has-checked:text-on-secondary-container *:relative *:z-1 after:z-0;
 
-  &:has(.list__supporting-text) {
-    @apply min-h-18;
+  &.list--alignment-top {
+    @apply items-start py-3;
   }
 
-  &.list--checked .list__supporting-text {
+  &.list--checked :is(.list__supporting-text, .list__overline) {
     @apply text-on-secondary-container;
   }
 
   &::after {
     @apply absolute inset-0 rounded-sm;
+  }
+
+  &.list--size-one-line {
+    @apply min-h-14;
+  }
+
+  &.list--size-two-line {
+    @apply min-h-18;
+  }
+
+  &.list--size-three-line {
+    @apply min-h-22;
   }
 
   &:hover {
@@ -65,6 +77,10 @@
   &:has(+ .list__trailing) {
     @apply pr-0;
   }
+}
+
+.list__overline {
+  @apply text-label-medium text-on-surface-variant;
 }
 
 .list__supporting-text {

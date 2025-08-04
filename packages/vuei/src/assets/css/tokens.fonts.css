@@ -41,7 +41,7 @@
   --md-sys-typescale-title-medium-tracking: calc(
     1.5 * var(--md-ref-letter-spacing-conversion-ratio)
   );
-  --md-sys-typescale-title-medium-weight: 500;
+  --md-sys-typescale-title-medium-weight: 600;
 
   /* Label large  */
   --md-sys-typescale-label-large-size: calc(
@@ -53,7 +53,19 @@
   --md-sys-typescale-label-large-tracking: calc(
     1 * var(--md-ref-letter-spacing-conversion-ratio)
   );
-  --md-sys-typescale-label-large-weight: 500;
+  --md-sys-typescale-label-large-weight: 600;
+
+  /* Label medium */
+  --md-sys-typescale-label-medium-size: calc(
+    12 * var(--md-ref-font-size-conversion-ratio)
+  );
+  --md-sys-typescale-label-medium-line-height: calc(
+    16 * var(--md-ref-font-size-conversion-ratio)
+  );
+  --md-sys-typescale-label-medium-tracking: calc(
+    5 * var(--md-ref-letter-spacing-conversion-ratio)
+  );
+  --md-sys-typescale-label-medium-weight: 600;
 
   /* Body large */
   --md-sys-typescale-body-large-size: calc(

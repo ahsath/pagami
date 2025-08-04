@@ -15,6 +15,7 @@ import {
   ListLeading,
   ListTrailing,
   ListSupportingText,
+  ListOverline,
 } from "@/components/ui/list";
 import InputFieldSimple from "@/components/ui/input-field/InputFieldSimple.vue";
 import SearchRounded from "~icons/material-symbols/search-rounded?width=24&height=24";
@@ -135,15 +136,17 @@ const listCheckboxGroup1 = [
         v-for="radioItem in listRadioGroup1"
         v-model:radio="radioModel"
         :value="radioItem.value"
-        name="list-radio-group"
         :id="radioItem.value"
         type="radio"
+        size="three-line"
+        name="list-radio-group"
         #="{ checked }"
       >
         <ListLeading>
           <PersonOutlineRounded />
         </ListLeading>
         <ListContent>
+          <ListOverline>Overline</ListOverline>
           <div>Headline</div>
           <ListSupportingText>Supporting text</ListSupportingText>
         </ListContent>
@@ -192,11 +195,27 @@ const listCheckboxGroup1 = [
         </ListTrailing>
       </List>
       <br />
-      <List>
+      <List size="two-line">
         <ListLeading>
           <PersonOutlineRounded />
         </ListLeading>
         <ListContent>
+          <div>Headline</div>
+          <ListSupportingText>Supporting text</ListSupportingText>
+        </ListContent>
+        <ListTrailing>
+          <IconButton aria-label="Copiar">
+            <ContentCopyOutlineRounded />
+          </IconButton>
+        </ListTrailing>
+      </List>
+      <br />
+      <List size="three-line">
+        <ListLeading>
+          <PersonOutlineRounded />
+        </ListLeading>
+        <ListContent>
+          <ListOverline>Overline</ListOverline>
           <div>Headline</div>
           <ListSupportingText>Supporting text</ListSupportingText>
         </ListContent>

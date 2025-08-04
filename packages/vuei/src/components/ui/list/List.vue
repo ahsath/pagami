@@ -4,21 +4,26 @@ import { computed, useAttrs } from "vue";
 defineOptions({ inheritAttrs: false });
 const attrs = useAttrs();
 
-const props = defineProps<{
+const {
+  type,
+  value,
+  size = "one-line",
+} = defineProps<{
   id?: string;
   type?: string;
   value?: string;
+  size?: "one-line" | "two-line" | "three-line";
 }>(); // TODO: make value required if type is radio or checkbox
 
 const radioValue = defineModel("radio");
 const checkboxValue = defineModel<string[] | string | boolean>("checkbox");
 
 const checked = computed(() => {
-  if (props.type === "radio") {
-    return radioValue.value === props.value;
-  } else if (props.type === "checkbox") {
-    if (Array.isArray(checkboxValue.value) && props.value) {
-      return checkboxValue.value.includes(props.value);
+  if (type === "radio") {
+    return radioValue.value === value;
+  } else if (type === "checkbox") {
+    if (Array.isArray(checkboxValue.value) && value) {
+      return checkboxValue.value.includes(value);
     } else if (typeof checkboxValue.value === "string") {
       return checkboxValue.value === attrs["true-value"];
     } else if (typeof checkboxValue.value === "boolean") {
@@ -32,7 +37,13 @@ const checked = computed(() => {
 <template>
   <component
     class="list"
-    :class="{ 'list--checked': checked }"
+    :class="{
+      'list--checked': checked,
+      'list--alignment-top': size === 'three-line',
+      'list--size-one-line': size === 'one-line',
+      'list--size-two-line': size === 'two-line',
+      'list--size-three-line': size === 'three-line',
+    }"
     :is="type === 'radio' || type === 'checkbox' ? 'label' : 'div'"
     :for="id"
   >

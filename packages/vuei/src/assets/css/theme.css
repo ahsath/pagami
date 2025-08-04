@@ -36,6 +36,16 @@
   );
   --text-label-large--font-weight: var(--md-sys-typescale-label-large-weight);
 
+  /* Label medium */
+  --text-label-medium: var(--md-sys-typescale-label-medium-size);
+  --text-label-medium--line-height: var(
+    --md-sys-typescale-label-medium-line-height
+  );
+  --text-label-medium--letter-spacing: var(
+    --md-sys-typescale-label-medium-tracking
+  );
+  --text-label-medium--font-weight: var(--md-sys-typescale-label-medium-weight);
+
   /* Title medium */
   --text-title-medium: var(--md-sys-typescale-title-medium-size);
   --text-title-medium--line-height: var(
