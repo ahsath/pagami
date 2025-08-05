@@ -13,6 +13,7 @@ const {
   type?: string;
   value?: string;
   size?: "one-line" | "two-line" | "three-line";
+  listClass?: string;
 }>(); // TODO: make value required if type is radio or checkbox
 
 const radioValue = defineModel("radio");
@@ -37,13 +38,16 @@ const checked = computed(() => {
 <template>
   <component
     class="list"
-    :class="{
-      'list--checked': checked,
-      'list--alignment-top': size === 'three-line',
-      'list--size-one-line': size === 'one-line',
-      'list--size-two-line': size === 'two-line',
-      'list--size-three-line': size === 'three-line',
-    }"
+    :class="[
+      {
+        'list--alignment-top': size === 'three-line',
+        'list--size-one-line': size === 'one-line',
+        'list--size-two-line': size === 'two-line',
+        'list--size-three-line': size === 'three-line',
+        'list--checked': checked,
+      },
+      listClass,
+    ]"
     :is="type === 'radio' || type === 'checkbox' ? 'label' : 'div'"
     :for="id"
   >

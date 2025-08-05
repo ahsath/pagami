@@ -109,6 +109,10 @@
   --color-on-surface-hover: var(--md-sys-color-on-surface-hover);
   --color-on-surface-focused: var(--md-sys-color-on-surface-focused);
   --color-on-surface-pressed: var(--md-sys-color-on-surface-pressed);
+  --color-on-surface-disabled: var(--md-sys-color-on-surface-disabled);
+  --color-on-surface-text-disabled: var(
+    --md-sys-color-on-surface-text-disabled
+  );
   --color-on-surface-variant: var(--md-sys-color-on-surface-variant);
   --color-on-surface-variant-hover: var(
     --md-sys-color-on-surface-variant-hover
@@ -120,6 +124,7 @@
     --md-sys-color-on-surface-variant-focused
   );
   --color-surface-container-low: var(--md-sys-color-surface-container-low);
+  --color-surface-container: var(--md-sys-color-surface-container);
   --color-outline: var(--md-sys-color-outline);
   --color-error: var(--md-sys-color-error);
   --color-on-error-container: var(--md-sys-color-on-error-container);

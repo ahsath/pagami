@@ -1,5 +1,5 @@
 .list {
-  @apply flex items-center relative bg-surface min-h-14 py-2 rounded-sm cursor-text has-[input]:cursor-pointer has-checked:bg-secondary-container has-checked:text-on-secondary-container *:relative *:z-1 after:z-0;
+  @apply flex items-center relative min-h-14 py-2 rounded-sm cursor-text has-[input]:cursor-pointer has-checked:bg-secondary-container has-checked:text-on-secondary-container *:relative *:z-1 after:z-0;
 
   &.list--alignment-top {
     @apply items-start py-3;
@@ -10,7 +10,7 @@
   }
 
   &::after {
-    @apply absolute inset-0 rounded-sm;
+    @apply absolute inset-0 rounded-[inherit];
   }
 
   &.list--size-one-line {

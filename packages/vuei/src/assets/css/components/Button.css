@@ -1,5 +1,5 @@
 .button {
-  @apply flex gap-2 items-center justify-center relative text-label-large text-primary h-12 px-4 cursor-pointer outline-none *:relative *:z-2 before:z-0 after:z-1;
+  @apply flex gap-2 items-center justify-center relative text-label-large text-primary h-12 px-4 cursor-pointer outline-none disabled:text-on-surface-text-disabled disabled:pointer-events-none *:relative *:z-2 before:z-0 after:z-1;
 
   & > svg {
     @apply size-5;
@@ -26,6 +26,10 @@
   &:active::before,
   &:active::after {
     @apply rounded-lg;
+  }
+
+  &:disabled::before {
+    @apply bg-on-surface-disabled drop-shadow-none;
   }
 }
 

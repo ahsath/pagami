@@ -103,6 +103,9 @@ const listCheckboxGroup1 = [
       <button class="button">
         <StarsRounded /><span>Text with icon</span>
       </button>
+      <button class="button button--style-filled" disabled>
+        <span>Filled - disabled</span>
+      </button>
       <InputFieldSimple
         v-model="inputFieldModel"
         id="input-field"

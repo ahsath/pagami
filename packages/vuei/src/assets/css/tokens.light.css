@@ -10,7 +10,9 @@
   --md-ref-palette-secondary90: oklch(0.8547 0.0697 266.07);
   --md-ref-palette-neutral6: oklch(0.1879 0.01465 272.464);
   --md-ref-palette-neutral10: oklch(0.2232 0.01401 272.683);
+  --md-ref-palette-neutral12: oklch(0.243 0.0123 264.31);
   --md-ref-palette-neutral90: oklch(0.9146 0.01231 280.992);
+  --md-ref-palette-neutral94: oklch(0.9482 0.0134 281.56);
   --md-ref-palette-neutral96: oklch(0.966 0.012 281.08);
   --md-ref-palette-neutral98: oklch(0.9838 0.0079 286.25);
   --md-ref-palette-neutral-variant30: oklch(0.398 0.02135 267.507);
@@ -78,6 +80,14 @@
     from var(--md-ref-palette-neutral10) l c h /
       var(--md-sys-state-pressed-state-layer-opacity)
   );
+  --md-sys-color-on-surface-disabled: oklch(
+    from var(--md-ref-palette-neutral10) l c h /
+      var(--md-sys-state-disabled-state-layer-opacity)
+  );
+  --md-sys-color-on-surface-text-disabled: oklch(
+    from var(--md-ref-palette-neutral10) l c h /
+      var(--md-sys-state-disabled-state-text-opacity)
+  );
   --md-sys-color-on-surface-variant: var(--md-ref-palette-neutral-variant30);
   --md-sys-color-on-surface-variant-hover: oklch(
     from var(--md-ref-palette-neutral-variant30) l c h /
@@ -92,6 +102,7 @@
       var(--md-sys-state-pressed-state-layer-opacity)
   );
   --md-sys-color-surface-container-low: var(--md-ref-palette-neutral96);
+  --md-sys-color-surface-container: var(--md-ref-palette-neutral94);
   --md-sys-color-outline: var(--md-ref-palette-neutral-variant50);
   --md-sys-color-error: var(--md-ref-palette-error40);
   --md-sys-color-on-error-container: var(--md-ref-palette-error30);
