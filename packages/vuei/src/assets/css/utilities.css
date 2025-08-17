@@ -1,5 +1,14 @@
 /* Typescale */
 @source inline('text-title-large');
+@source inline('text-title-medium');
+@source inline('text-label-medium');
+@source inline('text-body-medium');
 
 /* Colors */
+@source inline('bg-surface');
 @source inline('bg-surface-container');
+@source inline('text-secondary');
+@source inline('text-surface-container-highest');
+@source inline('bg-surface-container-highest');
+@source inline('text-on-surface-variant');
+@source inline('outline-outline-variant');

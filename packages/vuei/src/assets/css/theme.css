@@ -105,6 +105,9 @@
     --md-sys-color-on-secondary-container-pressed
   );
   --color-surface: var(--md-sys-color-surface);
+  --color-surface-container-highest: var(
+    --md-sys-color-surface-container-highest
+  );
   --color-on-surface: var(--md-sys-color-on-surface);
   --color-on-surface-hover: var(--md-sys-color-on-surface-hover);
   --color-on-surface-focused: var(--md-sys-color-on-surface-focused);
@@ -126,6 +129,7 @@
   --color-surface-container-low: var(--md-sys-color-surface-container-low);
   --color-surface-container: var(--md-sys-color-surface-container);
   --color-outline: var(--md-sys-color-outline);
+  --color-outline-variant: var(--md-sys-color-outline-variant);
   --color-error: var(--md-sys-color-error);
   --color-on-error-container: var(--md-sys-color-on-error-container);
 }
