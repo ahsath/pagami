@@ -10,15 +10,15 @@
     @apply w-10;
   }
 
-  &:hover::after {
+  &:hover:not(:disabled)::after {
     @apply bg-on-surface-variant-hover;
   }
 
-  &:focus-visible::after {
+  &:focus-visible:not(:disabled)::after {
     @apply bg-on-surface-variant-focused outline-on-surface-variant;
   }
 
-  &:active::after {
+  &:active:not(:disabled)::after {
     @apply bg-on-surface-variant-pressed;
   }
 }
