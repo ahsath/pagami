@@ -1,5 +1,5 @@
 .button {
-  @apply flex gap-2 items-center justify-center relative text-label-large text-primary h-12 px-4 cursor-pointer outline-none disabled:text-on-surface-text-disabled disabled:pointer-events-none *:relative *:z-2 before:z-0 after:z-1;
+  @apply flex gap-2 items-center justify-center relative text-label-large text-primary h-12 px-4 cursor-pointer outline-none disabled:text-on-surface-text-disabled disabled:cursor-not-allowed *:relative before:z-0 after:z-1 *:z-2;
 
   & > svg {
     @apply size-5;
@@ -11,20 +11,20 @@
     @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-10 rounded-full;
   }
 
-  &:hover::after {
+  &:hover:not(:disabled)::after {
     @apply bg-primary-hover;
   }
 
-  &:focus-visible::after {
+  &:focus-visible:not(:disabled)::after {
     @apply bg-primary-focused outline-2 outline-offset-2 outline-primary;
   }
 
-  &:active::after {
+  &:active:not(:disabled)::after {
     @apply bg-primary-pressed;
   }
 
-  &:active::before,
-  &:active::after {
+  &:active:not(:disabled)::before,
+  &:active:not(:disabled)::after {
     @apply rounded-lg;
   }
 
@@ -48,15 +48,15 @@
     @apply bg-primary;
   }
 
-  &:hover::after {
+  &:hover:not(:disabled)::after {
     @apply bg-on-primary-hover;
   }
 
-  &:focus-visible::after {
+  &:focus-visible:not(:disabled)::after {
     @apply bg-on-primary-focused outline-primary;
   }
 
-  &:active::after {
+  &:active:not(:disabled)::after {
     @apply bg-on-primary-pressed;
   }
 }
@@ -68,15 +68,15 @@
     @apply bg-secondary-container;
   }
 
-  &:hover::after {
+  &:hover:not(:disabled)::after {
     @apply bg-on-secondary-container-hover;
   }
 
-  &:focus-visible::after {
+  &:focus-visible:not(:disabled)::after {
     @apply bg-on-secondary-container-focused outline-on-secondary-container;
   }
 
-  &:active::after {
+  &:active:not(:disabled)::after {
     @apply bg-on-secondary-container-pressed;
   }
 }
