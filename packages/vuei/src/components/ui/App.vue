@@ -115,6 +115,24 @@ const listCheckboxGroup1 = [
         supporting-text="Supporting text"
         required
         clearable
+        disabled
+      >
+        <template #leading-icon>
+          <SearchRounded aria-hidden="true" />
+        </template>
+        <template #trailing-icon>
+          <MoneyBagRounded aria-hidden="true" />
+        </template>
+      </InputFieldSimple>
+      <InputFieldSimple
+        v-model="inputFieldModel"
+        id="input-field"
+        label="Label*"
+        prefix="$"
+        placeholder="Placeholder"
+        supporting-text="Supporting text"
+        required
+        clearable
       >
         <template #leading-icon>
           <SearchRounded aria-hidden="true" />
