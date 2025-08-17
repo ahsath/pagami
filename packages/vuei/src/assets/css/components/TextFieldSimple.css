@@ -1,11 +1,11 @@
 .input-field-simple {
-  @apply flex flex-col gap-1 text-on-surface-variant has-disabled:text-on-surface has-disabled:opacity-38 has-disabled:pointer-events-none;
+  @apply flex flex-col gap-1 text-on-surface-variant;
 
   + & {
     @apply mt-4;
   }
 
-  &:hover {
+  &:not(.input-field-simple--state-disabled):hover {
     .input-field-simple__label {
       @apply text-on-surface;
     }
@@ -23,6 +23,10 @@
     .input-field-simple__container {
       @apply outline-3 -outline-offset-3 outline-primary;
     }
+  }
+
+  &.input-field-simple--state-disabled {
+    @apply text-on-surface opacity-38 cursor-not-allowed **:cursor-not-allowed;
   }
 
   &.input-field-simple--state-error {

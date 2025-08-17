@@ -33,7 +33,10 @@ function focusInput() {
 <template>
   <div
     class="input-field-simple"
-    :class="{ 'input-field-simple--state-error': !disabled && error }"
+    :class="{
+      'input-field-simple--state-error': !disabled && error,
+      'input-field-simple--state-disabled': disabled,
+    }"
   >
     <label :for="id" class="input-field-simple__label" v-show="label">
       {{ label }}
