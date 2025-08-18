@@ -1,6 +1,6 @@
 {
   "name": "@pagami/vuei",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "type": "module",
   "repository": {
     "type": "git",
@@ -30,16 +30,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vueuse/core": "^12.8.2",
+    "@vueuse/core": "^13.7.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-vue-next": "^0.525.0",
-    "reka-ui": "^2.3.2",
+    "reka-ui": "^2.4.1",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.11",
-    "tw-animate-css": "^1.3.4"
+    "tailwindcss": "^4.1.12",
+    "tw-animate-css": "^1.3.7"
   },
   "peerDependencies": {
-    "reka-ui": "^2.3.2"
+    "reka-ui": "^2.4.1"
   }
 }
