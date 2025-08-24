@@ -1,0 +1,7 @@
+.sheet2 {
+  @apply shrink-0 bg-surface-container transition-all duration-300 ease-in-out;
+}
+
+.sheet2--type-modal {
+  @apply fixed z-3 top-0 w-56 h-dvh;
+}
