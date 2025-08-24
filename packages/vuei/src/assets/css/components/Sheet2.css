@@ -4,4 +4,17 @@
 
 .sheet2--type-modal {
   @apply fixed z-3 top-0 w-56 h-dvh;
+  transform: translateX(-100%);
+
+  &.sheet2--open {
+    transform: translateX(0);
+  }
+}
+
+.sheet2--type-standard {
+  @apply sticky top-0 w-24 h-dvh;
+
+  &.sheet2--open {
+    @apply w-56;
+  }
 }
