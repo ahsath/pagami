@@ -26,5 +26,8 @@ const sheet = useSheet(id);
         <button @click="sheet.toggle">close</button>
       </div>
     </div>
+    <Transition name="fade">
+      <div v-show="sheet.isModal && sheet.isOpen" class="sheet2__scrim" />
+    </Transition>
   </Teleport>
 </template>

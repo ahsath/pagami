@@ -12,6 +12,7 @@
   @import "./tokens.light.css";
   @import "./tokens.dark.css";
   @import "./tokens.misc.css";
+  @import "./transitions.css";
 
   body {
     @apply bg-surface text-body-large text-on-surface;
