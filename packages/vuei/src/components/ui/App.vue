@@ -1,14 +1,8 @@
 <script lang="ts" setup>
-import { ref, useId, watch } from "vue";
+import { ref, useId } from "vue";
 import AppBar from "@/components/ui/app-bar/AppBar.vue";
 import IconButton from "@/components/ui/button/IconButton.vue";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import Sheet2 from "@/components/ui/sheet2/Sheet2.vue";
+import Sheet from "@/components/ui/sheet/Sheet.vue";
 import SelectSimple from "@/components/ui/select/SelectSimple.vue";
 import {
   List,
@@ -30,6 +24,7 @@ import RadioButtonCheckedOutline from "~icons/material-symbols/radio-button-chec
 import CheckBoxOutlineBlank from "~icons/material-symbols/check-box-outline-blank?width=24&height=24";
 import Checkbox from "~icons/material-symbols/check-box?width=24&height=24";
 import ContentCopyOutlineRounded from "~icons/material-symbols/content-copy-outline-rounded?width=24&height=24";
+import CloseRounded from "~icons/material-symbols/close-rounded?width=24&height=24";
 
 const inputFieldModel = ref();
 const selectModel = ref("VE");
@@ -48,34 +43,40 @@ const listCheckboxGroup1 = [
 ];
 
 const modalId = useId();
-const leftSheet = useSheet(modalId, { type: "modal" });
+const leftSheet = useSheet(modalId, { type: "auto" });
 </script>
 
 <template>
   <div class="layout" :inert>
-    <Sheet2 :id="modalId" />
+    <Sheet :id="modalId">
+      <div class="sheet__container">
+        <div class="sheet__header">
+          <h2 class="text-title-large">Title</h2>
+          <button
+            class="button icon-button"
+            aria-label="Cerrar menu"
+            @click="leftSheet.toggle"
+          >
+            <CloseRounded aria-hidden="true" />
+          </button>
+        </div>
+        <div class="sheet__content">
+          <p>Content</p>
+        </div>
+        <div class="sheet__footer">footer</div>
+      </div>
+    </Sheet>
     <div class="grow">
-      <AppBar class="sticky top-0">
+      <AppBar class="sticky top-0 z-3">
         <template #leading>
-          <Sheet>
-            <!-- <SheetTrigger as-child>
-              <IconButton aria-label="Abrir menu">
-                <MenuRounded />
-              </IconButton>
-            </SheetTrigger> -->
-            <IconButton
-              @click="leftSheet.toggle"
-              aria-label="Abrir menu"
-              :aria-expanded="leftSheet.isOpen"
-              :aria-controls="modalId"
-            >
-              <MenuRounded aria-hidden="true" />
-            </IconButton>
-            <SheetContent>
-              <SheetHeader #headline> Title </SheetHeader>
-              <div class="pt-3 pr-3 pb-4 pl-6">Sheet content</div>
-            </SheetContent>
-          </Sheet>
+          <IconButton
+            @click="leftSheet.toggle"
+            aria-label="Abrir menu"
+            :aria-expanded="leftSheet.isOpen"
+            :aria-controls="modalId"
+          >
+            <MenuRounded aria-hidden="true" />
+          </IconButton>
         </template>
         <template #content>
           <div class="text-title-large">Vuei</div>
