@@ -39,6 +39,8 @@ watch(
       :id="id"
       :role="sheet.isModal ? 'dialog' : undefined"
       :aria-modal="sheet.isModal ? 'true' : undefined"
+      tabindex="-1"
+      @keydown.esc="sheet.toggle"
     >
       <div class="p-4">
         <button @click="sheet.toggle">close</button>

@@ -68,15 +68,29 @@ export function useSheet(
 
 export const inert = computed(() => openSheetIds.value.size > 0);
 
-// Watch the global 'inert' state and apply a class to the body.
+const getScrollbarWidth = () => {
+  if (typeof window === "undefined") return 0; // SSR guard
+  const outer = document.createElement("div");
+  outer.style.visibility = "hidden";
+  outer.style.overflow = "scroll";
+  document.body.appendChild(outer);
+  const scrollbarWidth = outer.offsetWidth - outer.clientWidth;
+  document.body.removeChild(outer);
+  return scrollbarWidth;
+};
+
 if (typeof document !== "undefined") {
   watch(
     inert,
     (isBlocking) => {
+      let scrollbarWidth = getScrollbarWidth();
+
       if (isBlocking) {
         document.body.style.overflow = "hidden";
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
       } else {
         document.body.style.overflow = "";
+        document.body.style.paddingRight = "";
       }
     },
     { immediate: true }
