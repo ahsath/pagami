@@ -1,32 +1,28 @@
 import { reactive, computed, watch, ref, type ComputedRef } from "vue";
 import useMediaQuery from "./useMediaQuery";
 
-// Define the base properties for a sheet.
 interface BaseSheet {
   isOpen: boolean;
-  type: "modal" | "standard" | "auto";
+  type?: "modal" | "standard" | "auto";
 }
 
-// Define the complete state for a single sheet instance.
 interface SheetState extends BaseSheet {
   isModal: ComputedRef<boolean>;
   toggle: () => void;
 }
 
-// The global state object will be a record of SheetState.
 interface SheetsState {
   [key: string]: SheetState;
 }
 
-const sheets = reactive<SheetsState>({});
-
-// A global reactive Set to track which sheets are currently open.
-const openSheetIds = ref<Set<string>>(new Set());
-
-// The options for the composable now reference the BaseSheet type.
 interface UseSheetOptions extends Pick<BaseSheet, "type"> {
   initialValue?: boolean;
 }
+
+const sheets = reactive<SheetsState>({});
+const openSheetIds = ref<Set<string>>(new Set());
+
+export const inert = computed(() => openSheetIds.value.size > 0);
 
 export function useSheet(
   id: string,
@@ -66,9 +62,34 @@ export function useSheet(
   return sheets[id];
 }
 
-export const inert = computed(() => openSheetIds.value.size > 0);
+// A single watcher for the global inert state.
+watch(
+  inert,
+  (isBlocking) => {
+    let scrollbarWidth = getScrollbarWidth();
 
-const getScrollbarWidth = () => {
+    if (isBlocking) {
+      // One or more modal sheets are open.
+      document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    } else {
+      // All modal sheets are closed.
+      // Use setTimeout to delay the removal of styles until after the transition.
+      // Assume a 300ms transition duration, a common value for a smooth sheet animation.
+      setTimeout(() => {
+        // Double-check the inert state. This is crucial!
+        // A new sheet might have opened during the transition.
+        if (!inert.value) {
+          document.body.style.overflow = "";
+          document.body.style.paddingRight = "";
+        }
+      }, 300); // 300ms delay to match the transition duration
+    }
+  },
+  { immediate: true }
+);
+
+function getScrollbarWidth() {
   if (typeof window === "undefined") return 0; // SSR guard
   const outer = document.createElement("div");
   outer.style.visibility = "hidden";
@@ -77,22 +98,4 @@ const getScrollbarWidth = () => {
   const scrollbarWidth = outer.offsetWidth - outer.clientWidth;
   document.body.removeChild(outer);
   return scrollbarWidth;
-};
-
-if (typeof document !== "undefined") {
-  watch(
-    inert,
-    (isBlocking) => {
-      let scrollbarWidth = getScrollbarWidth();
-
-      if (isBlocking) {
-        document.body.style.overflow = "hidden";
-        document.body.style.paddingRight = `${scrollbarWidth}px`;
-      } else {
-        document.body.style.overflow = "";
-        document.body.style.paddingRight = "";
-      }
-    },
-    { immediate: true }
-  );
 }

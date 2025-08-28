@@ -3,6 +3,7 @@ import { ref, useId } from "vue";
 import AppBar from "@/components/ui/app-bar/AppBar.vue";
 import IconButton from "@/components/ui/button/IconButton.vue";
 import Sheet from "@/components/ui/sheet/Sheet.vue";
+import NavRail from "@/components/ui/nav-rail/NavRail.vue";
 import SelectSimple from "@/components/ui/select/SelectSimple.vue";
 import {
   List,
@@ -25,6 +26,7 @@ import CheckBoxOutlineBlank from "~icons/material-symbols/check-box-outline-blan
 import Checkbox from "~icons/material-symbols/check-box?width=24&height=24";
 import ContentCopyOutlineRounded from "~icons/material-symbols/content-copy-outline-rounded?width=24&height=24";
 import CloseRounded from "~icons/material-symbols/close-rounded?width=24&height=24";
+import SettingsOutlineRounded from "~icons/material-symbols/settings-outline-rounded?width=24&height=24";
 
 const inputFieldModel = ref();
 const selectModel = ref("VE");
@@ -42,38 +44,31 @@ const listCheckboxGroup1 = [
   { value: "list-checkbox-group-2" },
 ];
 
-const modalId = useId();
-const leftSheet = useSheet(modalId, { type: "auto" });
+const navRailId = useId();
+const rightSheetId = useId();
+const navRail = useSheet(navRailId);
+const rightSheet = useSheet(rightSheetId, { type: "modal" });
 </script>
 
 <template>
   <div class="layout" :inert>
-    <Sheet :id="modalId">
-      <div class="sheet__container">
-        <div class="sheet__header">
-          <h2 class="text-title-large">Title</h2>
-          <button
-            class="button icon-button"
-            aria-label="Cerrar menu"
-            @click="leftSheet.toggle"
-          >
-            <CloseRounded aria-hidden="true" />
-          </button>
-        </div>
-        <div class="sheet__content">
-          <p>Content</p>
-        </div>
-        <div class="sheet__footer">footer</div>
-      </div>
-    </Sheet>
+    <NavRail :id="navRailId">
+      <button
+        class="button icon-button"
+        aria-label="Cerrar menu"
+        @click="navRail.toggle"
+      >
+        <CloseRounded aria-hidden="true" />
+      </button>
+    </NavRail>
     <div class="grow">
       <AppBar class="sticky top-0 z-3">
         <template #leading>
           <IconButton
-            @click="leftSheet.toggle"
+            @click="navRail.toggle"
             aria-label="Abrir menu"
-            :aria-expanded="leftSheet.isOpen"
-            :aria-controls="modalId"
+            :aria-expanded="navRail.isOpen"
+            :aria-controls="navRailId"
           >
             <MenuRounded aria-hidden="true" />
           </IconButton>
@@ -95,6 +90,16 @@ const leftSheet = useSheet(modalId, { type: "auto" });
             <img v-show="selectModel === 'VE'" src="/venezuela.svg" alt="" />
           </SelectSimple>
           <button class="button"><span>Text</span></button>
+          <button
+            @click="rightSheet.toggle"
+            aria-label="Configurar"
+            :aria-expanded="rightSheet.isOpen"
+            :aria-controls="rightSheetId"
+            class="button icon-button"
+            type="button"
+          >
+            <SettingsOutlineRounded aria-hidden="true" />
+          </button>
         </template>
       </AppBar>
       <main>
@@ -273,5 +278,27 @@ const leftSheet = useSheet(modalId, { type: "auto" });
         </section>
       </main>
     </div>
+    <Sheet :id="rightSheetId" side="right">
+      <div class="sheet__container">
+        <div class="sheet__header">
+          <h2 class="text-title-large">Title</h2>
+          <button
+            class="button icon-button"
+            aria-label="Cerrar menu"
+            @click="rightSheet.toggle"
+          >
+            <CloseRounded aria-hidden="true" />
+          </button>
+        </div>
+        <div class="sheet__content">
+          <p>Content</p>
+        </div>
+        <div class="sheet__footer">
+          <button class="button button--style-filled">
+            <span>Guardar</span>
+          </button>
+        </div>
+      </div>
+    </Sheet>
   </div>
 </template>

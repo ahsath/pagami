@@ -1,0 +1,19 @@
+.nav-rail {
+  @apply w-56 h-dvh text-on-surface-variant bg-surface transition-all duration-300 ease-in-out;
+}
+
+.nav-rail--type-modal {
+  @apply fixed z-4 top-0 -translate-x-full rounded-r-2xl;
+
+  &.nav-rail--expanded {
+    @apply translate-x-0;
+  }
+}
+
+.nav-rail--type-standard {
+  @apply sticky top-0 w-24 shrink-0;
+
+  &.nav-rail--expanded {
+    @apply w-56;
+  }
+}

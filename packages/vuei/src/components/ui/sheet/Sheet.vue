@@ -1,61 +1,35 @@
 <script lang="ts" setup>
-import { useTemplateRef, watch } from "vue";
-import { useSheet } from "@/composables/useSheet";
-import { useFocusTrap } from "@vueuse/integrations/useFocusTrap";
+import { UseSheet } from ".";
 
-const { id, to = "body" } = defineProps<{
+const {
+  id,
+  to = "body",
+  side = "left",
+} = defineProps<{
   id: string;
   to?: string;
+  side?: "left" | "right";
 }>();
-
-const sheetRef = useTemplateRef("sheetRef");
-const sheet = useSheet(id);
-const { activate, deactivate } = useFocusTrap(sheetRef, {
-  clickOutsideDeactivates: true,
-});
-
-function close() {
-  if (sheet.isOpen && sheet.isModal) {
-    sheet.toggle();
-  }
-}
-
-watch(
-  () => sheet.isOpen,
-  (isOpen) => {
-    if (isOpen && sheet.isModal) {
-      activate();
-    } else {
-      deactivate();
-    }
-  }
-);
 </script>
 
 <template>
-  <Teleport :disabled="!sheet.isModal" :to>
+  <UseSheet #="{ tabindex, role, ariaModal, isOpen, isModal, close }" :id :to>
     <div
-      ref="sheetRef"
       class="sheet"
       :class="{
-        'sheet--type-modal': sheet.isModal,
-        'sheet--type-standard': !sheet.isModal,
-        'sheet--open': sheet.isOpen,
+        'sheet--type-modal': isModal,
+        'sheet--type-standard': !isModal,
+        'sheet--side-left': side === 'left',
+        'sheet--side-right': side === 'right',
+        'sheet--open': isOpen,
       }"
-      :id="id"
-      :role="sheet.isModal ? 'dialog' : undefined"
-      :aria-modal="sheet.isModal ? 'true' : undefined"
-      tabindex="-1"
       @keydown.esc="close"
+      :ariaModal
+      :tabindex
+      :role
+      :id
     >
       <slot />
     </div>
-    <Transition name="fade">
-      <div
-        v-show="sheet.isModal && sheet.isOpen"
-        class="sheet__scrim"
-        @click="close"
-      />
-    </Transition>
-  </Teleport>
+  </UseSheet>
 </template>

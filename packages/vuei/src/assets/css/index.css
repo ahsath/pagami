@@ -24,6 +24,7 @@
   @import "./components/Button.css";
   @import "./components/IconButton.css";
   @import "./components/Sheet.css";
+  @import "./components/NavRail.css";
   @import "./components/Pane.css";
   @import "./components/TextFieldSimple.css";
   @import "./components/SelectSimple.css";

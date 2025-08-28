@@ -7,10 +7,22 @@
 }
 
 .sheet--type-modal {
-  @apply fixed z-4 top-0 w-xs -translate-x-full;
+  @apply fixed z-4 top-0 w-xs;
 
-  &.sheet--open {
-    @apply translate-x-0;
+  &.sheet--side-left {
+    @apply left-0 -translate-x-full rounded-r-2xl;
+
+    &.sheet--open {
+      @apply translate-x-0;
+    }
+  }
+
+  &.sheet--side-right {
+    @apply right-0 translate-x-full rounded-l-2xl;
+
+    &.sheet--open {
+      @apply translate-x-0;
+    }
   }
 }
 
