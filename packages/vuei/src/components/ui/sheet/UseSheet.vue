@@ -31,7 +31,8 @@ onMounted(() => {
         } else {
           trap.deactivate();
         }
-      }
+      },
+      { flush: "post" }
     );
   }
 });
@@ -39,14 +40,7 @@ onMounted(() => {
 
 <template>
   <Teleport :disabled="!sheet.isModal" :to>
-    <slot
-      :tabindex="sheet.isModal ? -1 : undefined"
-      :role="sheet.isModal ? 'dialog' : undefined"
-      :aria-modal="sheet.isModal ? 'true' : undefined"
-      :isModal="sheet.isModal"
-      :isOpen="sheet.isOpen"
-      :close
-    />
+    <slot :isModal="sheet.isModal" :isOpen="sheet.isOpen" :close />
     <Transition name="fade">
       <div
         v-show="sheet.isModal && sheet.isOpen"

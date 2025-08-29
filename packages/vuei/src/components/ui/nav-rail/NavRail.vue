@@ -8,7 +8,7 @@ const { id, to = "body" } = defineProps<{
 </script>
 
 <template>
-  <UseSheet #="{ tabindex, role, ariaModal, isOpen, isModal, close }" :id :to>
+  <UseSheet #="{ isOpen, isModal, close }" :id :to>
     <div
       class="nav-rail"
       :class="{
@@ -17,9 +17,10 @@ const { id, to = "body" } = defineProps<{
         'nav-rail--expanded': isOpen,
       }"
       @keydown.esc="close"
-      :ariaModal
-      :tabindex
-      :role
+      :role="isModal ? 'dialog' : undefined"
+      :aria-modal="isModal ? 'true' : undefined"
+      :tabindex="isModal ? -1 : undefined"
+      :inert="!isOpen && isModal ? 'true' : undefined"
       :id
     >
       <slot />

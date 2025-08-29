@@ -13,7 +13,7 @@ const {
 </script>
 
 <template>
-  <UseSheet #="{ tabindex, role, ariaModal, isOpen, isModal, close }" :id :to>
+  <UseSheet #="{ isOpen, isModal, close }" :id :to>
     <div
       class="sheet"
       :class="{
@@ -24,9 +24,10 @@ const {
         'sheet--open': isOpen,
       }"
       @keydown.esc="close"
-      :ariaModal
-      :tabindex
-      :role
+      :role="isModal ? 'dialog' : undefined"
+      :aria-modal="isModal ? 'true' : undefined"
+      :tabindex="isModal ? -1 : undefined"
+      :inert="!isOpen && isModal ? 'true' : undefined"
       :id
     >
       <slot />

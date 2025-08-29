@@ -1,12 +1,12 @@
 .nav-rail {
-  @apply w-56 h-dvh text-on-surface-variant bg-surface transition-all duration-300 ease-in-out;
+  @apply w-56 h-dvh pt-11 text-on-surface-variant bg-surface transition-all duration-300 ease-in-out;
 }
 
 .nav-rail--type-modal {
   @apply fixed z-4 top-0 -translate-x-full rounded-r-2xl;
 
   &.nav-rail--expanded {
-    @apply translate-x-0;
+    @apply translate-x-0 bg-surface-container;
   }
 }
 
