@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { provide } from "vue";
 import UseSheet from "@/components/ui/sheet/UseSheet.vue";
-import { useSheet } from "@/composables/useSheet";
 import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
 import MenuOpenRounded from "~icons/material-symbols/menu-open-rounded?width=24&height=24";
 
@@ -11,12 +10,10 @@ const { id, to = "body" } = defineProps<{
 }>();
 
 provide("navRailId", id);
-
-const sheet = useSheet(id);
 </script>
 
 <template>
-  <UseSheet #="{ isOpen, isModal, close }" :id :to>
+  <UseSheet #="{ isOpen, isModal, close, toggle }" :id :to>
     <div
       class="nav-rail"
       :class="{
@@ -35,9 +32,9 @@ const sheet = useSheet(id);
         <button
           class="button icon-button icon-button--size-m"
           aria-label="Cerrar navegación"
-          :aria-expanded="sheet.isOpen"
+          :aria-expanded="isOpen"
           :aria-controls="id"
-          @click="sheet.toggle"
+          @click="toggle"
         >
           <MenuRounded v-show="!isOpen" aria-hidden="true" />
           <MenuOpenRounded v-show="isOpen" aria-hidden="true" />

@@ -59,7 +59,7 @@ export function useSheet(
             sheets[sheetId]!.isOpen &&
             sheets[sheetId]!.isModal
           ) {
-            sheets[sheetId]!.isOpen = false;
+            sheets[sheetId]!.toggle();
             openSheetIds.value.delete(sheetId);
           }
         }

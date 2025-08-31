@@ -40,7 +40,12 @@ onMounted(() => {
 
 <template>
   <Teleport :disabled="!sheet.isModal" :to>
-    <slot :isModal="sheet.isModal" :isOpen="sheet.isOpen" :close />
+    <slot
+      :isModal="sheet.isModal"
+      :isOpen="sheet.isOpen"
+      :toggle="sheet.toggle"
+      :close
+    />
     <Transition name="fade">
       <div
         v-show="sheet.isModal && sheet.isOpen"
