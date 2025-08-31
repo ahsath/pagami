@@ -66,17 +66,17 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
           </template>
         </NavRailItem>
         <NavRailItem label="Enviados">
-          <template #icon-unselected>
+          <template #icon>
             <SendOutlineRounded aria-hidden="true" />
           </template>
         </NavRailItem>
         <NavRailItem label="Favoritos">
-          <template #icon-unselected>
+          <template #icon>
             <FavoriteOutlineRounded aria-hidden="true" />
           </template>
         </NavRailItem>
         <NavRailItem label="Papelera">
-          <template #icon-unselected>
+          <template #icon>
             <DeleteOutlineRounded aria-hidden="true" />
           </template>
         </NavRailItem>
@@ -86,7 +86,7 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
       <AppBar class="sticky top-0 z-3">
         <template #leading>
           <button
-            v-show="navRail.isModal"
+            v-if="navRail.isModal"
             class="button icon-button icon-button--size-m"
             aria-label="Cerrar navegación"
             :aria-expanded="navRail.isOpen"

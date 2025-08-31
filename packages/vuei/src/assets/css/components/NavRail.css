@@ -31,7 +31,25 @@
 }
 
 .nav-rail__item {
-  @apply flex flex-col gap-1 items-center min-h-16 w-max py-1.5 relative *:z-2 transition-all duration-300 ease-in-out;
+  @apply flex flex-col gap-1 items-center min-h-16 w-max py-1.5 relative *:z-2 cursor-pointer outline-none transition-all duration-300 ease-in-out;
+
+  &:hover {
+    & .nav-rail__icon-container::before {
+      @apply bg-on-surface-hover scale-100;
+    }
+  }
+
+  &:focus-visible {
+    & .nav-rail__icon-container::before {
+      @apply bg-on-surface-focused scale-100;
+    }
+  }
+
+  &:active {
+    & .nav-rail__icon-container::before {
+      @apply bg-on-surface-pressed scale-100;
+    }
+  }
 
   &.nav-rail__item--selected {
     @apply text-on-secondary-container;
@@ -42,6 +60,18 @@
 
     & .nav-rail__label--vertical {
       @apply text-secondary;
+    }
+
+    &:hover .nav-rail__icon-container::before {
+      @apply bg-on-secondary-container-hover;
+    }
+
+    &:focus-visible .nav-rail__icon-container::before {
+      @apply bg-on-secondary-container-focused;
+    }
+
+    &:active .nav-rail__icon-container::before {
+      @apply bg-on-secondary-container-pressed;
     }
   }
 
@@ -63,7 +93,11 @@
 }
 
 .nav-rail__icon-container {
-  @apply flex gap-0 items-center *:relative *:z-2 px-4 py-1 rounded-full transition-all duration-300 ease-in-out;
+  @apply flex gap-0 items-center relative *:relative *:z-1 px-4 py-1 rounded-full transition-all duration-300 ease-in-out;
+
+  &::before {
+    @apply content-[""] absolute z-0 inset-0 rounded-full scale-0 transition-all duration-300 ease-in-out;
+  }
 
   & > svg {
     @apply shrink-0;
@@ -71,7 +105,7 @@
 }
 
 .nav-rail__label--horizontal {
-  @apply max-w-0 opacity-0 text-label-large rounded-full transition-all duration-200 ease-in-out;
+  @apply max-w-0 opacity-0 overflow-hidden text-label-large rounded-full transition-all duration-200 ease-in-out;
 }
 
 .nav-rail__label--vertical {

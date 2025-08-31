@@ -21,8 +21,10 @@ const isExpanded = computed(() => sheet.isOpen || sheet.isModal);
       'nav-rail__item--horizontal': isExpanded,
       'nav-rail__item--selected': selected,
     }"
+    :tabindex="tag === 'a' ? -1 : 0"
   >
     <div class="nav-rail__icon-container">
+      <slot name="icon" />
       <slot name="icon-selected" />
       <slot name="icon-unselected" />
       <span
