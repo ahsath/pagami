@@ -4,6 +4,7 @@ import AppBar from "@/components/ui/app-bar/AppBar.vue";
 import IconButton from "@/components/ui/button/IconButton.vue";
 import Sheet from "@/components/ui/sheet/Sheet.vue";
 import NavRail from "@/components/ui/nav-rail/NavRail.vue";
+import NavRailItem from "@/components/ui/nav-rail/NavRailItem.vue";
 import SelectSimple from "@/components/ui/select/SelectSimple.vue";
 import {
   List,
@@ -18,6 +19,7 @@ import InputFieldSimple from "@/components/ui/input-field/InputFieldSimple.vue";
 import SearchRounded from "~icons/material-symbols/search-rounded?width=24&height=24";
 import StarsRounded from "~icons/material-symbols/stars-rounded?width=24&height=24";
 import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
+import MenuOpenRounded from "~icons/material-symbols/menu-open-rounded?width=24&height=24";
 import MoneyBagRounded from "~icons/material-symbols/money-bag-rounded?width=24&height=24";
 import PersonOutlineRounded from "~icons/material-symbols/person-outline-rounded?width=24&height=24";
 import CircleOutline from "~icons/material-symbols/circle-outline?width=24&height=24";
@@ -27,6 +29,10 @@ import Checkbox from "~icons/material-symbols/check-box?width=24&height=24";
 import ContentCopyOutlineRounded from "~icons/material-symbols/content-copy-outline-rounded?width=24&height=24";
 import CloseRounded from "~icons/material-symbols/close-rounded?width=24&height=24";
 import SettingsOutlineRounded from "~icons/material-symbols/settings-outline-rounded?width=24&height=24";
+import InboxRounded from "~icons/material-symbols/inbox-rounded?width=24&height=24";
+import SendOutlineRounded from "~icons/material-symbols/send-outline-rounded?width=24&height=24";
+import FavoriteOutlineRounded from "~icons/material-symbols/favorite-outline-rounded?width=24&height=24";
+import DeleteOutlineRounded from "~icons/material-symbols/delete-outline-rounded?width=24&height=24";
 
 const inputFieldModel = ref();
 const selectModel = ref("VE");
@@ -53,25 +59,43 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
 <template>
   <div class="layout" :inert>
     <NavRail :id="navRailId">
-      <button
-        class="button icon-button"
-        aria-label="Cerrar menu"
-        @click="navRail.toggle"
-      >
-        <CloseRounded aria-hidden="true" />
-      </button>
+      <nav class="nav-rail__nav">
+        <NavRailItem label="Recibidos" aria-current="page" selected>
+          <template #icon-selected>
+            <InboxRounded aria-hidden="true" />
+          </template>
+        </NavRailItem>
+        <NavRailItem label="Enviados">
+          <template #icon-unselected>
+            <SendOutlineRounded aria-hidden="true" />
+          </template>
+        </NavRailItem>
+        <NavRailItem label="Favoritos">
+          <template #icon-unselected>
+            <FavoriteOutlineRounded aria-hidden="true" />
+          </template>
+        </NavRailItem>
+        <NavRailItem label="Papelera">
+          <template #icon-unselected>
+            <DeleteOutlineRounded aria-hidden="true" />
+          </template>
+        </NavRailItem>
+      </nav>
     </NavRail>
     <div class="grow">
       <AppBar class="sticky top-0 z-3">
         <template #leading>
-          <IconButton
-            @click="navRail.toggle"
-            aria-label="Abrir menu"
+          <button
+            v-show="navRail.isModal"
+            class="button icon-button icon-button--size-m"
+            aria-label="Cerrar navegación"
             :aria-expanded="navRail.isOpen"
             :aria-controls="navRailId"
+            @click="navRail.toggle"
           >
-            <MenuRounded aria-hidden="true" />
-          </IconButton>
+            <MenuRounded v-show="!navRail.isOpen" aria-hidden="true" />
+            <MenuOpenRounded v-show="navRail.isOpen" aria-hidden="true" />
+          </button>
         </template>
         <template #content>
           <div class="text-title-large">Vuei</div>

@@ -22,3 +22,7 @@
     @apply bg-on-surface-variant-pressed;
   }
 }
+
+.icon-button--size-m {
+  @apply size-14 before:size-14 after:size-14;
+}
