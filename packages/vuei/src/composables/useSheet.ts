@@ -28,7 +28,7 @@ export function useSheet(
   id: string,
   options: UseSheetOptions = { initialValue: false, type: "auto" }
 ) {
-  const isLargeScreen = useMediaQuery("(min-width: 600px)");
+  const isLargeScreen = useMediaQuery("(max-width: 600px)");
 
   // Check if state for this ID already exists. If not, create it.
   if (!sheets[id]) {
@@ -41,7 +41,7 @@ export function useSheet(
       isModal: computed(() => {
         if (sheets[id]!.type === "modal") return true;
         if (sheets[id]!.type === "standard") return false;
-        return !isLargeScreen.value;
+        return isLargeScreen.value;
       }),
     };
   }
@@ -50,7 +50,19 @@ export function useSheet(
   watch(
     [() => sheets[id]!.isOpen, () => sheets[id]!.isModal],
     ([newIsOpen, newIsModal]) => {
+      // If the current sheet is becoming both open and modal.
       if (newIsOpen && newIsModal) {
+        // Close and remove any other open modal sheets.
+        for (const sheetId in sheets) {
+          if (
+            sheetId !== id &&
+            sheets[sheetId]!.isOpen &&
+            sheets[sheetId]!.isModal
+          ) {
+            sheets[sheetId]!.isOpen = false;
+            openSheetIds.value.delete(sheetId);
+          }
+        }
         openSheetIds.value.add(id);
       } else {
         openSheetIds.value.delete(id);
