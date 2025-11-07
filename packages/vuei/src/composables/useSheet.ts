@@ -1,5 +1,5 @@
-import { reactive, computed, watch, ref, type ComputedRef } from "vue";
-import useMediaQuery from "./useMediaQuery";
+import { computed, type ComputedRef, reactive, ref, watch } from "vue";
+import useMediaQuery from "./useMediaQuery.ts";
 
 interface BaseSheet {
   isOpen: boolean;
@@ -26,7 +26,7 @@ export const inert = computed(() => openSheetIds.value.size > 0);
 
 export function useSheet(
   id: string,
-  options: UseSheetOptions = { initialValue: false, type: "auto" }
+  options: UseSheetOptions = { initialValue: false, type: "auto" },
 ) {
   const isLargeScreen = useMediaQuery("(max-width: 600px)");
 
@@ -68,41 +68,42 @@ export function useSheet(
         openSheetIds.value.delete(id);
       }
     },
-    { immediate: true }
+    { immediate: true },
   );
 
   return sheets[id];
 }
 
-// A single watcher for the global inert state.
-watch(
-  inert,
-  (isBlocking) => {
-    let scrollbarWidth = getScrollbarWidth();
+if (typeof window !== "undefined") {
+  // A single watcher for the global inert state.
+  watch(
+    inert,
+    (isBlocking) => {
+      const scrollbarWidth = getScrollbarWidth();
 
-    if (isBlocking) {
-      // One or more modal sheets are open.
-      document.body.style.overflow = "hidden";
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
-    } else {
-      // All modal sheets are closed.
-      // Use setTimeout to delay the removal of styles until after the transition.
-      // Assume a 300ms transition duration, a common value for a smooth sheet animation.
-      setTimeout(() => {
-        // Double-check the inert state. This is crucial!
-        // A new sheet might have opened during the transition.
-        if (!inert.value) {
-          document.body.style.overflow = "";
-          document.body.style.paddingRight = "";
-        }
-      }, 300); // 300ms delay to match the transition duration
-    }
-  },
-  { immediate: true }
-);
+      if (isBlocking) {
+        // One or more modal sheets are open.
+        document.body.style.overflow = "hidden";
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      } else {
+        // All modal sheets are closed.
+        // Use setTimeout to delay the removal of styles until after the transition.
+        // Assume a 300ms transition duration, a common value for a smooth sheet animation.
+        setTimeout(() => {
+          // Double-check the inert state. This is crucial!
+          // A new sheet might have opened during the transition.
+          if (!inert.value) {
+            document.body.style.overflow = "";
+            document.body.style.paddingRight = "";
+          }
+        }, 300); // 300ms delay to match the transition duration
+      }
+    },
+    { immediate: true },
+  );
+}
 
 function getScrollbarWidth() {
-  if (typeof window === "undefined") return 0; // SSR guard
   const outer = document.createElement("div");
   outer.style.visibility = "hidden";
   outer.style.overflow = "scroll";

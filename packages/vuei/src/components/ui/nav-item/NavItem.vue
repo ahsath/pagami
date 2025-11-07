@@ -1,11 +1,12 @@
-<script lang="ts" setup>
+<script setup lang="ts" >
 import { computed, inject } from "vue";
 import { useSheet } from "@/composables/useSheet";
 
-const { tag = "div", selected = false } = defineProps<{
+const { tag = "div", selected = false, compactHorizontal = false } = defineProps<{
   label: string;
   tag?: string;
   selected?: boolean;
+  compactHorizontal?: boolean;
 }>();
 
 const navRailId = inject("navRailId") as string;
@@ -16,26 +17,27 @@ const isExpanded = computed(() => sheet.isOpen || sheet.isModal);
 <template>
   <component
     :is="tag"
-    class="nav-rail__item"
+    class="nav-item"
     :class="{
-      'nav-rail__item--horizontal': isExpanded,
-      'nav-rail__item--selected': selected,
+      'nav-item--horizontal': isExpanded,
+      'nav-item--horizontal-compact': isExpanded && compactHorizontal,
+      'nav-item--selected': selected,
     }"
     :tabindex="tag === 'a' ? -1 : 0"
   >
-    <div class="nav-rail__icon-container">
+    <div class="nav-item__content">
       <slot name="icon" />
       <slot name="icon-selected" />
       <slot name="icon-unselected" />
       <span
-        class="nav-rail__label--horizontal"
+        class="nav-item__label nav-item__label--horizontal"
         :aria-hidden="!isExpanded ? 'true' : undefined"
       >
         {{ label }}
       </span>
     </div>
     <span
-      class="nav-rail__label--vertical"
+      class="nav-item__label nav-item__label--vertical"
       :aria-hidden="isExpanded ? 'true' : undefined"
     >
       {{ label }}

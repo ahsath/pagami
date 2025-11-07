@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { provide } from "vue";
 import UseSheet from "@/components/ui/sheet/UseSheet.vue";
 import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";

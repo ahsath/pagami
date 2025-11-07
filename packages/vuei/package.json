@@ -1,6 +1,6 @@
 {
   "name": "@pagami/vuei",
-  "version": "0.1.16",
+  "version": "0.1.23",
   "type": "module",
   "repository": {
     "type": "git",
@@ -18,7 +18,8 @@
       "import": "./dist/vuei.es-bundler.js",
       "types": "./dist/types/vuei.d.ts"
     },
-    "./styles/vuei.css": "./dist/vuei.css"
+    "./styles/vuei.css": "./dist/vuei.css",
+    "./styles/theme.css": "./dist/theme.css"
   },
   "files": [
     "dist/"

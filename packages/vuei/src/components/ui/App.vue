@@ -4,7 +4,7 @@ import AppBar from "@/components/ui/app-bar/AppBar.vue";
 import IconButton from "@/components/ui/button/IconButton.vue";
 import Sheet from "@/components/ui/sheet/Sheet.vue";
 import NavRail from "@/components/ui/nav-rail/NavRail.vue";
-import NavRailItem from "@/components/ui/nav-rail/NavRailItem.vue";
+import NavItem from "@/components/ui/nav-item/NavItem.vue";
 import SelectSimple from "@/components/ui/select/SelectSimple.vue";
 import {
   List,
@@ -60,26 +60,26 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
   <div class="layout" :inert>
     <NavRail :id="navRailId">
       <nav class="nav-rail__nav">
-        <NavRailItem label="Recibidos" aria-current="page" selected>
+        <NavItem label="Recibidos" aria-current="page" selected>
           <template #icon-selected>
             <InboxRounded aria-hidden="true" />
           </template>
-        </NavRailItem>
-        <NavRailItem label="Enviados">
+        </NavItem>
+        <NavItem label="Enviados">
           <template #icon>
             <SendOutlineRounded aria-hidden="true" />
           </template>
-        </NavRailItem>
-        <NavRailItem label="Favoritos">
+        </NavItem>
+        <NavItem label="Favoritos">
           <template #icon>
             <FavoriteOutlineRounded aria-hidden="true" />
           </template>
-        </NavRailItem>
-        <NavRailItem label="Papelera">
+        </NavItem>
+        <NavItem label="Papelera">
           <template #icon>
             <DeleteOutlineRounded aria-hidden="true" />
           </template>
-        </NavRailItem>
+        </NavItem>
       </nav>
     </NavRail>
     <div class="grow">

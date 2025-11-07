@@ -1,0 +1,93 @@
+.nav-item {
+  @apply flex flex-col gap-1 items-center min-h-16 w-max py-1.5 relative *:z-2 cursor-pointer outline-none transition-all duration-300 ease-in-out;
+
+  &:hover {
+    & .nav-item__content::before {
+      @apply bg-on-surface-hover scale-100;
+    }
+  }
+
+  &:focus-visible {
+    & .nav-item__content::before {
+      @apply bg-on-surface-focused scale-100;
+    }
+  }
+
+  &:active {
+    & .nav-item__content::before {
+      @apply bg-on-surface-pressed scale-100;
+    }
+  }
+
+  &.nav-item--selected {
+    @apply text-on-secondary-container;
+
+    & .nav-item__content {
+      @apply bg-secondary-container;
+    }
+
+    & .nav-item__label--vertical {
+      @apply text-secondary;
+    }
+
+    &:hover .nav-item__content::before {
+      @apply bg-on-secondary-container-hover;
+    }
+
+    &:focus-visible .nav-item__content::before {
+      @apply bg-on-secondary-container-focused;
+    }
+
+    &:active .nav-item__content::before {
+      @apply bg-on-secondary-container-pressed;
+    }
+  }
+
+  &.nav-item--horizontal {
+    @apply min-h-14 py-0;
+
+    & .nav-item__content {
+      @apply gap-2 py-4 grow;
+    }
+
+    & .nav-item__label--horizontal {
+      @apply max-w-56 opacity-100;
+    }
+
+    & .nav-item__label--vertical {
+      @apply opacity-0 duration-75;
+    }
+  }
+
+  &.nav-item--horizontal-compact {
+    @apply min-h-10; /* 40px */
+
+    & .nav-item__content {
+      @apply py-2; /* 8px padding-block to fit 40px height with 24px icon */
+    }
+  }
+}
+
+.nav-item__content {
+  @apply flex gap-0 items-center relative *:relative *:z-1 px-4 py-1 rounded-full transition-all duration-300 ease-in-out;
+
+  &::before {
+    @apply content-[""] absolute z-0 inset-0 rounded-full scale-0 transition-all duration-300 ease-in-out;
+  }
+
+  & > svg {
+    @apply shrink-0;
+  }
+}
+
+.nav-item__label {
+    @apply transition-all ease-in-out;
+}
+
+.nav-item__label--horizontal {
+    @apply max-w-0 opacity-0 overflow-hidden text-label-large duration-200;
+}
+
+.nav-item__label--vertical {
+    @apply absolute bottom-1.5 opacity-100 text-label-medium duration-600;
+}

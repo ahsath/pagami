@@ -4,8 +4,8 @@ export { default as InputFieldSimple } from "./components/ui/input-field/InputFi
 export { default as SelectSimple } from "./components/ui/select/SelectSimple.vue";
 export { default as Sheet } from "./components/ui/sheet/Sheet.vue";
 export { default as NavRail } from "./components/ui/nav-rail/NavRail.vue";
-export { default as NavRailItem } from "./components/ui/nav-rail/NavRailItem.vue";
-export * from "./components/ui/list";
+export { default as NavItem } from "./components/ui/nav-item/NavItem.vue";
+export * from "./components/ui/list/index.ts";
 
-export { default as useMediaQuery } from "./composables/useMediaQuery";
-export * from "./composables/useSheet";
+export { default as useMediaQuery } from "./composables/useMediaQuery.ts";
+export * from "./composables/useSheet.ts";
