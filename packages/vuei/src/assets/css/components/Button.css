@@ -29,7 +29,7 @@
   }
 
   &:disabled::before {
-    @apply bg-on-surface-disabled drop-shadow-none;
+    @apply bg-on-surface-disabled drop-shadow-none outline-none;
   }
 }
 
@@ -79,6 +79,26 @@
   &:active:not(:disabled)::after {
     @apply bg-on-secondary-container-pressed;
   }
+}
+
+.button--style-outline {
+    @apply text-on-surface-variant;
+
+    &::before {
+        @apply outline outline-outline-variant;
+    }
+
+    &:hover:not(:disabled)::after {
+        @apply bg-on-surface-variant-hover;
+    }
+
+    &:focus-visible:not(:disabled)::after {
+        @apply bg-on-surface-variant-focused outline-on-surface-variant;
+    }
+
+    &:active:not(:disabled)::after {
+        @apply bg-on-surface-variant-pressed;
+    }
 }
 
 .button--style-elevated {

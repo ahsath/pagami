@@ -137,6 +137,9 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
             <button class="button button--style-tonal">
               <span>Tonal</span>
             </button>
+            <button class="button button--style-outline">
+              <span>Outline</span>
+            </button>
             <button class="button button--style-filled">
               <StarsRounded />
               <span>Filled with icon</span>
