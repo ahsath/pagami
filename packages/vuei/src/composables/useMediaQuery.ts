@@ -1,21 +1,24 @@
-import { ref, onMounted } from "vue";
-
-const matches = ref(false);
-let listener: ((e: MediaQueryListEvent) => void) | null = null;
-let mediaQueryList: MediaQueryList | null = null;
+import { onMounted, onUnmounted, ref } from "vue";
 
 export default function useMediaQuery(query: string) {
-  // Use a singleton pattern to ensure the listener is only registered once.
-  if (!listener) {
-    onMounted(() => {
-      mediaQueryList = window.matchMedia(query);
-      matches.value = mediaQueryList.matches; // Initial check
-      listener = (e: MediaQueryListEvent) => {
-        matches.value = e.matches;
-      };
-      mediaQueryList.addEventListener("change", listener);
-    });
-  }
+  const matches = ref(false);
+  let mediaQueryList: MediaQueryList | undefined;
+
+  const updateMatches = (e: MediaQueryListEvent) => {
+    matches.value = e.matches;
+  };
+
+  onMounted(() => {
+    mediaQueryList = window.matchMedia(query);
+    matches.value = mediaQueryList.matches; // Initial check
+    mediaQueryList.addEventListener("change", updateMatches);
+  });
+
+  onUnmounted(() => {
+    if (mediaQueryList) {
+      mediaQueryList.removeEventListener("change", updateMatches);
+    }
+  });
 
   return matches;
 }
