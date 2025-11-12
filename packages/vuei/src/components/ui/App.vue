@@ -131,6 +131,9 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
           class="pane grid grid-cols-4 md:grid-cols-8 ex:grid-cols-12 gap-4 md:gap-6"
         >
           <div class="col-span-full md:col-[2/8] ex:col-[3/11] lg:col-[4/10]">
+            <h1 class="text-display-large">Display large</h1>
+            <p class="text-body-medium">Body medium</p>
+            <p class="text-body-extra-large">Body extra large</p>
             <button class="button button--style-filled">
               <span>Filled</span>
             </button>

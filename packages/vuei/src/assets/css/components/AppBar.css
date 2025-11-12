@@ -1,12 +1,12 @@
 .app-bar {
-  @apply flex items-center gap-2 h-16 px-4 bg-surface;
+  @apply flex items-center gap-2 h-16 px-4 md:px-6 bg-surface;
 
   &:has(.app-bar__leading .icon-button) {
-    @apply pl-1;
+    @apply pl-1 md:pl-3;
   }
 
   &:has(.app-bar__trailing .icon-button) {
-    @apply pr-1;
+    @apply pr-1 md:pr-3;
   }
 }
 

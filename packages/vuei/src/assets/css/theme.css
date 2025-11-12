@@ -17,6 +17,31 @@
 
   /* Typescale */
 
+  /* Display large */
+  --text-display-large: var(--md-sys-typescale-display-large-size);
+  --text-display-large--line-height: var(--md-sys-typescale-display-large-line-height);
+  --text-display-large--letter-spacing: var(--md-sys-typescale-display-large-tracking);
+
+  /* Display medium */
+  --text-display-medium: var(--md-sys-typescale-display-medium-size);
+  --text-display-medium--line-height: var(--md-sys-typescale-display-medium-line-height);
+  --text-display-medium--letter-spacing: var(--md-sys-typescale-display-medium-tracking);
+
+  /* Display small */
+  --text-display-small: var(--md-sys-typescale-display-small-size);
+  --text-display-small--line-height: var(--md-sys-typescale-display-small-line-height);
+  --text-display-small--letter-spacing: var(--md-sys-typescale-display-small-tracking);
+
+  /* Headline large */
+  --text-headline-large: var(--md-sys-typescale-headline-large-size);
+  --text-headline-large--line-height: var(--md-sys-typescale-headline-large-line-height);
+  --text-headline-large--letter-spacing: var(--md-sys-typescale-headline-large-tracking);
+
+  /* Headline medium */
+  --text-headline-medium: var(--md-sys-typescale-headline-medium-size);
+  --text-headline-medium--line-height: var(--md-sys-typescale-headline-medium-line-height);
+  --text-headline-medium--letter-spacing: var(--md-sys-typescale-headline-medium-tracking);
+
   /* Title large */
   --text-title-large: var(--md-sys-typescale-title-large-size);
   --text-title-large--line-height: var(
@@ -55,6 +80,11 @@
     --md-sys-typescale-title-medium-tracking
   );
   --text-title-medium--font-weight: var(--md-sys-typescale-title-medium-weight);
+
+  /* Body extra large */
+  --text-body-extra-large: var(--md-sys-typescale-body-extra-large-size);
+  --text-body-extra-large--line-height: var(--md-sys-typescale-body-extra-large-line-height);
+  --text-body-extra-large--letter-spacing: var(--md-sys-typescale-body-extra-large-tracking);
 
   /* Body large */
   --text-body-large: var(--md-sys-typescale-body-large-size);
