@@ -16,6 +16,23 @@ function close() {
   }
 }
 
+// Function to handle link clicks and close the sheet
+function handleContentClick(event: MouseEvent) {
+  // 1. Check if the sheet is in modal mode and open
+  if (!sheet.isModal || !sheet.isOpen) {
+    return;
+  }
+
+  // 2. Find the closest ancestor that is an anchor tag (`<a>`)
+  const target = event.target as HTMLElement;
+  const anchor = target.closest("a");
+
+  // 3. If a link was clicked, close the sheet
+  if (anchor) {
+    close();
+  }
+}
+
 onMounted(() => {
   const el = document.getElementById(id);
   if (el) {
@@ -40,12 +57,9 @@ onMounted(() => {
 
 <template>
   <Teleport :disabled="!sheet.isModal" :to>
-    <slot
-      :isModal="sheet.isModal"
-      :isOpen="sheet.isOpen"
-      :toggle="sheet.toggle"
-      :close
-    />
+    <div @click="handleContentClick" @keydown.esc="close" :="$attrs" :id>
+        <slot />
+    </div>
     <Transition name="fade">
       <div
         v-show="sheet.isModal && sheet.isOpen"

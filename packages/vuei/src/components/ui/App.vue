@@ -287,7 +287,7 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
                 </IconButton>
               </ListTrailing>
             </List>
-            <br />
+            <br id="list-test" />
             <List size="three-line">
               <ListLeading>
                 <PersonOutlineRounded />
@@ -322,6 +322,7 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
         </div>
         <div class="sheet__content">
           <p>Content</p>
+          <a href="#list-test">test a tag</a>
         </div>
         <div class="sheet__footer">
           <button class="button button--style-filled">

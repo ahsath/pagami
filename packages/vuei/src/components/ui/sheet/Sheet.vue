@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useSheet } from "@/composables/useSheet";
 import { UseSheet } from ".";
 
 const {
@@ -10,27 +11,27 @@ const {
   to?: string;
   side?: "left" | "right";
 }>();
+
+const sheet = useSheet(id);
 </script>
 
 <template>
-  <UseSheet #="{ isOpen, isModal, close }" :id :to>
-    <div
-      class="sheet"
-      :class="{
-        'sheet--type-modal': isModal,
-        'sheet--type-standard': !isModal,
+    <UseSheet
+        class="sheet"
+        :class="{
+        'sheet--type-modal': sheet.isModal,
+        'sheet--type-standard': !sheet.isModal,
         'sheet--side-left': side === 'left',
         'sheet--side-right': side === 'right',
-        'sheet--open': isOpen,
-      }"
-      @keydown.esc="close"
-      :role="isModal ? 'dialog' : undefined"
-      :aria-modal="isModal ? 'true' : undefined"
-      :tabindex="isModal ? -1 : undefined"
-      :inert="!isOpen && isModal ? 'true' : undefined"
-      :id
+        'sheet--open': sheet.isOpen,
+        }"
+        :role="sheet.isModal ? 'dialog' : undefined"
+        :aria-modal="sheet.isModal ? 'true' : undefined"
+        :tabindex="sheet.isModal ? -1 : undefined"
+        :inert="!sheet.isOpen && sheet.isModal ? 'true' : undefined"
+        :id
+        :to
     >
-      <slot />
-    </div>
-  </UseSheet>
+        <slot />
+    </UseSheet>
 </template>
