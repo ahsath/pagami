@@ -1,4 +1,4 @@
-@import "tailwindcss" source("../../components/ui");
+@import "tailwindcss" source("../../../../");
 @import "tw-animate-css";
 
 /* TODO: add light/dark mode toggle */
