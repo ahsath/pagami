@@ -9,7 +9,7 @@ export default function useMediaQuery(query: string) {
   };
 
   onMounted(() => {
-    mediaQueryList = window.matchMedia(query);
+    mediaQueryList = globalThis.matchMedia(query);
     matches.value = mediaQueryList.matches; // Initial check
     mediaQueryList.addEventListener("change", updateMatches);
   });
