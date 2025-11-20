@@ -24,6 +24,20 @@ export default defineConfig(
         parser: typescriptEslint.parser,
       },
     },
+    rules: {
+      "vuejs-accessibility/form-control-has-label": [
+        "error",
+        {
+          controlComponents: ["BaseRadio", "BaseCheckbox"],
+        },
+      ],
+      "vuejs-accessibility/label-has-for": [
+        "error",
+        {
+          controlComponents: ["BaseRadio", "BaseCheckbox"],
+        },
+      ],
+    },
   },
   {
     files: ["**/*.vue"],
