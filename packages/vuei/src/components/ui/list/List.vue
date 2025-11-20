@@ -1,42 +1,28 @@
 <script lang="ts" setup>
-import { computed, useAttrs } from "vue";
-
-defineOptions({ inheritAttrs: false });
-const attrs = useAttrs();
+import { ref, useId } from "vue";
+import { BaseCheckbox, BaseRadio } from "@/components/base/forms/index.ts";
 
 const {
-  type,
-  value,
+  type = "radio",
+  value = undefined,
   size = "one-line",
+  name = undefined,
 } = defineProps<{
-  id?: string;
-  type?: string;
-  value?: string;
+  type?: "radio" | "checkbox";
+  value?: string | undefined;
   size?: "one-line" | "two-line" | "three-line";
-  listClass?: string;
-}>(); // TODO: make value required if type is radio or checkbox
+  name?: string | undefined;
+}>();
 
-const radioValue = defineModel("radio");
-const checkboxValue = defineModel<string[] | string | boolean>("checkbox");
-
-const checked = computed(() => {
-  if (type === "radio") {
-    return radioValue.value === value;
-  } else if (type === "checkbox") {
-    if (Array.isArray(checkboxValue.value) && value) {
-      return checkboxValue.value.includes(value);
-    } else if (typeof checkboxValue.value === "string") {
-      return checkboxValue.value === attrs["true-value"];
-    } else if (typeof checkboxValue.value === "boolean") {
-      return checkboxValue.value;
-    }
-  }
-  return false;
-});
+const modelValue = defineModel<string[] | string | boolean>();
+const id = useId();
+const checked = ref<boolean>();
 </script>
 
 <template>
   <component
+    is="div"
+    :for="id"
     class="list"
     :class="[
       {
@@ -46,29 +32,26 @@ const checked = computed(() => {
         'list--size-three-line': size === 'three-line',
         'list--checked': checked,
       },
-      listClass,
     ]"
-    :is="type === 'radio' || type === 'checkbox' ? 'label' : 'div'"
-    :for="id"
   >
     <slot :checked />
-    <input
+    <BaseRadio
       v-if="type === 'radio'"
-      v-model="radioValue"
-      class="list__input"
-      type="radio"
-      :="$attrs"
-      :value
       :id
+      v-model="modelValue"
+      class="list__input"
+      :value
+      :name
+      @change:checked="checked = $event"
     />
-    <input
+    <BaseCheckbox
       v-if="type === 'checkbox'"
-      v-model="checkboxValue"
-      class="list__input"
-      type="checkbox"
-      :="$attrs"
-      :value
       :id
+      v-model="modelValue"
+      class="list__input"
+      :value
+      :name
+      @change:checked="checked = $event"
     />
   </component>
 </template>

@@ -1,8 +1,12 @@
-<script setup lang="ts" >
+<script setup lang="ts">
 import { computed, inject } from "vue";
 import { useSheet } from "@/composables/useSheet";
 
-const { tag = "div", selected = false, compactHorizontal = false } = defineProps<{
+const {
+  tag = "div",
+  selected = false,
+  compactHorizontal = false,
+} = defineProps<{
   label: string;
   tag?: string;
   selected?: boolean;

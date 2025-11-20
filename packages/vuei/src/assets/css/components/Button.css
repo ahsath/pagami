@@ -82,23 +82,23 @@
 }
 
 .button--style-outline {
-    @apply text-on-surface-variant;
+  @apply text-on-surface-variant;
 
-    &::before {
-        @apply outline outline-outline-variant;
-    }
+  &::before {
+    @apply outline outline-outline-variant;
+  }
 
-    &:hover:not(:disabled)::after {
-        @apply bg-on-surface-variant-hover;
-    }
+  &:hover:not(:disabled)::after {
+    @apply bg-on-surface-variant-hover;
+  }
 
-    &:focus-visible:not(:disabled)::after {
-        @apply bg-on-surface-variant-focused outline-on-surface-variant;
-    }
+  &:focus-visible:not(:disabled)::after {
+    @apply bg-on-surface-variant-focused outline-on-surface-variant;
+  }
 
-    &:active:not(:disabled)::after {
-        @apply bg-on-surface-variant-pressed;
-    }
+  &:active:not(:disabled)::after {
+    @apply bg-on-surface-variant-pressed;
+  }
 }
 
 .button--style-elevated {

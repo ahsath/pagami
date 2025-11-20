@@ -8,15 +8,15 @@ defineProps<{
   options?: Array<{ value: string; label: string }>;
 }>();
 
-const model = defineModel({ required: true });
+const model = defineModel<string>({ required: true });
 </script>
 
 <template>
   <div class="select-simple">
-    <div class="select-simple__leading-icon" v-if="$slots['leading-icon']">
+    <div v-if="$slots['leading-icon']" class="select-simple__leading-icon">
       <slot name="leading-icon" />
     </div>
-    <select class="select-simple__select" v-model="model" :id :="$attrs">
+    <select :id v-model="model" class="select-simple__select" :="$attrs">
       <slot name="options" :options="options">
         <option
           v-for="option in options"

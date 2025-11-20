@@ -49,7 +49,7 @@ onMounted(() => {
           trap.deactivate();
         }
       },
-      { flush: "post" }
+      { flush: "post" },
     );
   }
 });
@@ -57,8 +57,8 @@ onMounted(() => {
 
 <template>
   <Teleport :disabled="!sheet.isModal" :to>
-    <div @click="handleContentClick" @keydown.esc="close" :="$attrs" :id>
-        <slot />
+    <div :id :="$attrs" @click="handleContentClick" @keydown.esc="close">
+      <slot />
     </div>
     <Transition name="fade">
       <div

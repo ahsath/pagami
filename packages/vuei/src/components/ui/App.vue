@@ -33,10 +33,12 @@ import InboxRounded from "~icons/material-symbols/inbox-rounded?width=24&height=
 import SendOutlineRounded from "~icons/material-symbols/send-outline-rounded?width=24&height=24";
 import FavoriteOutlineRounded from "~icons/material-symbols/favorite-outline-rounded?width=24&height=24";
 import DeleteOutlineRounded from "~icons/material-symbols/delete-outline-rounded?width=24&height=24";
+import BaseCheckbox from "../base/forms/BaseCheckbox.vue";
+import BaseRadio from "../base/forms/BaseRadio.vue";
 
 const inputFieldModel = ref();
 const selectModel = ref("VE");
-const radioModel = ref();
+const radioModel = ref("");
 const checkboxModel1 = ref("");
 const checkboxModel2 = ref([]);
 
@@ -54,6 +56,9 @@ const navRailId = useId();
 const rightSheetId = useId();
 const navRail = useSheet(navRailId);
 const rightSheet = useSheet(rightSheetId, { type: "modal" });
+const checkbox = ref(["123"]);
+const checkbox2 = ref("");
+const radio = ref("");
 </script>
 
 <template>
@@ -102,25 +107,26 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
         </template>
         <template #trailing>
           <SelectSimple
-            v-model="selectModel"
             id="country-selector"
+            v-model="selectModel"
             :options="[
               { value: 'EC', label: 'Ecuador' },
               { value: 'VE', label: 'Venezuela' },
             ]"
-            #leading-icon
           >
-            <img v-show="selectModel === 'EC'" src="/ecuador.svg" alt="" />
-            <img v-show="selectModel === 'VE'" src="/venezuela.svg" alt="" />
+            <template #leading-icon>
+              <img v-show="selectModel === 'EC'" src="/ecuador.svg" alt="" />
+              <img v-show="selectModel === 'VE'" src="/venezuela.svg" alt="" />
+            </template>
           </SelectSimple>
           <button class="button"><span>Text</span></button>
           <button
-            @click="rightSheet.toggle"
             aria-label="Configurar"
             :aria-expanded="rightSheet.isOpen"
             :aria-controls="rightSheetId"
             class="button icon-button"
             type="button"
+            @click="rightSheet.toggle"
           >
             <SettingsOutlineRounded aria-hidden="true" />
           </button>
@@ -131,6 +137,36 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
           class="pane grid grid-cols-4 md:grid-cols-8 ex:grid-cols-12 gap-4 md:gap-6"
         >
           <div class="col-span-full md:col-[2/8] ex:col-[3/11] lg:col-[4/10]">
+            <BaseCheckbox id="testid" v-model="checkbox">
+              Base checkbox
+            </BaseCheckbox>
+            <BaseCheckbox
+              id="testid"
+              v-model="checkbox2"
+              true-value="si"
+              false-value="no"
+            >
+              Base checkbox2
+            </BaseCheckbox>
+            <fieldset>
+              <label for="radio1">
+                Label for radio 1
+                <BaseRadio
+                  id="radio1"
+                  v-model="radio"
+                  name="radio"
+                  value="radio1"
+                />
+              </label>
+              <label for="radio2">
+                <BaseRadio
+                  id="radio2"
+                  v-model="radio"
+                  name="radio"
+                  value="radio2"
+                />
+              </label>
+            </fieldset>
             <h1 class="text-display-large">Display large</h1>
             <p class="text-body-medium">Body medium</p>
             <p class="text-body-extra-large">Body extra large</p>
@@ -164,8 +200,8 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
               <span>Filled - disabled</span>
             </button>
             <InputFieldSimple
-              v-model="inputFieldModel"
               id="input-field"
+              v-model="inputFieldModel"
               label="Label*"
               prefix="$"
               placeholder="Placeholder"
@@ -182,8 +218,8 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
               </template>
             </InputFieldSimple>
             <InputFieldSimple
-              v-model="inputFieldModel"
               id="input-field"
+              v-model="inputFieldModel"
               label="Label*"
               prefix="$"
               placeholder="Placeholder"
@@ -212,9 +248,9 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
             <br />
             <List
               v-for="radioItem in listRadioGroup1"
-              v-model:radio="radioModel"
+              :key="radioItem.value"
+              v-model="radioModel"
               :value="radioItem.value"
-              :id="radioItem.value"
               type="radio"
               size="three-line"
               name="list-radio-group"
@@ -235,9 +271,9 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
             </List>
             <br />
             <List
-              v-model:checkbox="checkboxModel1"
-              type="checkbox"
               id="list-checkbox"
+              v-model="checkboxModel1"
+              type="checkbox"
               value="list-checkbox-group-1"
               true-value="si"
               false-value="no"
@@ -257,8 +293,9 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
             <br />
             <List
               v-for="checkboxItem in listCheckboxGroup1"
-              v-model:checkbox="checkboxModel2"
               :id="checkboxItem.value"
+              :key="checkboxItem.value"
+              v-model="checkboxModel2"
               :value="checkboxItem.value"
               type="checkbox"
               #="{ checked }"
@@ -266,7 +303,9 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
               <ListLeading>
                 <PersonOutlineRounded />
               </ListLeading>
-              <ListContent> <div>Headline</div> </ListContent>
+              <ListContent>
+                <div>Headline</div>
+              </ListContent>
               <ListTrailing>
                 <Checkbox v-show="checked" />
                 <CheckBoxOutlineBlank v-show="!checked" />

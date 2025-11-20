@@ -81,13 +81,13 @@
 }
 
 .nav-item__label {
-    @apply transition-all ease-in-out;
+  @apply transition-all ease-in-out;
 }
 
 .nav-item__label--horizontal {
-    @apply max-w-0 opacity-0 overflow-hidden text-label-large duration-200;
+  @apply max-w-0 opacity-0 overflow-hidden text-label-large duration-200;
 }
 
 .nav-item__label--vertical {
-    @apply absolute bottom-1.5 opacity-100 text-label-medium duration-600;
+  @apply absolute bottom-1.5 opacity-100 text-label-medium duration-600;
 }
