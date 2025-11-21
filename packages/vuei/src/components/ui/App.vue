@@ -33,8 +33,10 @@ import InboxRounded from "~icons/material-symbols/inbox-rounded?width=24&height=
 import SendOutlineRounded from "~icons/material-symbols/send-outline-rounded?width=24&height=24";
 import FavoriteOutlineRounded from "~icons/material-symbols/favorite-outline-rounded?width=24&height=24";
 import DeleteOutlineRounded from "~icons/material-symbols/delete-outline-rounded?width=24&height=24";
+import CheckCircleRounded from "~icons/material-symbols/check-circle-rounded?width=24&height=24";
 import BaseCheckbox from "../base/forms/BaseCheckbox.vue";
 import BaseRadio from "../base/forms/BaseRadio.vue";
+import RadioButton from "@/components/ui/radio-button/RadioButton.vue";
 
 const inputFieldModel = ref();
 const selectModel = ref("VE");
@@ -59,6 +61,7 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
 const checkbox = ref(["123"]);
 const checkbox2 = ref("");
 const radio = ref("");
+const radioButtonModel = ref("radio-button-val2");
 </script>
 
 <template>
@@ -137,6 +140,24 @@ const radio = ref("");
           class="pane grid grid-cols-4 md:grid-cols-8 ex:grid-cols-12 gap-4 md:gap-6"
         >
           <div class="col-span-full md:col-[2/8] ex:col-[3/11] lg:col-[4/10]">
+            <fieldset>
+              <RadioButton
+                v-model="radioButtonModel"
+                name="radio-button"
+                value="radio-button-val1"
+              />
+              <RadioButton
+                v-model="radioButtonModel"
+                name="radio-button"
+                value="radio-button-val2"
+              />
+              <RadioButton
+                v-model="radioButtonModel"
+                name="radio-button"
+                value="radio-button-val3"
+                disabled
+              />
+            </fieldset>
             <BaseCheckbox id="testid" v-model="checkbox">
               Base checkbox
             </BaseCheckbox>
@@ -156,9 +177,12 @@ const radio = ref("");
                   v-model="radio"
                   name="radio"
                   value="radio1"
+                  checked
+                  disabled
                 />
               </label>
               <label for="radio2">
+                Label for radio 2
                 <BaseRadio
                   id="radio2"
                   v-model="radio"
