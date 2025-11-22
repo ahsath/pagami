@@ -1,5 +1,5 @@
 .radio-button {
-  @apply flex items-center justify-center size-12 relative *:relative before:z-0 after:z-1 *:z-2 text-on-surface-variant has-checked:text-primary;
+  @apply flex items-center justify-center size-12 relative *:relative before:z-0 after:z-1 *:z-2 text-on-surface-variant has-checked:text-primary z-1;
 
   &::before,
   &::after {

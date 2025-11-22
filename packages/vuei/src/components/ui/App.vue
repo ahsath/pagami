@@ -33,7 +33,6 @@ import InboxRounded from "~icons/material-symbols/inbox-rounded?width=24&height=
 import SendOutlineRounded from "~icons/material-symbols/send-outline-rounded?width=24&height=24";
 import FavoriteOutlineRounded from "~icons/material-symbols/favorite-outline-rounded?width=24&height=24";
 import DeleteOutlineRounded from "~icons/material-symbols/delete-outline-rounded?width=24&height=24";
-import CheckCircleRounded from "~icons/material-symbols/check-circle-rounded?width=24&height=24";
 import BaseCheckbox from "../base/forms/BaseCheckbox.vue";
 import BaseRadio from "../base/forms/BaseRadio.vue";
 import RadioButton from "@/components/ui/radio-button/RadioButton.vue";

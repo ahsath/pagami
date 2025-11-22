@@ -5,10 +5,13 @@ import RadioButtonUnchecked from "~icons/material-symbols/radio-button-unchecked
 
 defineOptions({ inheritAttrs: false });
 const modelValue = defineModel<string>();
+const { radioButtonClass = undefined } = defineProps<{
+  radioButtonClass?: string;
+}>();
 </script>
 
 <template>
-  <span class="radio-button">
+  <span class="radio-button" :class="radioButtonClass">
     <BaseRadio v-model="modelValue" class="radio-button__input" :="$attrs" />
     <span class="radio-button__icons" aria-hidden="true">
       <slot name="checked-icon">
