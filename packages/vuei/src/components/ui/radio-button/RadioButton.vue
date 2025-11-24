@@ -4,10 +4,10 @@ import RadioButtonChecked from "~icons/material-symbols/radio-button-checked?wid
 import RadioButtonUnchecked from "~icons/material-symbols/radio-button-unchecked?width=24&height=24";
 
 defineOptions({ inheritAttrs: false });
-const modelValue = defineModel<string>();
 const { radioButtonClass = undefined } = defineProps<{
   radioButtonClass?: string;
 }>();
+const modelValue = defineModel<string>();
 </script>
 
 <template>

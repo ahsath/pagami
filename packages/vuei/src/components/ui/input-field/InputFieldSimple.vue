@@ -38,38 +38,38 @@ function focusInput() {
       'input-field-simple--state-disabled': disabled,
     }"
   >
-    <label :for="id" class="input-field-simple__label" v-show="label">
+    <label v-show="label" :for="id" class="input-field-simple__label">
       {{ label }}
     </label>
     <div class="input-field-simple__container" @click="focusInput">
       <div
-        class="input-field-simple__leading-icon"
         v-if="$slots['leading-icon']"
+        class="input-field-simple__leading-icon"
       >
         <slot name="leading-icon" />
       </div>
-      <span class="input-field-simple__prefix" v-if="prefix">
+      <span v-if="prefix" class="input-field-simple__prefix">
         {{ prefix }}
       </span>
       <input
-        type="text"
-        class="input-field-simple__input"
+        :id
         ref="inputRef"
         v-model="model"
+        type="text"
+        class="input-field-simple__input"
         :="$attrs"
-        :id
         :disabled
         :placeholder
       />
-      <span class="input-field-simple__suffix" v-if="suffix">
+      <span v-if="suffix" class="input-field-simple__suffix">
         {{ suffix }}
       </span>
-      <div class="input-field-simple__trailing-icon" v-if="error">
+      <div v-if="error" class="input-field-simple__trailing-icon">
         <ErrorRounded aria-hidden="true" />
       </div>
       <div
-        class="input-field-simple__trailing-icon px-0"
         v-else-if="clearable && model"
+        class="input-field-simple__trailing-icon px-0"
       >
         <button
           class="button icon-button text-inherit"
@@ -81,20 +81,20 @@ function focusInput() {
         </button>
       </div>
       <div
-        class="input-field-simple__trailing-icon"
         v-else-if="$slots['trailing-icon']"
+        class="input-field-simple__trailing-icon"
       >
         <slot name="trailing-icon" />
       </div>
     </div>
     <p
-      class="input-field-simple__supporting-text"
       v-if="!disabled && error"
+      class="input-field-simple__supporting-text"
       role="alert"
     >
       {{ error }}
     </p>
-    <p class="input-field-simple__supporting-text" v-else-if="supportingText">
+    <p v-else-if="supportingText" class="input-field-simple__supporting-text">
       {{ supportingText }}
     </p>
   </div>
