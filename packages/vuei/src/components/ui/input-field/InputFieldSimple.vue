@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import { useTemplateRef } from "vue";
+import { useId, useTemplateRef } from "vue";
 import ErrorRounded from "~icons/material-symbols/error-rounded?width=24&height=24";
 import CancelOutlineRounded from "~icons/material-symbols/cancel-outline-rounded?width=24&height=24";
 
 defineOptions({ inheritAttrs: false });
 
 defineProps<{
-  id: string;
   label?: string;
   error?: string;
   prefix?: string;
@@ -20,8 +19,10 @@ defineProps<{
 const model = defineModel<unknown>();
 
 const inputRef = useTemplateRef("inputRef");
+const id = useId();
 
 function clearInput() {
+  console.log("wtf?");
   model.value = "";
 }
 
@@ -41,7 +42,15 @@ function focusInput() {
     <label v-show="label" :for="id" class="input-field-simple__label">
       {{ label }}
     </label>
-    <div class="input-field-simple__container" @click="focusInput">
+    <div
+      class="input-field-simple__container focus-visible:bg-red-50"
+      role="button"
+      tabindex="0"
+      @focus="focusInput"
+      @keydown.enter.self="focusInput"
+      @keydown.space.self="focusInput"
+      @click="focusInput"
+    >
       <div
         v-if="$slots['leading-icon']"
         class="input-field-simple__leading-icon"
@@ -75,7 +84,7 @@ function focusInput() {
           class="button icon-button text-inherit"
           aria-label="Limpiar campo"
           type="button"
-          @click.stop="clearInput"
+          @click="clearInput"
         >
           <CancelOutlineRounded />
         </button>
@@ -87,15 +96,18 @@ function focusInput() {
         <slot name="trailing-icon" />
       </div>
     </div>
-    <p
+    <span
       v-if="!disabled && error"
       class="input-field-simple__supporting-text"
       role="alert"
     >
       {{ error }}
-    </p>
-    <p v-else-if="supportingText" class="input-field-simple__supporting-text">
+    </span>
+    <span
+      v-else-if="supportingText"
+      class="input-field-simple__supporting-text"
+    >
       {{ supportingText }}
-    </p>
+    </span>
   </div>
 </template>

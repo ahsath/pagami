@@ -231,7 +231,6 @@ const radioButtonModel = ref("");
               <span>Filled - disabled</span>
             </button>
             <InputFieldSimple
-              id="input-field"
               v-model="inputFieldModel"
               label="Label*"
               prefix="$"
@@ -249,7 +248,6 @@ const radioButtonModel = ref("");
               </template>
             </InputFieldSimple>
             <InputFieldSimple
-              id="input-field"
               v-model="inputFieldModel"
               label="Label*"
               prefix="$"
@@ -266,7 +264,6 @@ const radioButtonModel = ref("");
               </template>
             </InputFieldSimple>
             <InputFieldSimple
-              id="input-field-2"
               label="Label*"
               error="Error message"
               required
