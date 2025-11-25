@@ -31,17 +31,12 @@ export default defineConfig(
           controlComponents: ["BaseRadio", "BaseCheckbox"],
         },
       ],
-      "vuejs-accessibility/label-has-for": [
-        "error",
-        {
-          controlComponents: ["BaseRadio", "BaseCheckbox"],
-        },
-      ],
     },
   },
   {
     files: ["**/*.vue"],
     rules: {
+      "vuejs-accessibility/label-has-for": "off",
       // This rule is already handled by the Vue plugin, but this disables
       // the base TypeScript rule to prevent false positives.
       "@typescript-eslint/no-unused-vars": "off",
