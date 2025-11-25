@@ -17,7 +17,7 @@ defineProps<{
   supportingText?: string;
 }>();
 
-const model = defineModel();
+const model = defineModel<unknown>();
 
 const inputRef = useTemplateRef("inputRef");
 

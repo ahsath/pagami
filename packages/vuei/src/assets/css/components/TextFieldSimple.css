@@ -29,11 +29,10 @@
     @apply text-on-surface opacity-38 cursor-not-allowed **:cursor-not-allowed;
   }
 
+  /* prettier-ignore */
   &.input-field-simple--state-error {
-    &:has(.input-field-simple__container:focus-within)
-      .input-field-simple__label,
-    &:has(.input-field-simple__container:focus-within)
-      .input-field-simple__trailing-icon,
+    &:has(.input-field-simple__container:focus-within) .input-field-simple__label,
+    &:has(.input-field-simple__container:focus-within) .input-field-simple__trailing-icon,
     & .input-field-simple__label,
     & .input-field-simple__supporting-text,
     & .input-field-simple__trailing-icon {
@@ -113,9 +112,8 @@
   }
 
   /* If input is followed by a trailing-icon AND NOT by a suffix */
-  &:has(+ .input-field-simple__trailing-icon):not(
-      :has(+ .input-field-simple__suffix)
-    ) {
+  /* prettier-ignore */
+  &:has(+ .input-field-simple__trailing-icon):not(:has(+ .input-field-simple__suffix)) {
     @apply pr-1;
   }
 }
