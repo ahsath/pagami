@@ -12,7 +12,6 @@ defineProps<{
   suffix?: string;
   disabled?: boolean;
   clearable?: boolean;
-  placeholder?: string;
   supportingText?: string;
 }>();
 
@@ -64,11 +63,9 @@ function focusInput() {
         :id
         ref="inputRef"
         v-model="model"
-        type="text"
         class="input-field-simple__input"
         :="$attrs"
         :disabled
-        :placeholder
       />
       <span v-if="suffix" class="input-field-simple__suffix">
         {{ suffix }}
