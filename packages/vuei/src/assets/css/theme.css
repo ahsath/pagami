@@ -185,5 +185,8 @@
   --color-outline: var(--md-sys-color-outline);
   --color-outline-variant: var(--md-sys-color-outline-variant);
   --color-error: var(--md-sys-color-error);
+  --color-error-hover: var(--md-sys-color-error-hover);
+  --color-error-focused: var(--md-sys-color-error-focused);
+  --color-error-pressed: var(--md-sys-color-error-pressed);
   --color-on-error-container: var(--md-sys-color-on-error-container);
 }

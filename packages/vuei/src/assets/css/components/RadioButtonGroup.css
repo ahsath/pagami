@@ -1,0 +1,29 @@
+.radio-button-group[aria-invalid="true"] {
+  .radio-button {
+    &:has(.radio-button__input:not(:disabled)):hover::after {
+      @apply bg-error-hover;
+    }
+
+    &:has(.radio-button__input:focus-visible)::after {
+      @apply bg-error-focused;
+    }
+
+    &:has(.radio-button__input:active:not(:disabled))::after {
+      @apply bg-error-pressed;
+    }
+  }
+
+  .radio-button__input {
+    &:focus-visible:not(:disabled) + .radio-button__icons {
+      @apply text-error;
+    }
+
+    &:not(:disabled) + .radio-button__icons {
+      @apply text-error;
+    }
+  }
+}
+
+.radio-button-group__error {
+  @apply text-body-small text-error;
+}

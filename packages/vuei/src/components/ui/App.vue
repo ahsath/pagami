@@ -36,6 +36,7 @@ import DeleteOutlineRounded from "~icons/material-symbols/delete-outline-rounded
 import BaseCheckbox from "../base/forms/BaseCheckbox.vue";
 import BaseRadio from "../base/forms/BaseRadio.vue";
 import RadioButton from "@/components/ui/radio-button/RadioButton.vue";
+import RadioButtonGroup from "@/components/ui/radio-button/RadioButtonGroup.vue";
 
 const inputFieldModel = ref();
 const selectModel = ref("VE");
@@ -60,7 +61,7 @@ const rightSheet = useSheet(rightSheetId, { type: "modal" });
 const checkbox = ref(["123"]);
 const checkbox2 = ref("");
 const radio = ref("");
-const radioButtonModel = ref("radio-button-val2");
+const radioButtonModel = ref("");
 </script>
 
 <template>
@@ -139,24 +140,31 @@ const radioButtonModel = ref("radio-button-val2");
           class="pane grid grid-cols-4 md:grid-cols-8 ex:grid-cols-12 gap-4 md:gap-6"
         >
           <div class="col-span-full md:col-[2/8] ex:col-[3/11] lg:col-[4/10]">
-            <fieldset>
-              <RadioButton
+            <form novalidate>
+              <RadioButtonGroup
                 v-model="radioButtonModel"
-                name="radio-button"
-                value="radio-button-val1"
-              />
-              <RadioButton
-                v-model="radioButtonModel"
-                name="radio-button"
-                value="radio-button-val2"
-              />
-              <RadioButton
-                v-model="radioButtonModel"
-                name="radio-button"
-                value="radio-button-val3"
-                disabled
-              />
-            </fieldset>
+                error="Error message"
+              >
+                <legend>Radio button group</legend>
+                <RadioButton
+                  name="radio-button"
+                  value="radio-button-val1"
+                  required
+                />
+                <RadioButton
+                  name="radio-button"
+                  value="radio-button-val2"
+                  required
+                />
+                <RadioButton
+                  name="radio-button"
+                  value="radio-button-val3"
+                  required
+                  disabled
+                />
+              </RadioButtonGroup>
+              <button type="submit">submit</button>
+            </form>
             <BaseCheckbox id="testid" v-model="checkbox">
               Base checkbox
             </BaseCheckbox>

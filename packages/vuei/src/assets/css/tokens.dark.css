@@ -84,5 +84,17 @@
   --md-sys-color-outline: var(--md-ref-palette-neutral-variant60);
   --md-sys-color-outline-variant: var(--md-ref-palette-neutral-variant30);
   --md-sys-color-error: var(--md-ref-palette-error80);
+  --md-sys-color-error-hover: oklch(
+    from var(--md-ref-palette-error80) l c h /
+      var(--md-sys-state-hover-state-layer-opacity)
+  );
+  --md-sys-color-error-focused: oklch(
+    from var(--md-ref-palette-error80) l c h /
+      var(--md-sys-state-focused-state-layer-opacity)
+  );
+  --md-sys-color-error-pressed: oklch(
+    from var(--md-ref-palette-error80) l c h /
+      var(--md-sys-state-pressed-state-layer-opacity)
+  );
   --md-sys-color-on-error-container: var(--md-ref-palette-error90);
 }
