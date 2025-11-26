@@ -74,6 +74,12 @@ function focusInput() {
         <ErrorRounded aria-hidden="true" />
       </div>
       <div
+        v-else-if="$slots['trailing-icon']"
+        class="input-field-simple__trailing-icon"
+      >
+        <slot name="trailing-icon" :disabled />
+      </div>
+      <div
         v-else-if="clearable && model"
         class="input-field-simple__trailing-icon"
       >
@@ -86,12 +92,6 @@ function focusInput() {
         >
           <CancelOutlineRounded />
         </button>
-      </div>
-      <div
-        v-else-if="$slots['trailing-icon']"
-        class="input-field-simple__trailing-icon"
-      >
-        <slot name="trailing-icon" :disabled />
       </div>
     </div>
     <span
