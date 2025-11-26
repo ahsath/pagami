@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, defineModel, type ModelRef } from "vue";
+import { inject, type ModelRef } from "vue";
 import { BaseRadio } from "@/components/base/forms/index.ts";
 import RadioButtonChecked from "~icons/material-symbols/radio-button-checked?width=24&height=24";
 import RadioButtonUnchecked from "~icons/material-symbols/radio-button-unchecked?width=24&height=24";
@@ -16,6 +16,7 @@ let model: Model;
 try {
   model = inject("model", undefined) as Model;
 } catch {
+  // eslint-disable-next-line
   model = defineModel() as Model;
 }
 </script>
