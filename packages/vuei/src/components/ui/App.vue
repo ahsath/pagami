@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, useId } from "vue";
+import { computed, ref, useId } from "vue";
 import AppBar from "@/components/ui/app-bar/AppBar.vue";
 import IconButton from "@/components/ui/button/IconButton.vue";
 import Sheet from "@/components/ui/sheet/Sheet.vue";
@@ -33,6 +33,8 @@ import InboxRounded from "~icons/material-symbols/inbox-rounded?width=24&height=
 import SendOutlineRounded from "~icons/material-symbols/send-outline-rounded?width=24&height=24";
 import FavoriteOutlineRounded from "~icons/material-symbols/favorite-outline-rounded?width=24&height=24";
 import DeleteOutlineRounded from "~icons/material-symbols/delete-outline-rounded?width=24&height=24";
+import VisibilityOutlineRounded from "~icons/material-symbols/visibility-outline-rounded?width=24&height=24";
+import VisibilityOffOutlineRounded from "~icons/material-symbols/visibility-off-outline-rounded?width=24&height=24";
 import BaseCheckbox from "../base/forms/BaseCheckbox.vue";
 import BaseRadio from "../base/forms/BaseRadio.vue";
 import RadioButton from "@/components/ui/radio-button/RadioButton.vue";
@@ -62,6 +64,14 @@ const checkbox = ref(["123"]);
 const checkbox2 = ref("");
 const radio = ref("");
 const radioButtonModel = ref("");
+
+const isPasswordVisible = ref(false);
+const passwordInputType = computed(() => {
+  return isPasswordVisible.value ? "text" : "password";
+});
+const passwordAriaLabel = computed(() => {
+  return isPasswordVisible.value ? "Hide password" : "Show password";
+});
 </script>
 
 <template>
@@ -237,7 +247,6 @@ const radioButtonModel = ref("");
               placeholder="Placeholder"
               supporting-text="Supporting text"
               required
-              clearable
               disabled
             >
               <template #leading-icon>
@@ -271,6 +280,29 @@ const radioButtonModel = ref("");
             >
               <template #trailing-icon>
                 <MoneyBagRounded aria-hidden="true" />
+              </template>
+            </InputFieldSimple>
+            <InputFieldSimple
+              label="Password*"
+              :type="passwordInputType"
+              required
+            >
+              <template #trailing-icon>
+                <button
+                  class="button icon-button"
+                  :aria-label="passwordAriaLabel"
+                  type="button"
+                  @click="isPasswordVisible = !isPasswordVisible"
+                >
+                  <VisibilityOutlineRounded
+                    v-show="isPasswordVisible"
+                    aria-hidden="true"
+                  />
+                  <VisibilityOffOutlineRounded
+                    v-show="!isPasswordVisible"
+                    aria-hidden="true"
+                  />
+                </button>
               </template>
             </InputFieldSimple>
             <br />

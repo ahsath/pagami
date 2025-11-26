@@ -73,6 +73,10 @@
   @apply px-3 my-auto;
 }
 
+.input-field-simple__trailing-icon:has(> .icon-button) {
+  @apply px-0;
+}
+
 .input-field-simple__prefix,
 .input-field-simple__suffix {
   @apply min-w-fit my-auto;

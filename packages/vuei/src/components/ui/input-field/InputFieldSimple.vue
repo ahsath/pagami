@@ -22,6 +22,7 @@ const id = useId();
 
 function clearInput() {
   model.value = "";
+  focusInput();
 }
 
 function focusInput() {
@@ -47,7 +48,7 @@ function focusInput() {
       @focus="focusInput"
       @keydown.enter.self="focusInput"
       @keydown.space.self="focusInput"
-      @click="focusInput"
+      @click.self="focusInput"
     >
       <div
         v-if="$slots['leading-icon']"
@@ -74,12 +75,13 @@ function focusInput() {
       </div>
       <div
         v-else-if="clearable && model"
-        class="input-field-simple__trailing-icon px-0"
+        class="input-field-simple__trailing-icon"
       >
         <button
-          class="button icon-button text-inherit"
+          class="button icon-button"
           aria-label="Limpiar campo"
           type="button"
+          :disabled
           @click="clearInput"
         >
           <CancelOutlineRounded />
