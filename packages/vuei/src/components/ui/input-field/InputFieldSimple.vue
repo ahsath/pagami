@@ -21,7 +21,6 @@ const inputRef = useTemplateRef("inputRef");
 const id = useId();
 
 function clearInput() {
-  console.log("wtf?");
   model.value = "";
 }
 
