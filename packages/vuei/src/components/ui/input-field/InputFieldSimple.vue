@@ -91,7 +91,7 @@ function focusInput() {
         v-else-if="$slots['trailing-icon']"
         class="input-field-simple__trailing-icon"
       >
-        <slot name="trailing-icon" />
+        <slot name="trailing-icon" :disabled />
       </div>
     </div>
     <span

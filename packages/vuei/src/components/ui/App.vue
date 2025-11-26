@@ -286,11 +286,13 @@ const passwordAriaLabel = computed(() => {
               label="Password*"
               :type="passwordInputType"
               required
+              disabled
             >
-              <template #trailing-icon>
+              <template #trailing-icon="{ disabled }">
                 <button
                   class="button icon-button"
                   :aria-label="passwordAriaLabel"
+                  :disabled
                   type="button"
                   @click="isPasswordVisible = !isPasswordVisible"
                 >
