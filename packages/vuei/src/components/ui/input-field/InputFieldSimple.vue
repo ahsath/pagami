@@ -35,7 +35,6 @@ function focusInput() {
     class="input-field-simple"
     :class="{
       'input-field-simple--state-error': !disabled && error,
-      'input-field-simple--state-disabled': disabled,
     }"
   >
     <label v-show="label" :for="id" class="input-field-simple__label">

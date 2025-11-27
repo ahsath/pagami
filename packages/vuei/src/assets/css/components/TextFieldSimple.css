@@ -5,7 +5,8 @@
     @apply mt-4;
   }
 
-  &:not(.input-field-simple--state-disabled):hover {
+  /* prettier-ignore */
+  &:not(:has(.input-field-simple__input:disabled)):not(:has(.input-field-simple__input:focus)):hover {
     .input-field-simple__label {
       @apply text-on-surface;
     }
@@ -25,7 +26,7 @@
     }
   }
 
-  &.input-field-simple--state-disabled {
+  &:has(.input-field-simple__input:disabled) {
     @apply text-on-surface opacity-38 cursor-not-allowed **:cursor-not-allowed;
   }
 
@@ -39,7 +40,7 @@
       @apply text-error;
     }
 
-    &:hover {
+    &:not(:has(.input-field-simple__input:disabled)):not(:has(.input-field-simple__input:focus)):hover {
       .input-field-simple__label,
       .input-field-simple__trailing-icon {
         @apply text-on-error-container;
