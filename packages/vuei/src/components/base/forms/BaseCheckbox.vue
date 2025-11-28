@@ -11,15 +11,20 @@ const { value = undefined } = defineProps<{
 
 const emit = defineEmits<{ "change:checked": [checked: boolean] }>();
 
-const modelValue = defineModel<string[] | string | boolean | undefined>();
+// For some reason `model` when not using `v-model` from the parent is always `false`
+// causing the `checked` attr to do nothing if not using `v-model`, setting to `undefined`
+// fixes this. (i think internally it checks the input `checked` attr against the `model` default value - who knows)
+const model = defineModel<string[] | string | boolean | undefined>({
+  default: undefined,
+});
 
 const checked = computed(() => {
-  if (Array.isArray(modelValue.value) && typeof value === "string") {
-    return modelValue.value.includes(value);
-  } else if (typeof modelValue.value === "string") {
-    return modelValue.value === attrs["true-value"];
-  } else if (typeof modelValue.value === "boolean") {
-    return modelValue.value;
+  if (Array.isArray(model.value) && typeof value === "string") {
+    return model.value.includes(value);
+  } else if (typeof model.value === "string") {
+    return model.value === attrs["true-value"];
+  } else if (typeof model.value === "boolean") {
+    return model.value;
   }
   return false;
 });
@@ -36,11 +41,5 @@ watch(
 <template>
   <slot :checked />
   <!-- eslint-disable-next-line vuejs-accessibility/form-control-has-label -->
-  <input
-    v-model="modelValue"
-    class="sr-only"
-    type="checkbox"
-    :="attrs"
-    :value
-  />
+  <input v-model="model" type="checkbox" :="attrs" :value />
 </template>

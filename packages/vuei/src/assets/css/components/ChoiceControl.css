@@ -1,0 +1,115 @@
+.choice-control {
+  @apply flex shrink-0 items-center justify-center size-12 relative *:relative before:z-0 after:z-1 *:z-2 z-1;
+
+  &::before,
+  &::after {
+    @apply absolute size-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full;
+    content: "";
+  }
+
+  &:has(.choice-control__input:not(:disabled)):hover::after {
+    @apply bg-on-surface-hover;
+  }
+
+  &:has(.choice-control__input:checked:not(:disabled)):hover::after {
+    @apply bg-primary-hover;
+  }
+
+  &:has(.choice-control__input:focus-visible:checked:not(:disabled))::after {
+    @apply bg-primary-focused;
+  }
+
+  /* prettier-ignore */
+  &:has(.choice-control__input:focus-visible:not(:checked):not(:disabled))::after {
+    @apply bg-on-surface-focused;
+  }
+
+  &:has(.choice-control__input:active:checked:not(:disabled))::after {
+    @apply bg-on-surface-pressed;
+  }
+
+  /* prettier-ignore */
+  &:has(.choice-control__input:active:not(:checked):not(:disabled))::after {
+    @apply bg-primary-pressed;
+  }
+}
+
+.choice-control__input {
+  @apply absolute size-full opacity-0 z-3 cursor-pointer disabled:cursor-not-allowed;
+
+  &:hover:not(:checked, :disabled) + .choice-control__icons {
+    @apply text-on-surface;
+  }
+
+  &:checked + .choice-control__icons svg:first-child,
+  &:not(:checked) + .choice-control__icons svg:last-child {
+    @apply block;
+  }
+
+  &:checked + .choice-control__icons {
+    @apply text-primary;
+  }
+
+  &:focus-visible:not(:disabled) + .choice-control__icons svg {
+    @apply outline-2;
+  }
+
+  /* prettier-ignore */
+  &:focus-visible:not(:checked):not(:disabled) + .choice-control__icons {
+    @apply text-on-surface;
+  }
+
+  &:disabled + .choice-control__icons {
+    @apply text-on-surface-text-disabled;
+  }
+
+  &[type="checkbox"] + .choice-control__icons svg {
+    @apply rounded-xs -outline-offset-1;
+  }
+}
+
+.choice-control__icons {
+  @apply text-on-surface-variant;
+
+  & svg {
+    @apply hidden rounded-full;
+  }
+}
+
+/* ========================================================================= */
+/* ERROR STATES */
+/* ========================================================================= */
+
+/* This selector applies error styles if:
+   1. The choice-control itself has the --state-error class (for standalone checkboxes).
+   2. The choice-control is inside a parent .choice-control-group with aria-invalid="true"
+      (for radio buttons in an invalid group, or checkboxes in an invalid group).
+*/
+.choice-control.choice-control--state-error,
+.choice-control-group[aria-invalid="true"] .choice-control {
+  &:has(.choice-control__input:not(:disabled)):hover::after {
+    @apply bg-error-hover;
+  }
+
+  &:has(.choice-control__input:focus-visible)::after {
+    @apply bg-error-focused;
+  }
+
+  &:has(.choice-control__input:active:not(:disabled))::after {
+    @apply bg-error-pressed;
+  }
+
+  .choice-control__input {
+    &:focus-visible:not(:disabled) + .choice-control__icons {
+      @apply text-error;
+    }
+
+    &:not(:disabled) + .choice-control__icons {
+      @apply text-error;
+    }
+  }
+}
+
+.choice-control-group__error {
+  @apply text-body-small text-error;
+}

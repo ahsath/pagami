@@ -6,8 +6,8 @@ import RadioButtonUnchecked from "~icons/material-symbols/radio-button-unchecked
 
 defineOptions({ inheritAttrs: false });
 
-const { radioButtonClass = undefined } = defineProps<{
-  radioButtonClass?: string;
+const { choiceControlClass = undefined } = defineProps<{
+  choiceControlClass?: string;
 }>();
 
 type Model = ModelRef<string> | undefined;
@@ -22,9 +22,9 @@ try {
 </script>
 
 <template>
-  <span class="radio-button" :class="radioButtonClass">
-    <BaseRadio v-model="model" class="radio-button__input" :="$attrs" />
-    <span class="radio-button__icons" aria-hidden="true">
+  <span class="choice-control" :class="choiceControlClass">
+    <BaseRadio v-model="model" class="choice-control__input" :="$attrs" />
+    <span class="choice-control__icons" aria-hidden="true">
       <slot name="checked-icon">
         <RadioButtonChecked />
       </slot>

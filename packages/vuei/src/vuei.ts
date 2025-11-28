@@ -5,7 +5,9 @@ export { default as SelectSimple } from "./components/ui/select/SelectSimple.vue
 export { default as Sheet } from "./components/ui/sheet/Sheet.vue";
 export { default as NavRail } from "./components/ui/nav-rail/NavRail.vue";
 export { default as NavItem } from "./components/ui/nav-item/NavItem.vue";
-export * from "./components/ui/radio-button/index.ts";
+export { default as ChoiceControlGroup } from "./components/ui/choice-control-group/ChoiceControlGroup.vue";
+export { default as RadioButton } from "./components/ui/radio-button/RadioButton.vue";
+export { default as Checkbox } from "./components/ui/checkbox/Checkbox.vue";
 export * from "./components/ui/list/index.ts";
 export * from "./components/base/forms/index.ts";
 

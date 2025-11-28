@@ -25,7 +25,7 @@ import PersonOutlineRounded from "~icons/material-symbols/person-outline-rounded
 import CircleOutline from "~icons/material-symbols/circle-outline?width=24&height=24";
 import RadioButtonCheckedOutline from "~icons/material-symbols/radio-button-checked-outline?width=24&height=24";
 import CheckBoxOutlineBlank from "~icons/material-symbols/check-box-outline-blank?width=24&height=24";
-import Checkbox from "~icons/material-symbols/check-box?width=24&height=24";
+import CheckboxChecked from "~icons/material-symbols/check-box?width=24&height=24";
 import ContentCopyOutlineRounded from "~icons/material-symbols/content-copy-outline-rounded?width=24&height=24";
 import CloseRounded from "~icons/material-symbols/close-rounded?width=24&height=24";
 import SettingsOutlineRounded from "~icons/material-symbols/settings-outline-rounded?width=24&height=24";
@@ -35,10 +35,9 @@ import FavoriteOutlineRounded from "~icons/material-symbols/favorite-outline-rou
 import DeleteOutlineRounded from "~icons/material-symbols/delete-outline-rounded?width=24&height=24";
 import VisibilityOutlineRounded from "~icons/material-symbols/visibility-outline-rounded?width=24&height=24";
 import VisibilityOffOutlineRounded from "~icons/material-symbols/visibility-off-outline-rounded?width=24&height=24";
-import BaseCheckbox from "../base/forms/BaseCheckbox.vue";
-import BaseRadio from "../base/forms/BaseRadio.vue";
+import ChoiceControlGroup from "@/components/ui/choice-control-group/ChoiceControlGroup.vue";
 import RadioButton from "@/components/ui/radio-button/RadioButton.vue";
-import RadioButtonGroup from "@/components/ui/radio-button/RadioButtonGroup.vue";
+import Checkbox from "@/components/ui/checkbox/Checkbox.vue";
 
 const inputFieldModel = ref();
 const selectModel = ref("VE");
@@ -60,18 +59,10 @@ const navRailId = useId();
 const rightSheetId = useId();
 const navRail = useSheet(navRailId);
 const rightSheet = useSheet(rightSheetId, { type: "modal" });
-const checkbox = ref(["123"]);
-const checkbox2 = ref("");
-const radio = ref("");
+const checkbox = ref(false);
 const radioButtonModel = ref("");
 
 const isPasswordVisible = ref(false);
-const passwordInputType = computed(() => {
-  return isPasswordVisible.value ? "text" : "password";
-});
-const passwordAriaLabel = computed(() => {
-  return isPasswordVisible.value ? "Hide password" : "Show password";
-});
 </script>
 
 <template>
@@ -150,64 +141,31 @@ const passwordAriaLabel = computed(() => {
           class="pane grid grid-cols-4 md:grid-cols-8 ex:grid-cols-12 gap-4 md:gap-6"
         >
           <div class="col-span-full md:col-[2/8] ex:col-[3/11] lg:col-[4/10]">
-            <form novalidate>
-              <RadioButtonGroup
-                v-model="radioButtonModel"
-                error="Error message"
-              >
-                <legend>Radio button group</legend>
-                <RadioButton
-                  name="radio-button"
-                  value="radio-button-val1"
-                  required
-                />
-                <RadioButton
-                  name="radio-button"
-                  value="radio-button-val2"
-                  required
-                />
-                <RadioButton
-                  name="radio-button"
-                  value="radio-button-val3"
-                  required
-                  disabled
-                />
-              </RadioButtonGroup>
-              <button type="submit">submit</button>
-            </form>
-            <BaseCheckbox id="testid" v-model="checkbox">
-              Base checkbox
-            </BaseCheckbox>
-            <BaseCheckbox
-              id="testid"
-              v-model="checkbox2"
-              true-value="si"
-              false-value="no"
-            >
-              Base checkbox2
-            </BaseCheckbox>
-            <fieldset>
-              <label for="radio1">
-                Label for radio 1
-                <BaseRadio
-                  id="radio1"
-                  v-model="radio"
-                  name="radio"
-                  value="radio1"
-                  checked
-                  disabled
-                />
-              </label>
-              <label for="radio2">
-                Label for radio 2
-                <BaseRadio
-                  id="radio2"
-                  v-model="radio"
-                  name="radio"
-                  value="radio2"
-                />
-              </label>
-            </fieldset>
+            <ChoiceControlGroup v-model="radioButtonModel" type="radio">
+              <legend>Radio button group</legend>
+              <RadioButton
+                name="radio-button"
+                value="radio-button-val1"
+                required
+              />
+              <RadioButton
+                name="radio-button"
+                value="radio-button-val2"
+                required
+              />
+              <RadioButton
+                name="radio-button"
+                value="radio-button-val3"
+                required
+                disabled
+              />
+            </ChoiceControlGroup>
+            <ChoiceControlGroup v-model="checkbox" type="checkbox">
+              <div class="flex items-center">
+                <Checkbox id="checkbox-id" />
+                <label class="text-body-medium" for="checkbox-id">Label</label>
+              </div>
+            </ChoiceControlGroup>
             <h1 class="text-display-large">Display large</h1>
             <p class="text-body-medium">Body medium</p>
             <p class="text-body-extra-large">Body extra large</p>
@@ -284,14 +242,15 @@ const passwordAriaLabel = computed(() => {
             </InputFieldSimple>
             <InputFieldSimple
               label="Password*"
-              :type="passwordInputType"
+              :type="isPasswordVisible ? 'text' : 'password'"
               required
-              disabled
             >
               <template #trailing-icon="{ disabled }">
                 <button
                   class="button icon-button"
-                  :aria-label="passwordAriaLabel"
+                  :aria-label="
+                    isPasswordVisible ? 'Hide password' : 'Show password'
+                  "
                   :disabled
                   type="button"
                   @click="isPasswordVisible = !isPasswordVisible"
@@ -369,7 +328,7 @@ const passwordAriaLabel = computed(() => {
                 <div>Headline</div>
               </ListContent>
               <ListTrailing>
-                <Checkbox v-show="checked" />
+                <CheckboxChecked v-show="checked" />
                 <CheckBoxOutlineBlank v-show="!checked" />
               </ListTrailing>
             </List>

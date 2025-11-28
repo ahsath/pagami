@@ -14,9 +14,9 @@ const emit = defineEmits<{
   "change:checked": [checked: boolean];
 }>();
 
-const modelValue = defineModel<unknown>();
+const model = defineModel<unknown>();
 
-const checked = computed(() => modelValue.value === value);
+const checked = computed(() => model.value === value);
 
 watch(
   checked,
@@ -30,5 +30,5 @@ watch(
 <template>
   <slot :checked />
   <!-- eslint-disable-next-line vuejs-accessibility/form-control-has-label -->
-  <input v-model="modelValue" type="radio" :="attrs" :value />
+  <input v-model="model" type="radio" :="attrs" :value />
 </template>
