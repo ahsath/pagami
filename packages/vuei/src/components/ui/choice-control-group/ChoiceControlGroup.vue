@@ -15,7 +15,7 @@ const id = useId();
 
 <template>
   <fieldset
-    :role="type === 'radio' ? 'radiogroup' : 'undefined'"
+    :role="type === 'radio' ? 'radiogroup' : undefined"
     class="choice-control-group"
     :aria-describedby="!!error ? id : undefined"
     :aria-invalid="!!error ? 'true' : undefined"
