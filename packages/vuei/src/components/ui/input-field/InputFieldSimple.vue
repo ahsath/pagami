@@ -41,7 +41,7 @@ function focusInput() {
       {{ label }}
     </label>
     <div
-      class="input-field-simple__container focus-visible:bg-red-50"
+      class="input-field-simple__container"
       role="button"
       tabindex="0"
       @focus="focusInput"
