@@ -70,12 +70,12 @@ function focusInput() {
         {{ suffix }}
       </span>
       <div
-        v-else-if="$slots['trailing-icon']"
+        v-if="$slots['trailing-icon']"
         class="input-field-simple__trailing-icon"
       >
         <slot name="trailing-icon" :disabled />
       </div>
-      <div v-if="error" class="input-field-simple__trailing-icon">
+      <div v-else-if="error" class="input-field-simple__trailing-icon">
         <ErrorRounded aria-hidden="true" />
       </div>
       <div
