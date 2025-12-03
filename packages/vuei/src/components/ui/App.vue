@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, ref, useId } from "vue";
+import { ref, useId } from "vue";
 import AppBar from "@/components/ui/app-bar/AppBar.vue";
 import IconButton from "@/components/ui/button/IconButton.vue";
 import Sheet from "@/components/ui/sheet/Sheet.vue";
@@ -146,26 +146,24 @@ const isPasswordVisible = ref(false);
               <RadioButton
                 name="radio-button"
                 value="radio-button-val1"
+                label="Option 1"
                 required
               />
               <RadioButton
                 name="radio-button"
                 value="radio-button-val2"
+                label="Option 2"
                 required
               />
               <RadioButton
                 name="radio-button"
                 value="radio-button-val3"
+                label="Option 3"
                 required
                 disabled
               />
             </ChoiceControlGroup>
-            <ChoiceControlGroup v-model="checkbox" type="checkbox">
-              <div class="flex items-center">
-                <Checkbox id="checkbox-id" />
-                <label class="text-body-medium" for="checkbox-id">Label</label>
-              </div>
-            </ChoiceControlGroup>
+            <Checkbox v-model="checkbox" error="Error message" label="Label" />
             <h1 class="text-display-large">Display large</h1>
             <p class="text-body-medium">Body medium</p>
             <p class="text-body-extra-large">Body extra large</p>

@@ -1,5 +1,14 @@
-.choice-control {
-  @apply flex shrink-0 items-center justify-center size-12 relative *:relative before:z-0 after:z-1 *:z-2 z-1;
+.choice-control__selection {
+  @apply flex items-center;
+
+  /* prettier-ignore */
+  &:has(.choice-control__check .choice-control__input:disabled) .choice-control__label {
+    @apply text-on-surface-text-disabled cursor-not-allowed;
+  }
+}
+
+.choice-control__check {
+  @apply flex items-center justify-center size-12 relative *:relative before:z-0 after:z-1 *:z-2 z-1;
 
   &::before,
   &::after {
@@ -85,8 +94,9 @@
    2. The choice-control is inside a parent .choice-control-group with aria-invalid="true"
       (for radio buttons in an invalid group, or checkboxes in an invalid group).
 */
-.choice-control.choice-control--state-error,
-.choice-control-group[aria-invalid="true"] .choice-control {
+/* prettier-ignore */
+.choice-control.choice-control--state-error .choice-control__check,
+.choice-control-group[aria-invalid="true"] .choice-control .choice-control__check {
   &:has(.choice-control__input:not(:disabled)):hover::after {
     @apply bg-error-hover;
   }
@@ -110,6 +120,7 @@
   }
 }
 
+.choice-control__error,
 .choice-control-group__error {
   @apply text-body-small text-error;
 }
