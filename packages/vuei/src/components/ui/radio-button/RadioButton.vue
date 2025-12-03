@@ -43,9 +43,11 @@ const id = useId();
           </slot>
         </span>
       </div>
-      <label v-if="!!label" class="choice-control__label" :for="id">
-        {{ label }}
-      </label>
+      <slot name="label" :="{ id, labelClass: 'choice-control__label' }">
+        <label v-if="!!label" class="choice-control__label" :for="id">
+          {{ label }}
+        </label>
+      </slot>
     </div>
   </div>
 </template>

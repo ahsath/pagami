@@ -154,7 +154,11 @@ const isPasswordVisible = ref(false);
                 value="radio-button-val2"
                 label="Option 2"
                 required
-              />
+              >
+                <template #label="{ id, labelClass }">
+                  <label :for="id" :class="labelClass">my custom label</label>
+                </template>
+              </RadioButton>
               <RadioButton
                 name="radio-button"
                 value="radio-button-val3"

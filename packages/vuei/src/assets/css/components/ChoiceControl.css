@@ -120,6 +120,10 @@
   }
 }
 
+.choice-control__label {
+  @apply text-body-medium text-on-surface-variant;
+}
+
 .choice-control__error,
 .choice-control-group__error {
   @apply text-body-small text-error;
