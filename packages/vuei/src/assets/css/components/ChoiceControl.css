@@ -8,7 +8,7 @@
 }
 
 .choice-control__check {
-  @apply flex items-center justify-center size-12 relative *:relative before:z-0 after:z-1 *:z-2 z-1;
+  @apply flex items-center justify-center shrink-0 size-12 relative *:relative before:z-0 after:z-1 *:z-2 z-1;
 
   &::before,
   &::after {
