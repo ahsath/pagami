@@ -21,7 +21,7 @@ const checked = ref<boolean>();
 
 <template>
   <component
-    is="div"
+    :is="'div'"
     :for="id"
     class="list"
     :class="[
