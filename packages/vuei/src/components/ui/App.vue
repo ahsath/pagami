@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/list";
 import { useSheet, inert } from "@/composables/useSheet";
 import InputFieldSimple from "@/components/ui/input-field/InputFieldSimple.vue";
+import LoadingIndicator from "@/components/loaders/LoadingIndicator.vue";
 import SearchRounded from "~icons/material-symbols/search-rounded?width=24&height=24";
 import StarsRounded from "~icons/material-symbols/stars-rounded?width=24&height=24";
 import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
@@ -141,6 +142,7 @@ const isPasswordVisible = ref(false);
           class="pane grid grid-cols-4 md:grid-cols-8 ex:grid-cols-12 gap-4 md:gap-6"
         >
           <div class="col-span-full md:col-[2/8] ex:col-[3/11] lg:col-[4/10]">
+            <LoadingIndicator />
             <ChoiceControlGroup v-model="radioButtonModel" type="radio">
               <legend>Radio button group</legend>
               <RadioButton
