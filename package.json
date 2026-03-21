@@ -2,20 +2,20 @@
   "private": true,
   "type": "module",
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
+    "@eslint/js": "^10.0.1",
     "@iconify-json/material-symbols": "^1.2.44",
     "@types/node": "^24.10.0",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
     "cross-env": "^10.1.0",
-    "eslint": "^9.39.1",
+    "eslint": "^10.1.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-vue": "^10.5.1",
-    "eslint-plugin-vuejs-accessibility": "^2.4.1",
+    "eslint-plugin-vue": "^10.8.0",
+    "eslint-plugin-vuejs-accessibility": "^2.5.0",
     "globals": "^16.5.0",
     "prettier": "3.6.2",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.47.0",
+    "typescript-eslint": "^8.57.1",
     "unplugin-icons": "^22.5.0",
     "vite": "^7.1.2",
     "vite-plugin-vue-devtools": "^8.0.3",
@@ -34,6 +34,8 @@
     "dev:n8n-chat": "npm run build --workspace=@pagami/vuei && npm run dev --workspace=@pagami/n8n-chat",
     "dev:vuei": "npm run dev --workspace=@pagami/vuei",
     "dev:all": "npm run dev:n8n-chat & npm run dev:vuei",
-    "publish:vuei:test": "npm run build --workspace=@pagami/vuei && npm version patch --workspace=@pagami/vuei && npm publish --workspace=@pagami/vuei --tag test"
+    "publish:vuei:test": "npm run build --workspace=@pagami/vuei && npm version patch --workspace=@pagami/vuei && npm publish --workspace=@pagami/vuei --tag test",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   }
 }
