@@ -31,6 +31,7 @@ export default defineConfig(
           controlComponents: ["BaseRadio", "BaseCheckbox"],
         },
       ],
+      "vue/multi-word-component-names": "off",
     },
   },
   {

@@ -57,10 +57,12 @@ onMounted(() => {
 
 <template>
   <Teleport :disabled="!sheet.isModal" :to>
+    <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -->
     <div :id :="$attrs" @click="handleContentClick" @keydown.esc="close">
       <slot />
     </div>
     <Transition name="fade">
+      <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events, vuejs-accessibility/no-static-element-interactions -->
       <div
         v-show="sheet.isModal && sheet.isOpen"
         class="sheet__scrim"
