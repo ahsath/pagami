@@ -4,6 +4,7 @@
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@iconify-json/material-symbols": "^1.2.44",
+    "@types/flubber": "^0.4.0",
     "@types/node": "^24.10.0",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
@@ -23,6 +24,8 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
+    "flubber": "^0.4.2",
+    "motion-v": "^1.9.0",
     "tailwindcss": "^4.1.17",
     "vue": "^3.5.23"
   },
