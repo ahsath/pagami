@@ -25,7 +25,7 @@ export default defineConfig({
       formats: ["es"],
     },
     cssCodeSplit: true,
-    rollupOptions: {
+    rolldownOptions: {
       external: ["vue"],
     },
   },
