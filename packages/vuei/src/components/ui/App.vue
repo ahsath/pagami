@@ -59,7 +59,7 @@ const listCheckboxGroup1 = [
 const navRailId = useId();
 const rightSheetId = useId();
 const navRail = useSheet(navRailId);
-const rightSheet = useSheet(rightSheetId, { type: "modal" });
+const rightSheet = useSheet(rightSheetId, { type: "auto" });
 const checkbox = ref(false);
 const radioButtonModel = ref("");
 
@@ -142,7 +142,7 @@ const isPasswordVisible = ref(false);
           class="pane grid grid-cols-4 md:grid-cols-8 ex:grid-cols-12 gap-4 md:gap-6"
         >
           <div class="col-span-full md:col-[2/8] ex:col-[3/11] lg:col-[4/10]">
-            <LoadingIndicator />
+            <LoadingIndicator class="text-primary" aria-label="Cargando" />
             <ChoiceControlGroup v-model="radioButtonModel" type="radio">
               <legend>Radio button group</legend>
               <RadioButton
@@ -173,6 +173,14 @@ const isPasswordVisible = ref(false);
             <h1 class="text-display-large">Display large</h1>
             <p class="text-body-medium">Body medium</p>
             <p class="text-body-extra-large">Body extra large</p>
+            <button
+              class="button button--style-filled button--size-m"
+              aria-busy="true"
+            >
+              <LoadingIndicator aria-label="Cargando" />
+              <StarsRounded />
+              <span>Filled with loading indicator</span>
+            </button>
             <button class="button button--style-filled">
               <span>Filled</span>
             </button>

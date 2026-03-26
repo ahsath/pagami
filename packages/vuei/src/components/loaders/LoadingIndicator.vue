@@ -11,6 +11,8 @@ import {
   type MotionValue,
 } from "motion-v";
 
+defineProps<{ iconClass?: string }>();
+
 const softBurst =
   "M17.47 2.84a1.82 1.82 0 0 1 3.06 0l1.7 2.68a1.8 1.8 0 0 0 2.2.71l2.97-1.2a1.8 1.8 0 0 1 2.48 1.78l-.23 3.15c-.07.87.51 1.65 1.36 1.86l3.12.75c1.3.32 1.8 1.86.94 2.87L33 17.85a1.76 1.76 0 0 0 0 2.3l2.07 2.4a1.77 1.77 0 0 1-.94 2.88l-3.12.75c-.85.21-1.43 1-1.36 1.86l.23 3.15a1.8 1.8 0 0 1-2.48 1.77l-2.97-1.2a1.8 1.8 0 0 0-2.2.72l-1.7 2.68a1.82 1.82 0 0 1-3.06 0l-1.7-2.68a1.8 1.8 0 0 0-2.2-.71l-2.97 1.2a1.8 1.8 0 0 1-2.48-1.78l.23-3.15A1.8 1.8 0 0 0 7 26.18l-3.12-.75a1.77 1.77 0 0 1-.94-2.87L5 20.15c.56-.67.56-1.63 0-2.3l-2.07-2.4a1.77 1.77 0 0 1 .94-2.88L7 11.82c.85-.21 1.43-1 1.36-1.86l-.23-3.15a1.8 1.8 0 0 1 2.48-1.77l2.97 1.2a1.8 1.8 0 0 0 2.2-.72z";
 const sided9Cookie =
@@ -102,10 +104,17 @@ watch(
 </script>
 
 <template>
-  <span class="flex items-center justify-center shrink-0 size-12">
+  <span class="loading-indicator" role="progressbar">
     <LazyMotion :features="domAnimation">
-      <svg viewBox="0 0 38 38" aria-hidden="true" class="size-9.5">
-        <m.path fill="currentColor" :d="path" :style="{ rotate, scale }" />
+      <svg
+        viewBox="0 0 38 38"
+        width="38"
+        height="38"
+        aria-hidden="true"
+        fill="currentColor"
+        :class="iconClass"
+      >
+        <m.path :d="path" :style="{ rotate, scale }" />
       </svg>
     </LazyMotion>
   </span>

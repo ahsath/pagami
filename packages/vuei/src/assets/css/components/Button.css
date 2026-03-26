@@ -1,8 +1,24 @@
 .button {
   @apply flex gap-2 items-center justify-center relative text-label-large text-primary h-12 px-4 cursor-pointer outline-none disabled:text-on-surface-text-disabled disabled:cursor-not-allowed z-1 *:relative before:z-0 after:z-1 *:z-2;
 
-  & > svg {
+  & svg {
     @apply size-5;
+  }
+
+  &[aria-busy="true"] {
+    @apply cursor-wait;
+
+    & > svg {
+      @apply hidden;
+    }
+  }
+
+  &[aria-busy="false"] .loading-indicator {
+    @apply hidden;
+  }
+
+  & .loading-indicator {
+    @apply p-0;
   }
 
   &::before,
@@ -36,7 +52,8 @@
 .button--size-m {
   @apply h-14 px-6 text-title-medium before:h-14 after:h-14;
 
-  & > svg {
+  & svg,
+  .loading-indicator svg {
     @apply size-6;
   }
 }
