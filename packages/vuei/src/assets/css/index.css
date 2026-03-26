@@ -31,4 +31,5 @@
   @import "./components/List.css";
   @import "./components/Layout.css";
   @import "./components/ChoiceControl.css";
+  @import "./components/LoadingIndicator.css";
 }

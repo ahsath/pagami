@@ -8,6 +8,7 @@ export { default as NavItem } from "./components/ui/nav-item/NavItem.vue";
 export { default as ChoiceControlGroup } from "./components/ui/choice-control-group/ChoiceControlGroup.vue";
 export { default as RadioButton } from "./components/ui/radio-button/RadioButton.vue";
 export { default as Checkbox } from "./components/ui/checkbox/Checkbox.vue";
+export { default as LoadingIndicator } from "./components/loaders/LoadingIndicator.vue";
 export * from "./components/ui/list/index.ts";
 export * from "./components/base/forms/index.ts";
 
