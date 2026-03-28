@@ -45,6 +45,7 @@
     "motion-v": "^2.1.0"
   },
   "peerDependencies": {
-    "reka-ui": "^2.6.0"
+    "reka-ui": "^2.6.0",
+    "vue": "^3.5.30"
   }
 }
