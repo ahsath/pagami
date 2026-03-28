@@ -30,7 +30,8 @@
   },
   "workspaces": [
     "packages/vuei",
-    "packages/n8n-chat"
+    "packages/n8n-chat",
+    "packages/docs"
   ],
   "scripts": {
     "dev:n8n-chat": "npm run build --workspace=@pagami/vuei && npm run dev --workspace=@pagami/n8n-chat",
