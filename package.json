@@ -24,8 +24,6 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
-    "flubber": "^0.4.2",
-    "motion-v": "^2.1.0",
     "tailwindcss": "^4.2.2",
     "vue": "^3.5.30"
   },
@@ -37,6 +35,7 @@
   "scripts": {
     "dev:n8n-chat": "npm run build --workspace=@pagami/vuei && npm run dev --workspace=@pagami/n8n-chat",
     "dev:vuei": "npm run dev --workspace=@pagami/vuei",
+    "dev:docs": "npm run dev --workspace=docs",
     "dev:all": "npm run dev:n8n-chat & npm run dev:vuei",
     "publish:vuei:test": "npm run build --workspace=@pagami/vuei && npm version patch --workspace=@pagami/vuei && npm publish --workspace=@pagami/vuei --tag test",
     "lint": "eslint .",
