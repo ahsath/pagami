@@ -29,9 +29,14 @@
     "dev": "vite",
     "build": "vite build && npm run build:types",
     "build:types": "vue-tsc -p tsconfig.declaration.json",
+    "build:watch": "vite build --watch",
+    "dev:all": "run-p dev build:watch",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "npm-run-all2": "^8.0.4"
   },
   "dependencies": {
     "@vueuse/core": "^14.2.1",
