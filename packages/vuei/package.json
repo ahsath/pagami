@@ -19,7 +19,8 @@
       "types": "./dist/types/vuei.d.ts"
     },
     "./styles/vuei.css": "./dist/vuei.css",
-    "./styles/theme.css": "./dist/theme.css"
+    "./styles/vuei.no-preflight.css": "./dist/vuei.no-preflight.css",
+    "./styles/utilities.css": "./dist/utilities.css"
   },
   "files": [
     "dist/"
