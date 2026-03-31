@@ -1,16 +1,16 @@
-@layer theme, base, components;
-
+@layer theme, components;
 @import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/preflight.css" layer(base);
 
 @source "../../assets/css";
 @source "../../components";
 
+/* External dependencies */
 @import "tw-animate-css";
 
 /* TODO: add light/dark mode toggle */
 @custom-variant dark (&:is(.dark *));
 
+/* Project tokens, theme and other CSS */
 @import "./utilities.css";
 @import "./tokens.fonts.css";
 @import "./tokens.light.css";
@@ -18,6 +18,7 @@
 @import "./tokens.misc.css";
 @import "./transitions.css";
 
+/* Component layer (local component styles) */
 @layer components {
   @import "./components/AppBar.css";
   @import "./components/Button.css";
@@ -34,6 +35,7 @@
   @import "./components/LoadingIndicator.css";
 }
 
+/* App-level utility styles (these assume consumers supply their own base if needed) */
 body {
   @apply bg-surface text-body-large text-on-surface;
 }

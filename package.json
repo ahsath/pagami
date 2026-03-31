@@ -20,23 +20,20 @@
     "typescript-eslint": "^8.57.1",
     "unplugin-icons": "^23.0.1",
     "vite": "^8.0.1",
-    "vue-tsc": "^3.2.6"
+    "vue-tsc": "^3.2.6",
+    "@tailwindcss/vite": "^4.2.2",
+    "tailwindcss": "^4.2.2"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.2.2",
-    "tailwindcss": "^4.2.2",
     "vue": "^3.5.30"
   },
   "workspaces": [
     "packages/vuei",
-    "packages/n8n-chat",
     "packages/docs"
   ],
   "scripts": {
-    "dev:n8n-chat": "npm run build --workspace=@pagami/vuei && npm run dev --workspace=@pagami/n8n-chat",
     "dev:vuei": "npm run dev --workspace=@pagami/vuei",
     "dev:docs": "npm run dev --workspace=docs",
-    "dev:all": "npm run dev:n8n-chat & npm run dev:vuei",
     "publish:vuei:test": "npm run build --workspace=@pagami/vuei && npm version patch --workspace=@pagami/vuei && npm publish --workspace=@pagami/vuei --tag test",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"

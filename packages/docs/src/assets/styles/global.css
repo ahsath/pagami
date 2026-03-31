@@ -1,1 +1,3 @@
-@import "@pagami/vuei/styles/vuei.css";
+@import "tailwindcss";
+@import "@pagami/vuei/styles/vuei.no-preflight.css";
+@import "@pagami/vuei/styles/utilities.css";
