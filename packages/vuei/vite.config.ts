@@ -19,7 +19,11 @@ export default defineConfig({
       entry: {
         vuei: resolve(__dirname, "src/vuei.ts"),
         "vuei.css": resolve(__dirname, "src/assets/css/index.css"),
-        "theme.css": resolve(__dirname, "src/assets/css/theme.css"),
+        "vuei.no-preflight.css": resolve(
+          __dirname,
+          "src/assets/css/index.no-preflight.css",
+        ),
+        "utilities.css": resolve(__dirname, "src/assets/css/utilities.css"),
       },
       fileName: (format) => `vuei.${format}-bundler.js`,
       formats: ["es"],

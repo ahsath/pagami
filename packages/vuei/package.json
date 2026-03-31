@@ -19,7 +19,8 @@
       "types": "./dist/types/vuei.d.ts"
     },
     "./styles/vuei.css": "./dist/vuei.css",
-    "./styles/theme.css": "./dist/theme.css"
+    "./styles/vuei.no-preflight.css": "./dist/vuei.no-preflight.css",
+    "./styles/utilities.css": "./dist/utilities.css"
   },
   "files": [
     "dist/"
@@ -28,9 +29,14 @@
     "dev": "vite",
     "build": "vite build && npm run build:types",
     "build:types": "vue-tsc -p tsconfig.declaration.json",
+    "build:watch": "vite build --watch",
+    "dev:all": "run-p dev build:watch",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "npm-run-all2": "^8.0.4"
   },
   "dependencies": {
     "@vueuse/core": "^14.2.1",
@@ -45,6 +51,7 @@
     "motion-v": "^2.1.0"
   },
   "peerDependencies": {
-    "reka-ui": "^2.6.0"
+    "reka-ui": "^2.6.0",
+    "vue": "^3.5.30"
   }
 }
