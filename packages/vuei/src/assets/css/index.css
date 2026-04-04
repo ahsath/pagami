@@ -11,13 +11,13 @@
 /* TODO: add light/dark mode toggle */
 @custom-variant dark (&:is(.dark *));
 
-@import "./utilities.css";
-@import "./tokens.fonts.css";
-@import "./tokens.light.css";
-@import "./tokens.dark.css";
-@import "./tokens.misc.css";
-@import "./tokens.components.css";
-@import "./transitions.css";
+/* Project tokens and theme */
+@import "./tokens.misc.css"; /* 1. Base units & constants (foundation) */
+@import "./tokens.fonts.css"; /* 2. Fonts & Typescale (depends on misc) */
+@import "./tokens.light.css"; /* 3. Light color system */
+@import "./tokens.dark.css"; /* 4. Dark color system */
+@import "./utilities.css"; /* 5. Tailwind @theme mapping (consumes 1-4) */
+@import "./transitions.css"; /* 6. Animations */
 
 @layer components {
   @import "./components/AppBar.css";

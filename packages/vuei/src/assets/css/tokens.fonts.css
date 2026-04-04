@@ -17,7 +17,7 @@
   --md-ref-typeface-fallback:
     ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
-  --md-ref-font-size-conversion-ratio: 0.0625rem; /* 1px/16px(root em size) = 0.0625rem */
+  --md-ref-font-size-conversion-ratio: var(--md-ref-unit-px);
 
   /* sys tokens */
 
