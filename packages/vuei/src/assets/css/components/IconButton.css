@@ -10,12 +10,12 @@
     @apply w-10;
   }
 
-  &:hover:not(:disabled)::after {
-    @apply bg-on-surface-variant-hover;
-  }
-
   &:focus-visible:not(:disabled)::after {
     @apply bg-on-surface-variant-focused outline-on-surface-variant;
+  }
+
+  &:hover:not(:disabled)::after {
+    @apply bg-on-surface-variant-hover;
   }
 
   &:active:not(:disabled)::after {
