@@ -16,6 +16,7 @@
 @import "./tokens.light.css";
 @import "./tokens.dark.css";
 @import "./tokens.misc.css";
+@import "./tokens.components.css";
 @import "./transitions.css";
 
 @layer components {

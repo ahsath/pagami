@@ -44,7 +44,7 @@
   }
 
   &:has(.choice-control__input:focus-visible)::after {
-    @apply outline-3 outline-offset-2;
+    @apply outline-(length:--md-comp-checkbox-focus-indicator-thickness) outline-offset-2;
   }
 
   &:has(.choice-control__input:active:checked:not(:disabled))::after {
