@@ -1,6 +1,7 @@
 .nav-item {
   @apply flex flex-col gap-1 items-center min-h-16 w-max py-1.5 relative *:z-2 cursor-pointer outline-none transition-all duration-300 ease-in-out;
 
+  /* Note: remember to fix hover and focus state (outline styles are missing as well) */
   &:hover {
     & .nav-item__content::before {
       @apply bg-on-surface-hover scale-100;
