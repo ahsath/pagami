@@ -49,6 +49,14 @@
   }
 }
 
+:is(.list, .list__item):is(:disabled, [aria-disabled="true"]) .button {
+  @apply text-on-surface-text-disabled pointer-events-none;
+
+  &::before {
+    @apply bg-on-surface-disabled;
+  }
+}
+
 .button--size-m {
   @apply h-14 px-6 text-title-medium before:h-14 after:h-14;
 
