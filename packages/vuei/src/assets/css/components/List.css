@@ -3,13 +3,6 @@
   --md-comp-checkbox-focus-indicator-thickness: 0;
 }
 
-:is(.list, .list__item):is(:disabled, [aria-disabled="true"]) {
-  &.list__item,
-  .list__item {
-    @apply select-none text-on-surface-text-disabled cursor-not-allowed;
-  }
-}
-
 .list__item {
   @apply flex items-center relative py-2.5 rounded-xl text-on-surface-variant *:relative *:z-1 after:z-0 after:absolute after:inset-0 after:rounded-[inherit] min-w-0;
 
@@ -73,6 +66,17 @@
 
   &:has(.list__input:active:checked)::after {
     @apply bg-on-secondary-container-pressed;
+  }
+}
+
+.list:is(:disabled, [aria-disabled="true"]) .list__item,
+.list__item:is(:disabled, [aria-disabled="true"]) {
+  @apply select-none text-on-surface-text-disabled cursor-not-allowed rounded-sm;
+
+  &::after,
+  &:has(.list__input:focus-visible)::after,
+  &:has(.list__input:active)::after {
+    @apply bg-surface outline-none;
   }
 }
 
