@@ -31,7 +31,7 @@
     @apply rounded-2xl;
   }
 
-  &:has(.list__input:checked) {
+  &:has(.list__input:checked:not(:disabled)) {
     @apply text-on-secondary-container bg-secondary-container;
   }
 
@@ -54,7 +54,7 @@
       @apply bg-on-surface-hover;
     }
 
-    &:has(.list__input:checked:not(:active))::after {
+    &:has(.list__input:checked:not(:active, :disabled))::after {
       @apply bg-on-secondary-container-hover;
     }
   }
@@ -73,9 +73,21 @@
 .list__item:is(:disabled, [aria-disabled="true"]) {
   @apply select-none text-on-surface-text-disabled cursor-not-allowed rounded-sm;
 
+  &:has(.list__input:checked) {
+    @apply rounded-2xl;
+
+    &::after {
+      @apply bg-on-surface-disabled;
+    }
+  }
+
+  &:has(.list__input:not(:checked)) {
+    @apply rounded-sm;
+  }
+
   &::after,
   &:has(.list__input:focus-visible)::after,
-  &:has(.list__input:active)::after {
+  &:has(.list__input:active:not(:checked))::after {
     @apply bg-surface outline-none;
   }
 }
