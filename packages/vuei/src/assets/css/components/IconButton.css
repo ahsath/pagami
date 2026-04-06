@@ -23,6 +23,12 @@
   }
 }
 
+:is(.list, .list__item):is(:disabled, [aria-disabled="true"]) .icon-button {
+  &:focus-visible::after {
+    @apply bg-transparent outline-none;
+  }
+}
+
 .icon-button--size-m {
   @apply size-14 before:size-14 after:size-14;
 }
