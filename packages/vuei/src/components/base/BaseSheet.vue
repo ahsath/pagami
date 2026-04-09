@@ -1,14 +1,21 @@
 <script lang="ts" setup>
-import { onMounted, watch } from "vue";
-import { useSheet } from "@/composables/useSheet";
+import { onMounted, watch, Teleport } from "vue";
 import { createFocusTrap } from "focus-trap";
+import { useCreateSheet } from "@/composables/useSheet";
 
-const { id, to = "body" } = defineProps<{
+const {
+  id,
+  to = "body",
+  open = false,
+  type = undefined,
+} = defineProps<{
   id: string;
   to?: string;
+  open?: boolean;
+  type?: "modal" | "standard" | undefined;
 }>();
 
-const sheet = useSheet(id);
+const sheet = useCreateSheet(id, { initialValue: open, type });
 
 function close() {
   if (sheet.isOpen && sheet.isModal) {
@@ -56,7 +63,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Teleport :disabled="!sheet.isModal" :to>
+  <Teleport :disabled="!sheet.isModal" :to defer>
     <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -->
     <div :id :="$attrs" @click="handleContentClick" @keydown.esc="close">
       <slot />

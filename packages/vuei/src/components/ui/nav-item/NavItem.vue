@@ -15,7 +15,7 @@ const {
 
 const navRailId = inject("navRailId") as string;
 const sheet = useSheet(navRailId);
-const isExpanded = computed(() => sheet.isOpen || sheet.isModal);
+const isExpanded = computed(() => sheet.value.isOpen || sheet.value.isModal);
 </script>
 
 <template>
