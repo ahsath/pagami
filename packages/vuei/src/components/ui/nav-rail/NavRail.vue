@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { provide } from "vue";
+import { provide, computed } from "vue";
 import { useSheet } from "@/composables/useSheet";
 import BaseSheet from "@/components/base/BaseSheet.vue";
 import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
@@ -20,6 +20,7 @@ const {
 provide("navRailId", id);
 
 const sheet = useSheet(id);
+const isOpen = computed(() => sheet?.value?.isOpen ?? open);
 </script>
 
 <template>
@@ -31,24 +32,24 @@ const sheet = useSheet(id);
     :class="{
       'nav-rail--type-modal': sheet?.isModal,
       'nav-rail--type-standard': !sheet?.isModal,
-      'nav-rail--expanded': sheet?.isOpen,
+      'nav-rail--expanded': isOpen,
     }"
     :role="sheet?.isModal ? 'dialog' : undefined"
     :aria-modal="sheet?.isModal ? 'true' : undefined"
     :tabindex="sheet?.isModal ? -1 : undefined"
-    :inert="!sheet?.isOpen && sheet?.isModal ? 'true' : undefined"
+    :inert="!isOpen && sheet?.isModal ? true : undefined"
     :to
   >
     <div class="nav-rail__header">
       <button
         class="button icon-button icon-button--size-m"
         aria-label="Cerrar navegación"
-        :aria-expanded="sheet?.isOpen"
+        :aria-expanded="isOpen"
         :aria-controls="id"
         @click="sheet?.toggle"
       >
-        <MenuRounded v-show="!sheet?.isOpen" aria-hidden="true" />
-        <MenuOpenRounded v-show="sheet?.isOpen" aria-hidden="true" />
+        <MenuRounded v-show="!isOpen" aria-hidden="true" />
+        <MenuOpenRounded v-show="isOpen" aria-hidden="true" />
       </button>
     </div>
     <slot />

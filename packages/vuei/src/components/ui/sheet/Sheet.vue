@@ -20,9 +20,12 @@ const {
 const sheet = useSheet(id);
 
 const isOpen = computed(() => sheet?.value?.isOpen ?? open);
-const inert = computed(() => {
-  return !isOpen.value && sheet?.value?.isModal ? true : undefined;
-});
+const inert = computed(() =>
+  (!isOpen.value && sheet?.value?.isModal) ||
+  (!sheet?.value?.isModal && !isOpen.value)
+    ? true
+    : undefined,
+);
 </script>
 
 <template>
