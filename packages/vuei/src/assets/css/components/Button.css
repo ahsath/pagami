@@ -66,7 +66,7 @@
   }
 }
 
-.button--style-filled {
+.button--filled {
   @apply text-on-primary;
 
   &::before {
@@ -86,7 +86,7 @@
   }
 }
 
-.button--style-tonal {
+.button--tonal {
   @apply text-on-secondary-container;
 
   &::before {
@@ -106,7 +106,7 @@
   }
 }
 
-.button--style-outline {
+.button--outline {
   @apply text-on-surface-variant;
 
   &::before {
@@ -126,7 +126,7 @@
   }
 }
 
-.button--style-elevated {
+.button--elevated {
   &::before {
     @apply bg-surface-container-low drop-shadow-xs/40;
   }
