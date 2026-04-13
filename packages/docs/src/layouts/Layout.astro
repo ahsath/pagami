@@ -1,5 +1,6 @@
 ---
 import "../assets/styles/global.css";
+import Nav from "../components/Nav.vue";
 ---
 
 <!doctype html>
@@ -13,6 +14,19 @@ import "../assets/styles/global.css";
     <title>Astro Basics</title>
   </head>
   <body>
-    <slot />
+    <div class="layout">
+      <div class="grow">
+        <header class="app-bar sticky top-0 z-3">
+          <div class="app-bar__content">
+            <div class="text-title-large">Vuei</div>
+          </div>
+        </header>
+        <div class="flex">
+          <Nav client:load />
+          <slot />
+        </div>
+      </div>
+    </div>
+    <div id="teleported"></div>
   </body>
 </html>

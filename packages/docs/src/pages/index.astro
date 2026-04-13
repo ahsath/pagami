@@ -1,7 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Test from "../components/Test.vue";
 ---
 
 <Layout>
-  <h1>Hello there</h1>
+  <a href="#main-content" class="sr-only focus:not-sr-only">
+    Saltar al contenido
+  </a>
+  <Test client:load />
 </Layout>
