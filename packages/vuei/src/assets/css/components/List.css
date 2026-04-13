@@ -1,12 +1,56 @@
 .list {
   @apply min-inline-0; /* Fixes ellipsis on supporting text on the `fieldset` element due to `min-inline-size: min-content` default browser style */
   --md-comp-checkbox-focus-indicator-thickness: 0;
+
+  &.list--segmented {
+    @apply flex flex-col gap-1;
+  }
+
+  &:is(details) {
+    &:is([aria-disabled="true"], :disabled) {
+      @apply cursor-not-allowed;
+    }
+
+    &[open] {
+      & .list__item {
+        @apply bg-surface-container;
+
+        &:first-child {
+          @apply rounded-t-2xl;
+        }
+
+        &:last-child {
+          @apply rounded-b-2xl;
+        }
+
+        &:not(summary) {
+          @apply mt-0.5;
+        }
+      }
+
+      & .list__trailing svg {
+        @apply rotate-180;
+      }
+    }
+
+    &
+      .list__item:not(
+        :hover,
+        :has(:checked),
+        :has(:focus-visible),
+        :has(:active),
+        :focus-visible,
+        :active
+      ) {
+      @apply rounded-sm;
+    }
+  }
 }
 
 .list__item {
   @apply flex items-center relative py-2.5 rounded-xl text-on-surface-variant *:relative *:z-1 after:z-0 after:absolute after:inset-0 after:rounded-[inherit] min-w-0;
 
-  &:is(label) {
+  &:is(label, summary) {
     @apply cursor-pointer;
   }
 
@@ -26,8 +70,13 @@
     @apply min-h-22;
   }
 
-  &:has(:checked, :focus-visible, :active),
-  &:is(a:focus-visible) {
+  &:is(
+    :focus-visible,
+    :active,
+    :has(:checked, :focus-visible, :active),
+    summary:focus-visible,
+    a:focus-visible
+  ) {
     @apply rounded-2xl;
   }
 
@@ -36,12 +85,12 @@
   }
 
   &:has(.list__input:focus-visible)::after,
-  &:is(a:focus-visible) {
+  &:is(a:focus-visible, summary:focus-visible) {
     @apply outline-3 -outline-offset-3;
   }
 
   &:has(.list__input:focus-visible:not(:checked))::after,
-  &:is(a:focus-visible)::after {
+  &:is(a:focus-visible, summary:focus-visible)::after {
     @apply bg-on-surface-focused;
   }
 
@@ -49,7 +98,7 @@
     @apply bg-on-secondary-container-focused;
   }
 
-  &:is(a, label):hover {
+  &:is(a, label, summary):hover {
     &::after {
       @apply bg-on-surface-hover;
     }
@@ -60,7 +109,7 @@
   }
 
   &:has(.list__input:active:not(:checked))::after,
-  &:is(a:active)::after {
+  &:is(a:active, summary:active)::after {
     @apply bg-on-surface-pressed;
   }
 
