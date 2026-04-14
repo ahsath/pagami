@@ -20,56 +20,51 @@ const nav = useSheet("nav");
         </button>
       </div>
       <div class="sheet__content px-2">
-        <nav class="list list--segmented">
-          <a href="#" class="list__item">
-            <div class="list__content">
-              <div class="list__label-text">Componentes</div>
-            </div>
-          </a>
-          <a href="#" class="list__item">
-            <div class="list__content">
-              <div class="list__label-text">Componentes 2</div>
-            </div>
-          </a>
-        </nav>
-        <details class="list" open>
-          <summary class="list__item">
-            <div class="list__leading">
-              <StarsOutlineRounded class="list__leading-icon" />
-            </div>
-            <div class="list__content">
-              <div class="list__label-text">Summary</div>
-            </div>
-            <div class="list__trailing">
-              <ArrowDropdownRounded aria-hidden="true" />
-            </div>
-          </summary>
-          <a href="#" class="list__item">
-            <div class="list__content list__content--indent">
-              <div class="list__label-text">Details 1</div>
-            </div>
-          </a>
-          <label class="list__item" for="checkbox2">
-            <div class="list__leading">
-              <StarsOutlineRounded class="list__leading-icon" />
-            </div>
-            <div class="list__content">
-              <div class="list__overline">Overline</div>
-              <div class="list__label-text">Label text</div>
-              <div class="list__supporting-text">
-                Supporting line text, lorem ipsum dolor
+        <a href="." class="list__item" aria-current="page">
+          <div class="list__content list__content--indent">
+            <div class="list__label-text">Details 1</div>
+          </div>
+        </a>
+        <nav>
+          <details class="list" open>
+            <summary class="list__item">
+              <div class="list__leading">
+                <StarsOutlineRounded class="list__leading-icon" />
               </div>
-            </div>
-            <div class="list__trailing">
-              <input id="checkbox2" type="checkbox" class="list__input" />
-            </div>
-          </label>
-          <a href="#" class="list__item">
-            <div class="list__content list__content--indent">
-              <div class="list__label-text">Details 2</div>
-            </div>
-          </a>
-        </details>
+              <div class="list__content">
+                <div class="list__label-text">Componentes</div>
+              </div>
+              <div class="list__trailing">
+                <ArrowDropdownRounded aria-hidden="true" />
+              </div>
+            </summary>
+            <a href="." class="list__item">
+              <div class="list__content list__content--indent">
+                <div class="list__label-text">Details 1</div>
+              </div>
+            </a>
+            <label class="list__item" for="checkbox2">
+              <div class="list__leading">
+                <StarsOutlineRounded class="list__leading-icon" />
+              </div>
+              <div class="list__content">
+                <div class="list__overline">Overline</div>
+                <div class="list__label-text">Label text</div>
+                <div class="list__supporting-text">
+                  Supporting line text, lorem ipsum dolor
+                </div>
+              </div>
+              <div class="list__trailing">
+                <input id="checkbox2" type="checkbox" class="list__input" />
+              </div>
+            </label>
+            <a href="#" class="list__item">
+              <div class="list__content list__content--indent">
+                <div class="list__label-text">Details 2</div>
+              </div>
+            </a>
+          </details>
+        </nav>
       </div>
     </div>
   </Sheet>
