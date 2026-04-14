@@ -17,11 +17,23 @@
           @apply bg-surface-container;
         }
 
-        &:first-child {
+        &:first-child:not(
+            :hover,
+            [aria-current="page"],
+            :has(:checked, :focus-visible, :active),
+            :focus-visible,
+            :active
+          ) {
           @apply rounded-t-2xl;
         }
 
-        &:last-child {
+        &:last-child:not(
+            :hover,
+            [aria-current="page"],
+            :has(:checked, :focus-visible, :active),
+            :focus-visible,
+            :active
+          ) {
           @apply rounded-b-2xl;
         }
 
