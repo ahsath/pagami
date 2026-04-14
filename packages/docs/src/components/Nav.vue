@@ -8,7 +8,7 @@ const nav = useSheet("nav");
 </script>
 
 <template>
-  <Sheet id="nav" to="#teleported" side="left" open>
+  <Sheet id="nav" to="#teleported" side="left">
     <div class="sheet__container">
       <div class="sheet__header">
         <button
@@ -21,7 +21,7 @@ const nav = useSheet("nav");
       </div>
       <div class="sheet__content px-2">
         <a href="." class="list__item" aria-current="page">
-          <div class="list__content list__content--indent">
+          <div class="list__content">
             <div class="list__label-text">Details 1</div>
           </div>
         </a>
