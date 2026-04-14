@@ -91,6 +91,16 @@
   );
   --text-label-medium--font-weight: var(--md-sys-typescale-label-medium-weight);
 
+  /* Label small */
+  --text-label-small: var(--md-sys-typescale-label-small-size);
+  --text-label-small--line-height: var(
+    --md-sys-typescale-label-small-line-height
+  );
+  --text-label-small--letter-spacing: var(
+    --md-sys-typescale-label-small-tracking
+  );
+  --text-label-small--font-weight: var(--md-sys-typescale-label-small-weight);
+
   /* Title medium */
   --text-title-medium: var(--md-sys-typescale-title-medium-size);
   --text-title-medium--line-height: var(

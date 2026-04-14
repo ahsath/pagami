@@ -6,14 +6,6 @@ import Sheet from "@/components/ui/sheet/Sheet.vue";
 import NavRail from "@/components/ui/nav-rail/NavRail.vue";
 import NavItem from "@/components/ui/nav-item/NavItem.vue";
 import SelectSimple from "@/components/ui/select/SelectSimple.vue";
-import {
-  List,
-  ListContent,
-  ListLeading,
-  ListTrailing,
-  ListSupportingText,
-  ListOverline,
-} from "@/components/ui/list";
 import { useSheet, inert } from "@/composables/useSheet";
 import InputFieldSimple from "@/components/ui/input-field/InputFieldSimple.vue";
 import LoadingIndicator from "@/components/loaders/LoadingIndicator.vue";
@@ -39,6 +31,7 @@ import VisibilityOffOutlineRounded from "~icons/material-symbols/visibility-off-
 import ChoiceControlGroup from "@/components/ui/choice-control-group/ChoiceControlGroup.vue";
 import RadioButton from "@/components/ui/radio-button/RadioButton.vue";
 import Checkbox from "@/components/ui/checkbox/Checkbox.vue";
+import BaseRadio from "@/components/base/forms/BaseRadio.vue";
 
 const inputFieldModel = ref();
 const selectModel = ref("VE");
@@ -59,7 +52,7 @@ const listCheckboxGroup1 = [
 const navRailId = useId();
 const rightSheetId = useId();
 const navRail = useSheet(navRailId);
-const rightSheet = useSheet(rightSheetId, { type: "auto" });
+const rightSheet = useSheet(rightSheetId);
 const checkbox = ref(false);
 const radioButtonModel = ref("");
 
@@ -96,15 +89,15 @@ const isPasswordVisible = ref(false);
       <AppBar class="sticky top-0 z-3">
         <template #leading>
           <button
-            v-if="navRail.isModal"
+            v-if="navRail?.isModal"
             class="button icon-button icon-button--size-m"
             aria-label="Cerrar navegación"
-            :aria-expanded="navRail.isOpen"
+            :aria-expanded="navRail?.isOpen"
             :aria-controls="navRailId"
-            @click="navRail.toggle"
+            @click="navRail?.toggle"
           >
-            <MenuRounded v-show="!navRail.isOpen" aria-hidden="true" />
-            <MenuOpenRounded v-show="navRail.isOpen" aria-hidden="true" />
+            <MenuRounded v-show="!navRail?.isOpen" aria-hidden="true" />
+            <MenuOpenRounded v-show="navRail?.isOpen" aria-hidden="true" />
           </button>
         </template>
         <template #content>
@@ -127,11 +120,11 @@ const isPasswordVisible = ref(false);
           <button class="button"><span>Text</span></button>
           <button
             aria-label="Configurar"
-            :aria-expanded="rightSheet.isOpen"
+            :aria-expanded="rightSheet?.isOpen"
             :aria-controls="rightSheetId"
             class="button icon-button"
             type="button"
-            @click="rightSheet.toggle"
+            @click="rightSheet?.toggle"
           >
             <SettingsOutlineRounded aria-hidden="true" />
           </button>
@@ -174,40 +167,40 @@ const isPasswordVisible = ref(false);
             <p class="text-body-medium">Body medium</p>
             <p class="text-body-extra-large">Body extra large</p>
             <button
-              class="button button--style-filled button--size-m"
+              class="button button--filled button--size-m"
               aria-busy="true"
             >
               <LoadingIndicator aria-label="Cargando" />
               <StarsRounded />
               <span>Filled with loading indicator</span>
             </button>
-            <button class="button button--style-filled">
+            <button class="button button--filled">
               <span>Filled</span>
             </button>
-            <button class="button button--style-tonal">
+            <button class="button button--tonal">
               <span>Tonal</span>
             </button>
-            <button class="button button--style-outline">
+            <button class="button button--outline">
               <span>Outline</span>
             </button>
-            <button class="button button--style-filled">
+            <button class="button button--filled">
               <StarsRounded />
               <span>Filled with icon</span>
             </button>
-            <button class="button button--style-filled button--size-m">
+            <button class="button button--filled button--size-m">
               <StarsRounded />
               <span>Filled with icon - Size: M</span>
             </button>
-            <button class="button button--style-elevated">
+            <button class="button button--elevated">
               <span>Elevated</span>
             </button>
-            <button class="button button--style-elevated button--size-m">
+            <button class="button button--elevated button--size-m">
               <span>Elevated - Size: M</span>
             </button>
             <button class="button">
               <StarsRounded /><span>Text with icon</span>
             </button>
-            <button class="button button--style-filled" disabled>
+            <button class="button button--filled" disabled>
               <span>Filled - disabled</span>
             </button>
             <InputFieldSimple
@@ -279,103 +272,29 @@ const isPasswordVisible = ref(false);
               </template>
             </InputFieldSimple>
             <br />
-            <List
-              v-for="radioItem in listRadioGroup1"
-              :key="radioItem.value"
-              v-model="radioModel"
-              :value="radioItem.value"
-              type="radio"
-              size="three-line"
-              name="list-radio-group"
-              #="{ checked }"
+            <label
+              class="list__item"
+              v-for="val in ['single-select-list1', 'single-select-list2']"
+              :for="val"
+              :key="val"
             >
-              <ListLeading>
+              <div class="list__leading">
                 <PersonOutlineRounded />
-              </ListLeading>
-              <ListContent>
-                <ListOverline>Overline</ListOverline>
-                <div>Headline</div>
-                <ListSupportingText>Supporting text</ListSupportingText>
-              </ListContent>
-              <ListTrailing>
-                <RadioButtonCheckedOutline v-show="checked" />
-                <CircleOutline v-show="!checked" />
-              </ListTrailing>
-            </List>
-            <br />
-            <List
-              id="list-checkbox"
-              v-model="checkboxModel1"
-              type="checkbox"
-              value="list-checkbox-group-1"
-              true-value="si"
-              false-value="no"
-              #="{ checked }"
-            >
-              <ListLeading>
-                <PersonOutlineRounded />
-              </ListLeading>
-              <ListContent>
-                <div>Headline</div>
-              </ListContent>
-              <ListTrailing>
-                <Checkbox v-show="checked" />
-                <CheckBoxOutlineBlank v-show="!checked" />
-              </ListTrailing>
-            </List>
-            <br />
-            <List
-              v-for="checkboxItem in listCheckboxGroup1"
-              :id="checkboxItem.value"
-              :key="checkboxItem.value"
-              v-model="checkboxModel2"
-              :value="checkboxItem.value"
-              type="checkbox"
-              #="{ checked }"
-            >
-              <ListLeading>
-                <PersonOutlineRounded />
-              </ListLeading>
-              <ListContent>
-                <div>Headline</div>
-              </ListContent>
-              <ListTrailing>
-                <CheckboxChecked v-show="checked" />
-                <CheckBoxOutlineBlank v-show="!checked" />
-              </ListTrailing>
-            </List>
-            <br />
-            <List size="two-line">
-              <ListLeading>
-                <PersonOutlineRounded />
-              </ListLeading>
-              <ListContent>
-                <div>Headline</div>
-                <ListSupportingText>Supporting text</ListSupportingText>
-              </ListContent>
-              <ListTrailing>
-                <IconButton aria-label="Copiar">
-                  <ContentCopyOutlineRounded />
-                </IconButton>
-              </ListTrailing>
-            </List>
-            <br id="list-test" />
-            <List size="three-line">
-              <ListLeading>
-                <PersonOutlineRounded />
-              </ListLeading>
-              <ListContent>
-                <ListOverline>Overline</ListOverline>
-                <div>Headline</div>
-                <ListSupportingText>Supporting text</ListSupportingText>
-              </ListContent>
-              <ListTrailing>
-                <IconButton aria-label="Copiar">
-                  <ContentCopyOutlineRounded />
-                </IconButton>
-              </ListTrailing>
-            </List>
-            <br />
+              </div>
+              <div class="list__content">
+                <div class="list__overline">Overline</div>
+                <div class="list__label-text">Headline</div>
+                <div class="list__supporting-text">Supporting text</div>
+              </div>
+              <!-- <div class="list__trailing">
+                <RadioButton
+                  v-model="radioModel"
+                  :id="val"
+                  :value="val"
+                  :name="val"
+                />
+              </div> -->
+            </label>
           </div>
         </section>
       </main>
@@ -387,7 +306,7 @@ const isPasswordVisible = ref(false);
           <button
             class="button icon-button"
             aria-label="Cerrar menu"
-            @click="rightSheet.toggle"
+            @click="rightSheet?.toggle"
           >
             <CloseRounded aria-hidden="true" />
           </button>
@@ -395,9 +314,16 @@ const isPasswordVisible = ref(false);
         <div class="sheet__content">
           <p>Content</p>
           <a href="#list-test">test a tag</a>
+          <ul>
+            <li class="list__item">
+              <div class="list__content">
+                <div class="list__label-text">Headline</div>
+              </div>
+            </li>
+          </ul>
         </div>
         <div class="sheet__footer">
-          <button class="button button--style-filled">
+          <button class="button button--filled">
             <span>Guardar</span>
           </button>
         </div>

@@ -1,5 +1,5 @@
 .sheet {
-  @apply h-dvh text-on-surface-variant bg-surface transition-all duration-300 ease-in-out;
+  @apply h-dvh text-on-surface-variant bg-surface transition-all duration-300 ease-in-out overflow-hidden;
 }
 
 .sheet__container {
@@ -30,7 +30,11 @@
   @apply sticky top-0 w-0 shrink-0;
 
   &.sheet--open {
-    @apply w-3xs;
+    @apply w-2xs;
+  }
+
+  & .sheet__container {
+    @apply w-2xs;
   }
 }
 
@@ -39,7 +43,7 @@
 }
 
 .sheet__content {
-  @apply grow min-w-max overflow-y-auto px-6;
+  @apply grow min-w-0 overflow-y-auto px-6;
 }
 
 .sheet__footer {

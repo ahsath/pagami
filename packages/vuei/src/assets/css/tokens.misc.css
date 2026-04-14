@@ -1,4 +1,7 @@
 :root {
+  /* Reference Units */
+  --md-ref-unit-px: 0.0625rem; /* 1px/16px(root em size) = 0.0625rem */
+
   /* Window size classes */
   --md-sys-window-size-class-md: 37.5rem; /* 600px */
   --md-sys-window-size-class-ex: 52.5rem; /* 840px */

@@ -17,7 +17,7 @@
   --md-ref-typeface-fallback:
     ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
-  --md-ref-font-size-conversion-ratio: 0.0625rem; /* 1px/16px(root em size) = 0.0625rem */
+  --md-ref-font-size-conversion-ratio: var(--md-ref-unit-px);
 
   /* sys tokens */
 
@@ -114,6 +114,18 @@
     0.5 * var(--md-ref-font-size-conversion-ratio)
   );
   --md-sys-typescale-label-medium-weight: 500;
+
+  /* Label small */
+  --md-sys-typescale-label-small-size: calc(
+    11 * var(--md-ref-font-size-conversion-ratio)
+  );
+  --md-sys-typescale-label-small-line-height: calc(
+    16 * var(--md-ref-font-size-conversion-ratio)
+  );
+  --md-sys-typescale-label-small-tracking: calc(
+    0.5 * var(--md-ref-font-size-conversion-ratio)
+  );
+  --md-sys-typescale-label-small-weight: 500;
 
   /* Body extra Large */
   --md-sys-typescale-body-extra-large-size: calc(

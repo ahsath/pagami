@@ -1,19 +1,32 @@
-
 ---
 import "../assets/styles/global.css";
+import Nav from "../components/Nav.vue";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	  <body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Basics</title>
+  </head>
+  <body>
+    <div class="layout">
+      <div class="grow">
+        <header class="app-bar sticky top-0 z-3">
+          <div class="app-bar__content">
+            <div class="text-title-large">Vuei</div>
+          </div>
+        </header>
+        <div class="flex">
+          <Nav client:load />
+          <slot />
+        </div>
+      </div>
+    </div>
+    <div id="teleported"></div>
+  </body>
 </html>

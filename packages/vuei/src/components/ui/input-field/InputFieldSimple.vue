@@ -43,7 +43,7 @@ function focusInput() {
     <div
       class="input-field-simple__container"
       role="button"
-      tabindex="0"
+      :tabindex="disabled ? -1 : 0"
       @focus="focusInput"
       @keydown.enter.self="focusInput"
       @keydown.space.self="focusInput"

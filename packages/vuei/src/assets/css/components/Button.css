@@ -27,12 +27,12 @@
     @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-10 rounded-full;
   }
 
-  &:hover:not(:disabled)::after {
-    @apply bg-primary-hover;
-  }
-
   &:focus-visible:not(:disabled)::after {
     @apply bg-primary-focused outline-2 outline-offset-2 outline-primary;
+  }
+
+  &:hover:not(:disabled)::after {
+    @apply bg-primary-hover;
   }
 
   &:active:not(:disabled)::after {
@@ -49,6 +49,14 @@
   }
 }
 
+:is(.list, .list__item):is(:disabled, [aria-disabled="true"]) .button {
+  @apply text-on-surface-text-disabled pointer-events-none;
+
+  &::before {
+    @apply bg-on-surface-disabled;
+  }
+}
+
 .button--size-m {
   @apply h-14 px-6 text-title-medium before:h-14 after:h-14;
 
@@ -58,19 +66,19 @@
   }
 }
 
-.button--style-filled {
+.button--filled {
   @apply text-on-primary;
 
   &::before {
     @apply bg-primary;
   }
 
-  &:hover:not(:disabled)::after {
-    @apply bg-on-primary-hover;
-  }
-
   &:focus-visible:not(:disabled)::after {
     @apply bg-on-primary-focused outline-primary;
+  }
+
+  &:hover:not(:disabled)::after {
+    @apply bg-on-primary-hover;
   }
 
   &:active:not(:disabled)::after {
@@ -78,19 +86,19 @@
   }
 }
 
-.button--style-tonal {
+.button--tonal {
   @apply text-on-secondary-container;
 
   &::before {
     @apply bg-secondary-container;
   }
 
-  &:hover:not(:disabled)::after {
-    @apply bg-on-secondary-container-hover;
-  }
-
   &:focus-visible:not(:disabled)::after {
     @apply bg-on-secondary-container-focused outline-on-secondary-container;
+  }
+
+  &:hover:not(:disabled)::after {
+    @apply bg-on-secondary-container-hover;
   }
 
   &:active:not(:disabled)::after {
@@ -98,19 +106,19 @@
   }
 }
 
-.button--style-outline {
+.button--outline {
   @apply text-on-surface-variant;
 
   &::before {
     @apply outline outline-outline-variant;
   }
 
-  &:hover:not(:disabled)::after {
-    @apply bg-on-surface-variant-hover;
-  }
-
   &:focus-visible:not(:disabled)::after {
     @apply bg-on-surface-variant-focused outline-on-surface-variant;
+  }
+
+  &:hover:not(:disabled)::after {
+    @apply bg-on-surface-variant-hover;
   }
 
   &:active:not(:disabled)::after {
@@ -118,7 +126,7 @@
   }
 }
 
-.button--style-elevated {
+.button--elevated {
   &::before {
     @apply bg-surface-container-low drop-shadow-xs/40;
   }
