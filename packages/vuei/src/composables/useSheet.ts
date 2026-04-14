@@ -30,7 +30,7 @@ export function useCreateSheet(id: string, options?: UseSheetOptions) {
 
   if (!sheets[id]) {
     sheets[id] = {
-      isOpen: opts?.initialValue,
+      isOpen: options?.initialValue ?? !isLargeScreen.value,
       type: opts?.type,
       toggle() {
         sheets[id].isOpen = !sheets[id].isOpen;
@@ -41,6 +41,12 @@ export function useCreateSheet(id: string, options?: UseSheetOptions) {
         return isLargeScreen.value;
       }),
     };
+
+    if (options?.initialValue === undefined) {
+      watch(isLargeScreen, (isSmall) => {
+        sheets[id].isOpen = !isSmall;
+      });
+    }
   }
 
   watch(

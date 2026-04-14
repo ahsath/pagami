@@ -6,12 +6,12 @@ import { useCreateSheet } from "@/composables/useSheet";
 const {
   id,
   to = "body",
-  open = false,
+  open = undefined,
   type = undefined,
 } = defineProps<{
   id: string;
   to?: string;
-  open?: boolean;
+  open?: boolean | undefined;
   type?: "modal" | "standard" | undefined;
 }>();
 

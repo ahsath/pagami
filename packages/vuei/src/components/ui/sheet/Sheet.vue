@@ -7,13 +7,13 @@ const {
   id,
   to = "body",
   side = "left",
-  open = false,
+  open = undefined,
   type = undefined,
 } = defineProps<{
   id: string;
   to?: string;
   side?: "left" | "right";
-  open?: boolean;
+  open?: boolean | undefined;
   type?: "modal" | "standard" | undefined;
 }>();
 
