@@ -13,7 +13,9 @@
 
     &[open] {
       & .list__item {
-        @apply bg-surface-container;
+        &:not([aria-current="page"], :has(:checked)) {
+          @apply bg-surface-container;
+        }
 
         &:first-child {
           @apply rounded-t-2xl;
@@ -36,6 +38,7 @@
     &
       .list__item:not(
         :hover,
+        [aria-current="page"],
         :has(:checked),
         :has(:focus-visible),
         :has(:active),
@@ -71,6 +74,7 @@
   }
 
   &:is(
+    [aria-current="page"],
     :focus-visible,
     :active,
     :has(:checked, :focus-visible, :active),
@@ -80,6 +84,7 @@
     @apply rounded-2xl;
   }
 
+  &[aria-current="page"],
   &:has(.list__input:checked:not(:disabled)) {
     @apply text-on-secondary-container bg-secondary-container;
   }
@@ -181,7 +186,12 @@
 .list__label-text {
   @apply text-title-medium text-on-surface;
 
-  :is(.list, .list__item):is(:disabled, [aria-disabled="true"]) &,
+  :is(.list, .list__item):is(
+      :disabled,
+      [aria-disabled="true"],
+      [aria-current="page"]
+    )
+    &,
   .list__item:has(.list__input:checked) & {
     @apply text-inherit;
   }
