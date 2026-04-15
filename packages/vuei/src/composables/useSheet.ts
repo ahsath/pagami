@@ -1,6 +1,11 @@
 import { computed, type ComputedRef, reactive, ref, watch } from "vue";
 import useMediaQuery from "./useMediaQuery.ts";
 
+// Prevent stale reactive singletons on HMR — force full reload instead
+if (import.meta.hot) {
+  import.meta.hot.accept();
+}
+
 interface BaseSheet {
   isOpen?: boolean;
   type?: "modal" | "standard";
@@ -26,53 +31,53 @@ export const inert = computed(() => openSheetIds.value.size > 0);
 
 export function useCreateSheet(id: string, options?: UseSheetOptions) {
   const opts = { initialValue: false, type: undefined, ...options };
-  const isLargeScreen = useMediaQuery("(max-width: 600px)");
 
   if (!sheets[id]) {
+    const isLargeScreen = useMediaQuery("(max-width: 600px)");
+
     sheets[id] = {
-      isOpen: options?.initialValue ?? !isLargeScreen.value,
+      isOpen: options?.initialValue,
       type: opts?.type,
       toggle() {
         sheets[id].isOpen = !sheets[id].isOpen;
       },
       isModal: computed(() => {
-        if (sheets[id].type === "modal") return true;
-        if (sheets[id].type === "standard") return false;
+        if (sheets[id]?.type === "modal") return true;
+        if (sheets[id]?.type === "standard") return false;
         return isLargeScreen.value;
       }),
     };
 
-    if (options?.initialValue === undefined) {
-      watch(isLargeScreen, (isSmall) => {
-        sheets[id].isOpen = !isSmall;
-      });
-    }
+    watch(
+      [() => sheets[id]?.isOpen, () => sheets[id]?.isModal],
+      ([newIsOpen, newIsModal]) => {
+        if (newIsOpen && newIsModal) {
+          // Close other modal sheets
+          for (const sheetId in sheets) {
+            if (
+              sheetId !== id &&
+              sheets[sheetId].isOpen &&
+              sheets[sheetId].isModal
+            ) {
+              sheets[sheetId].toggle();
+              openSheetIds.value.delete(sheetId);
+            }
+          }
+          openSheetIds.value.add(id);
+        } else {
+          openSheetIds.value.delete(id);
+        }
+      },
+      { immediate: true },
+    );
   }
 
-  watch(
-    [() => sheets[id]?.isOpen, () => sheets[id]?.isModal],
-    ([newIsOpen, newIsModal]) => {
-      if (newIsOpen && newIsModal) {
-        // Close other modal sheets
-        for (const sheetId in sheets) {
-          if (
-            sheetId !== id &&
-            sheets[sheetId]!.isOpen &&
-            sheets[sheetId]!.isModal
-          ) {
-            sheets[sheetId]!.toggle();
-            openSheetIds.value.delete(sheetId);
-          }
-        }
-        openSheetIds.value.add(id);
-      } else {
-        openSheetIds.value.delete(id);
-      }
-    },
-    { immediate: true },
-  );
-
   return sheets[id];
+}
+
+export function deleteSheet(id: string) {
+  delete sheets[id];
+  openSheetIds.value.delete(id);
 }
 
 export function useSheet(id: string) {

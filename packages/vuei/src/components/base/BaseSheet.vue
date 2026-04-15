@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { onMounted, watch, Teleport } from "vue";
+import { onMounted, onUnmounted, watch, Teleport } from "vue";
 import { createFocusTrap } from "focus-trap";
-import { useCreateSheet } from "@/composables/useSheet";
+import { useCreateSheet, deleteSheet } from "@/composables/useSheet";
 
 const {
   id,
@@ -59,6 +59,10 @@ onMounted(() => {
       { flush: "post" },
     );
   }
+});
+
+onUnmounted(() => {
+  deleteSheet(id);
 });
 </script>
 
