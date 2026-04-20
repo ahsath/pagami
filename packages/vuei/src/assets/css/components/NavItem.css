@@ -60,7 +60,7 @@
     }
   }
 
-  &.nav-item--horizontal-compact {
+  &.nav-item--compact {
     @apply min-h-10; /* 40px */
 
     & .nav-item__content {
