@@ -1,21 +1,31 @@
 <script lang="ts" setup>
-import { onMounted, onUnmounted, watch, Teleport } from "vue";
-import { createFocusTrap } from "focus-trap";
-import { useCreateSheet, deleteSheet } from "@/composables/useSheet";
+import {
+  onMounted,
+  onUnmounted,
+  Teleport,
+  useTemplateRef,
+  watchPostEffect,
+} from "vue";
+import { createFocusTrap, type FocusTrap } from "focus-trap";
+import { createSheet } from "@/composables/useSheet";
 
 const {
   id,
   to = "body",
-  open = undefined,
   type = undefined,
 } = defineProps<{
   id: string;
   to?: string;
-  open?: boolean | undefined;
-  type?: "modal" | "standard" | undefined;
+  type?: "modal" | "standard";
 }>();
 
-const sheet = useCreateSheet(id, { initialValue: open, type });
+const open = defineModel<boolean>("open", { default: false });
+
+const sheetRef = useTemplateRef("sheetRef");
+
+const sheet = createSheet(id, { open, type });
+
+let trap: FocusTrap | undefined;
 
 function close() {
   if (sheet.isOpen && sheet.isModal) {
@@ -41,35 +51,34 @@ function handleContentClick(event: MouseEvent) {
 }
 
 onMounted(() => {
-  const el = document.getElementById(id);
-  if (el) {
-    const trap = createFocusTrap(el, {
-      clickOutsideDeactivates: true,
-    });
+  trap = createFocusTrap(sheetRef.value as HTMLDivElement, {
+    clickOutsideDeactivates: true,
+  });
 
-    watch(
-      () => sheet.isOpen,
-      (isOpen) => {
-        if (isOpen && sheet.isModal) {
-          trap.activate();
-        } else {
-          trap.deactivate();
-        }
-      },
-      { flush: "post" },
-    );
-  }
+  watchPostEffect(() => {
+    if (sheet.isOpen && sheet.isModal) {
+      trap?.activate();
+    } else {
+      trap?.deactivate();
+    }
+  });
 });
 
 onUnmounted(() => {
-  deleteSheet(id);
+  trap?.deactivate();
 });
 </script>
 
 <template>
-  <Teleport :disabled="!sheet.isModal" :to defer>
+  <Teleport :disabled="!sheet?.isModal" :to>
     <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -->
-    <div :id :="$attrs" @click="handleContentClick" @keydown.esc="close">
+    <div
+      :id
+      ref="sheetRef"
+      :="$attrs"
+      @click="handleContentClick"
+      @keydown.esc="close"
+    >
       <slot />
     </div>
     <Transition name="fade">
