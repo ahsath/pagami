@@ -89,10 +89,9 @@
     [aria-current="page"],
     :focus-visible,
     :active,
-    :has(:checked, :focus-visible, :active),
-    summary:focus-visible,
-    a:focus-visible
-  ) {
+    :has(:checked, :focus-visible, :active)
+  ),
+  &:is(summary, a):focus-visible {
     @apply rounded-2xl;
   }
 
