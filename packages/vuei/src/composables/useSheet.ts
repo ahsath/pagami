@@ -11,6 +11,7 @@ import useMediaQuery from "./useMediaQuery.ts";
 
 interface BaseSheet {
   isOpen?: Ref<boolean>;
+  isExpanded?: Ref<boolean>;
   type?: "modal" | "standard";
 }
 
@@ -25,6 +26,7 @@ interface SheetsState {
 
 interface UseSheetOptions extends Pick<BaseSheet, "type"> {
   open?: Ref<boolean>;
+  expanded?: Ref<boolean>;
 }
 
 const sheets = reactive<SheetsState>({});
@@ -35,9 +37,11 @@ export const useSheet = (id: string) => computed(() => sheets[id]);
 export function createSheet(id: string, options: UseSheetOptions) {
   const isMobile = useMediaQuery("(max-width: 600px)");
   const isOpen = options.open ?? ref(false);
+  const isExpanded = options.expanded ?? ref(false);
 
   sheets[id] = {
     isOpen,
+    isExpanded,
     type: options.type,
     toggle() {
       isOpen.value = !isOpen.value;

@@ -20,10 +20,11 @@ const {
 }>();
 
 const open = defineModel<boolean>("open", { default: false });
+const expanded = defineModel<boolean>("expanded", { default: false });
 
 const sheetRef = useTemplateRef("sheetRef");
 
-const sheet = createSheet(id, { open, type });
+const sheet = createSheet(id, { open, expanded, type });
 
 let trap: FocusTrap | undefined;
 

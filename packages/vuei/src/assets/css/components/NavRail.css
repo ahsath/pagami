@@ -5,7 +5,7 @@
 .nav-rail--type-modal {
   @apply fixed z-4 top-0 -translate-x-full rounded-r-2xl;
 
-  &.nav-rail--expanded {
+  &.nav-rail--open {
     @apply translate-x-0 bg-surface-container;
   }
 }
@@ -18,7 +18,8 @@
   }
 }
 
-.nav-rail--expanded .nav-rail__nav {
+.nav-rail--expanded .nav-rail__nav,
+.nav-rail--type-modal.nav-rail--open .nav-rail__nav {
   @apply gap-0;
 }
 

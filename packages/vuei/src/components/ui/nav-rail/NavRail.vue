@@ -16,6 +16,7 @@ const {
 }>();
 
 const open = defineModel<boolean>("open", { default: false });
+const expanded = defineModel<boolean>("expanded", { default: false });
 
 provide("navRailId", id);
 
@@ -27,12 +28,14 @@ const isOpen = computed(() => sheet?.value?.isOpen ?? open);
   <BaseSheet
     :id
     v-model:open="open"
+    v-model:expanded="expanded"
     :type
     class="nav-rail"
     :class="{
       'nav-rail--type-modal': sheet?.isModal,
       'nav-rail--type-standard': !sheet?.isModal,
-      'nav-rail--expanded': isOpen,
+      'nav-rail--open': sheet?.isModal && isOpen,
+      'nav-rail--expanded': !sheet?.isModal && expanded,
     }"
     :role="sheet?.isModal ? 'dialog' : undefined"
     :aria-modal="sheet?.isModal ? 'true' : undefined"
@@ -44,12 +47,12 @@ const isOpen = computed(() => sheet?.value?.isOpen ?? open);
       <button
         class="button icon-button icon-button--size-m"
         aria-label="Cerrar navegación"
-        :aria-expanded="isOpen ? 'true' : 'false'"
+        :aria-expanded="(sheet?.isModal ? isOpen : expanded) ? 'true' : 'false'"
         :aria-controls="id"
-        @click="sheet?.toggle"
+        @click="sheet?.isModal ? sheet?.toggle() : expanded = !expanded"
       >
-        <MenuRounded v-show="!isOpen" aria-hidden="true" />
-        <MenuOpenRounded v-show="isOpen" aria-hidden="true" />
+        <MenuRounded v-show="!(sheet?.isModal ? isOpen : expanded)" aria-hidden="true" />
+        <MenuOpenRounded v-show="sheet?.isModal ? isOpen : expanded" aria-hidden="true" />
       </button>
     </div>
     <slot />
