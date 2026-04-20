@@ -12,7 +12,6 @@
     "noUncheckedSideEffectImports": true,
 
     // Required for shadcn-vue (https://www.shadcn-vue.com/docs/installation/vite.html#edit-tsconfig-app-json-file)
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },

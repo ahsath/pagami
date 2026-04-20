@@ -5,6 +5,7 @@
     "emitDeclarationOnly": true,
     "declarationDir": "./dist/types",
     "outDir": "./dist/types",
+    "rootDir": "./src",
     "isolatedModules": false,
     "noEmit": false,
     "types": ["vite/client", "unplugin-icons/types/vue3"]
