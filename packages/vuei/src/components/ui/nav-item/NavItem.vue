@@ -5,17 +5,21 @@ import { useSheet } from "@/composables/useSheet";
 const {
   tag = "div",
   selected = false,
-  compactHorizontal = false,
+  horizontal = false,
+  compact = false,
 } = defineProps<{
   label: string;
   tag?: string;
   selected?: boolean;
-  compactHorizontal?: boolean;
+  horizontal?: boolean;
+  compact?: boolean;
 }>();
 
-const navRailId = inject("navRailId") as string;
+const navRailId = inject<string>("navRailId", "");
 const sheet = useSheet(navRailId);
-const isExpanded = computed(() => sheet.value.isOpen || sheet.value.isModal);
+const isExpanded = computed(
+  () => horizontal || sheet.value?.isModal || sheet.value?.isExpanded,
+);
 </script>
 
 <template>
@@ -24,7 +28,7 @@ const isExpanded = computed(() => sheet.value.isOpen || sheet.value.isModal);
     class="nav-item"
     :class="{
       'nav-item--horizontal': isExpanded,
-      'nav-item--horizontal-compact': isExpanded && compactHorizontal,
+      'nav-item--compact': isExpanded && compact,
       'nav-item--selected': selected,
     }"
     :tabindex="tag === 'a' ? -1 : 0"
