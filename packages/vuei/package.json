@@ -30,7 +30,7 @@
     "build": "vite build && npm run build:types",
     "build:types": "vue-tsc -p tsconfig.declaration.json",
     "build:watch": "vite build --watch",
-    "dev:all": "run-p dev build:watch",
+    "dev:all": "run-p dev build:watch build:types",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
