@@ -8,14 +8,14 @@ import MenuOpenRounded from "~icons/material-symbols/menu-open-rounded?width=24&
 const {
   id,
   to = "body",
-  open,
   type = undefined,
 } = defineProps<{
   id: string;
   to?: string;
-  open?: boolean;
   type?: "modal" | "standard" | undefined;
 }>();
+
+const open = defineModel<boolean>("open", { default: false });
 
 provide("navRailId", id);
 
@@ -26,7 +26,7 @@ const isOpen = computed(() => sheet?.value?.isOpen ?? open);
 <template>
   <BaseSheet
     :id
-    :open
+    v-model:open="open"
     :type
     class="nav-rail"
     :class="{
@@ -44,7 +44,7 @@ const isOpen = computed(() => sheet?.value?.isOpen ?? open);
       <button
         class="button icon-button icon-button--size-m"
         aria-label="Cerrar navegación"
-        :aria-expanded="isOpen"
+        :aria-expanded="isOpen ? 'true' : 'false'"
         :aria-controls="id"
         @click="sheet?.toggle"
       >
