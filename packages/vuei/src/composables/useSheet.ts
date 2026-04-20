@@ -1,10 +1,11 @@
 import {
-  computed,
   type ComputedRef,
   type Ref,
+  computed,
   reactive,
   ref,
   watch,
+  watchEffect,
 } from "vue";
 import useMediaQuery from "./useMediaQuery.ts";
 
@@ -32,70 +33,75 @@ export const inert = computed(() => openSheetIds.value.size > 0);
 export const useSheet = (id: string) => computed(() => sheets[id]);
 
 export function createSheet(id: string, options: UseSheetOptions) {
-  const isLargeScreen = useMediaQuery("(max-width: 600px)");
+  const isMobile = useMediaQuery("(max-width: 600px)");
   const isOpen = options.open ?? ref(false);
 
-  if (!sheets[id]) {
-    sheets[id] = {
-      isOpen,
-      type: options.type,
-      toggle() {
-        isOpen.value = !isOpen.value;
-      },
-      isModal: computed(() => {
-        if (options.type === "modal") return true;
-        if (options.type === "standard") return false;
-        return isLargeScreen.value;
-      }),
-    };
-  }
-
-  watch(
-    [() => sheets[id].isOpen, () => sheets[id].isModal],
-    ([newIsOpen, newIsModal]) => {
-      if (newIsOpen && newIsModal) {
-        // Close other modal sheets
-        for (const sheetId in sheets) {
-          if (
-            sheetId !== id &&
-            sheets[sheetId].isOpen &&
-            sheets[sheetId].isModal
-          ) {
-            sheets[sheetId].toggle();
-            openSheetIds.value.delete(sheetId);
-          }
-        }
-        openSheetIds.value.add(id);
-      } else {
-        openSheetIds.value.delete(id);
-      }
+  sheets[id] = {
+    isOpen,
+    type: options.type,
+    toggle() {
+      isOpen.value = !isOpen.value;
     },
-    { immediate: true },
-  );
+    isModal: computed(() => {
+      if (options.type === "modal") return true;
+      if (options.type === "standard") return false;
+      return isMobile.value;
+    }),
+  };
+
+  // Add the sheet to the open sheets list if it is open and is a modal sheet
+  watchEffect(() => {
+    if (isOpen.value && sheets[id].isModal) {
+      openSheetIds.value.add(id);
+
+      // Prevent competing modal sheets
+      for (const sheetId in sheets) {
+        if (
+          sheetId !== id &&
+          sheets[sheetId].isOpen &&
+          sheets[sheetId].isModal
+        ) {
+          // Force close the competing modal so it updates its model strictly
+          sheets[sheetId].toggle();
+        }
+      }
+    } else {
+      openSheetIds.value.delete(id);
+    }
+  });
+
+  // Close all modal sheets when the screen size changes to mobile
+  watch(isMobile, (newIsMobile) => {
+    if (newIsMobile) {
+      for (const sheetId in sheets) {
+        if (sheets[sheetId].isModal && sheets[sheetId].isOpen) {
+          sheets[sheetId].toggle();
+          openSheetIds.value.delete(sheetId);
+        }
+      }
+    }
+  });
 
   return sheets[id];
 }
 
 if (typeof window !== "undefined") {
-  watch(
-    inert,
-    (isBlocking) => {
-      const scrollbarWidth = getScrollbarWidth();
+  watchEffect(() => {
+    const isBlocking = inert.value;
+    const scrollbarWidth = getScrollbarWidth();
 
-      if (isBlocking) {
-        document.body.style.overflow = "hidden";
-        document.body.style.paddingRight = `${scrollbarWidth}px`;
-      } else {
-        setTimeout(() => {
-          if (!inert.value) {
-            document.body.style.overflow = "";
-            document.body.style.paddingRight = "";
-          }
-        }, 300);
+    if (isBlocking) {
+      document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    } else {
+      // setTimeout(() => {
+      if (!inert.value) {
+        document.body.style.overflow = "";
+        document.body.style.paddingRight = "";
       }
-    },
-    { immediate: true },
-  );
+      // }, 300);
+    }
+  });
 }
 
 function getScrollbarWidth() {
