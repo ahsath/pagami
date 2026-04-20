@@ -15,7 +15,7 @@ const {
   type?: "modal" | "standard" | undefined;
 }>();
 
-const open = defineModel<boolean>("open", { default: undefined });
+const open = defineModel<boolean>("open", { default: false });
 
 const sheet = useSheet(id);
 
