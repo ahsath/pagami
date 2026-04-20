@@ -7,22 +7,22 @@ const {
   id,
   to = "body",
   side = "left",
-  open = undefined,
   type = undefined,
 } = defineProps<{
   id: string;
   to?: string;
   side?: "left" | "right";
-  open?: boolean | undefined;
   type?: "modal" | "standard" | undefined;
 }>();
 
+const open = defineModel<boolean>("open", { default: undefined });
+
 const sheet = useSheet(id);
 
-const isOpen = computed(() => sheet?.value?.isOpen ?? open);
+const isOpen = computed(() => sheet.value?.isOpen ?? open.value);
 const inert = computed(() =>
-  (!isOpen.value && sheet?.value?.isModal) ||
-  (!sheet?.value?.isModal && !isOpen.value)
+  (!isOpen.value && sheet.value?.isModal) ||
+  (!sheet.value?.isModal && !isOpen.value)
     ? true
     : undefined,
 );
@@ -31,7 +31,7 @@ const inert = computed(() =>
 <template>
   <BaseSheet
     :id
-    :open
+    v-model:open="open"
     :type
     class="sheet"
     :class="{
