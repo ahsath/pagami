@@ -8,11 +8,13 @@ const {
   to = "body",
   side = "left",
   type = undefined,
+  modalBreakpoint = undefined,
 } = defineProps<{
   id: string;
   to?: string;
   side?: "left" | "right";
   type?: "modal" | "standard" | undefined;
+  modalBreakpoint?: number;
 }>();
 
 const open = defineModel<boolean>("open", { default: false });
@@ -33,6 +35,7 @@ const inert = computed(() =>
     :id
     v-model:open="open"
     :type
+    :modal-breakpoint="modalBreakpoint"
     class="sheet"
     :class="{
       'sheet--type-modal': sheet?.isModal,

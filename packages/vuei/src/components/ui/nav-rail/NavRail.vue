@@ -9,10 +9,12 @@ const {
   id,
   to = "body",
   type = undefined,
+  modalBreakpoint = undefined,
 } = defineProps<{
   id: string;
   to?: string;
   type?: "modal" | "standard" | undefined;
+  modalBreakpoint?: number;
 }>();
 
 const open = defineModel<boolean>("open", { default: false });
@@ -30,6 +32,7 @@ const isOpen = computed(() => sheet?.value?.isOpen ?? open);
     v-model:open="open"
     v-model:expanded="expanded"
     :type
+    :modal-breakpoint="modalBreakpoint"
     class="nav-rail"
     :class="{
       'nav-rail--type-modal': sheet?.isModal,

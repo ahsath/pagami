@@ -13,10 +13,12 @@ const {
   id,
   to = "body",
   type = undefined,
+  modalBreakpoint = undefined,
 } = defineProps<{
   id: string;
   to?: string;
   type?: "modal" | "standard";
+  modalBreakpoint?: number;
 }>();
 
 const open = defineModel<boolean>("open", { default: false });
@@ -24,7 +26,7 @@ const expanded = defineModel<boolean>("expanded", { default: false });
 
 const sheetRef = useTemplateRef("sheetRef");
 
-const sheet = createSheet(id, { open, expanded, type });
+const sheet = createSheet(id, { open, expanded, type, modalBreakpoint });
 
 let trap: FocusTrap | undefined;
 

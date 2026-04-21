@@ -27,6 +27,7 @@ interface SheetsState {
 interface UseSheetOptions extends Pick<BaseSheet, "type"> {
   open?: Ref<boolean>;
   expanded?: Ref<boolean>;
+  modalBreakpoint?: number;
 }
 
 const sheets = reactive<SheetsState>({});
@@ -35,7 +36,8 @@ export const inert = computed(() => openSheetIds.value.size > 0);
 export const useSheet = (id: string) => computed(() => sheets[id]);
 
 export function createSheet(id: string, options: UseSheetOptions) {
-  const isMobile = useMediaQuery("(max-width: 600px)");
+  const breakpoint = options.modalBreakpoint ?? 600;
+  const isNarrow = useMediaQuery(`(width < ${breakpoint}px)`);
   const isOpen = options.open ?? ref(false);
   const isExpanded = options.expanded ?? ref(false);
 
@@ -49,7 +51,7 @@ export function createSheet(id: string, options: UseSheetOptions) {
     isModal: computed(() => {
       if (options.type === "modal") return true;
       if (options.type === "standard") return false;
-      return isMobile.value;
+      return isNarrow.value;
     }),
   };
 
@@ -74,9 +76,9 @@ export function createSheet(id: string, options: UseSheetOptions) {
     }
   });
 
-  // Close all modal sheets when the screen size changes to mobile
-  watch(isMobile, (newIsMobile) => {
-    if (newIsMobile) {
+  // Close all modal sheets when the screen size changes from wide to narrow
+  watch(isNarrow, (nowNarrow) => {
+    if (nowNarrow) {
       for (const sheetId in sheets) {
         if (sheets[sheetId].isModal && sheets[sheetId].isOpen) {
           sheets[sheetId].toggle();
