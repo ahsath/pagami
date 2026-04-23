@@ -14,4 +14,4 @@ export * from "./components/ui/list/index.ts";
 export * from "./components/base/forms/index.ts";
 
 export { default as useMediaQuery } from "./composables/useMediaQuery.ts";
-export { useSheet, inert } from "./composables/useSheet.ts";
+export { useSheet } from "./composables/useSheet.ts";

@@ -4,6 +4,7 @@ import {
   computed,
   reactive,
   ref,
+  unref,
   watch,
   watchEffect,
 } from "vue";
@@ -13,6 +14,7 @@ interface BaseSheet {
   isOpen?: Ref<boolean>;
   isExpanded?: Ref<boolean>;
   type?: "modal" | "standard";
+  initiallyOpen?: boolean;
 }
 
 interface SheetState extends BaseSheet {
@@ -32,18 +34,20 @@ interface UseSheetOptions extends Pick<BaseSheet, "type"> {
 
 const sheets = reactive<SheetsState>({});
 const openSheetIds = ref<Set<string>>(new Set());
-export const inert = computed(() => openSheetIds.value.size > 0);
+const hasOpenModals = computed(() => openSheetIds.value.size > 0);
+
 export const useSheet = (id: string) => computed(() => sheets[id]);
 
 export function createSheet(id: string, options: UseSheetOptions) {
   const breakpoint = options.modalBreakpoint ?? 600;
-  const isNarrow = useMediaQuery(`(width < ${breakpoint}px)`);
   const isOpen = options.open ?? ref(false);
   const isExpanded = options.expanded ?? ref(false);
+  const isNarrow = useMediaQuery(`(width < ${breakpoint}px)`);
 
   sheets[id] = {
     isOpen,
     isExpanded,
+    initiallyOpen: unref(options.open),
     type: options.type,
     toggle() {
       isOpen.value = !isOpen.value;
@@ -76,13 +80,20 @@ export function createSheet(id: string, options: UseSheetOptions) {
     }
   });
 
-  // Close all modal sheets when the screen size changes from wide to narrow
-  watch(isNarrow, (nowNarrow) => {
-    if (nowNarrow) {
+  watch(isNarrow, (newNarrow) => {
+    if (newNarrow) {
       for (const sheetId in sheets) {
-        if (sheets[sheetId].isModal && sheets[sheetId].isOpen) {
+        // Close all sheets when the screen size changes from wide to narrow
+        if (sheets[sheetId].isOpen) {
           sheets[sheetId].toggle();
           openSheetIds.value.delete(sheetId);
+        }
+      }
+    } else {
+      for (const sheetId in sheets) {
+        // Open sheets that were initially open when the screen size changes from wide to narrow
+        if (sheets[sheetId].initiallyOpen && !sheets[sheetId].isOpen) {
+          sheets[sheetId].toggle();
         }
       }
     }
@@ -103,15 +114,14 @@ if (typeof window !== "undefined") {
   });
 
   watchEffect(() => {
-    const isBlocking = inert.value;
     const scrollbarWidth = getScrollbarWidth();
 
-    if (isBlocking) {
+    if (hasOpenModals.value) {
       document.body.style.overflow = "hidden";
       document.body.style.paddingRight = `${scrollbarWidth}px`;
     } else {
       // setTimeout(() => {
-      if (!inert.value) {
+      if (!hasOpenModals.value) {
         document.body.style.overflow = "";
         document.body.style.paddingRight = "";
       }
