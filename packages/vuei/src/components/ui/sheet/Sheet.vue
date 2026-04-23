@@ -1,17 +1,15 @@
 <script lang="ts" setup>
 import { computed } from "vue";
-import { useSheet } from "@/composables/useSheet";
+import { createSheet } from "@/composables/useSheet";
 import BaseSheet from "@/components/base/BaseSheet.vue";
 
 const {
   id,
-  to = "body",
   side = "left",
   type = undefined,
   modalBreakpoint = undefined,
 } = defineProps<{
   id: string;
-  to?: string;
   side?: "left" | "right";
   type?: "modal" | "standard" | undefined;
   modalBreakpoint?: number;
@@ -19,12 +17,14 @@ const {
 
 const open = defineModel<boolean>("open", { default: false });
 
-const sheet = useSheet(id);
+const sheet = createSheet(id, {
+  open,
+  type,
+  modalBreakpoint,
+});
 
-const isOpen = computed(() => sheet.value?.isOpen ?? open.value);
 const inert = computed(() =>
-  (!isOpen.value && sheet.value?.isModal) ||
-  (!sheet.value?.isModal && !isOpen.value)
+  (!open.value && sheet.isModal) || (!sheet.isModal && !open.value)
     ? true
     : undefined,
 );
@@ -33,22 +33,17 @@ const inert = computed(() =>
 <template>
   <BaseSheet
     :id
-    v-model:open="open"
-    :type
-    :modal-breakpoint="modalBreakpoint"
     class="sheet"
     :class="{
-      'sheet--type-modal': sheet?.isModal,
-      'sheet--type-standard': !sheet?.isModal,
+      'sheet--type-modal': sheet.isModal,
+      'sheet--type-standard': !sheet.isModal,
       'sheet--side-left': side === 'left',
       'sheet--side-right': side === 'right',
-      'sheet--open': isOpen,
+      'sheet--open': open,
     }"
-    :role="sheet?.isModal ? 'dialog' : undefined"
-    :aria-modal="sheet?.isModal ? 'true' : undefined"
-    :tabindex="sheet?.isModal ? -1 : undefined"
+    :role="sheet.isModal ? 'dialog' : undefined"
+    :aria-modal="sheet.isModal ? 'true' : undefined"
     :inert
-    :to
   >
     <slot />
   </BaseSheet>
