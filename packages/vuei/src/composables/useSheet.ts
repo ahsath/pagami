@@ -92,6 +92,16 @@ export function createSheet(id: string, options: UseSheetOptions) {
 }
 
 if (typeof window !== "undefined") {
+  // Timeout to prevent layout shift during resize
+  let resizeTimeout: ReturnType<typeof setTimeout>;
+  window.addEventListener("resize", () => {
+    document.body.classList.add("is-resizing");
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      document.body.classList.remove("is-resizing");
+    }, 200);
+  });
+
   watchEffect(() => {
     const isBlocking = inert.value;
     const scrollbarWidth = getScrollbarWidth();

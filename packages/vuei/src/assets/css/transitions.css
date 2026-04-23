@@ -7,3 +7,7 @@
 .fade-leave-active {
   @apply transition-opacity duration-300 ease-in-out;
 }
+
+body.is-resizing * {
+  transition: none !important;
+}
