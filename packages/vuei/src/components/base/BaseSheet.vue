@@ -1,45 +1,28 @@
 <script lang="ts" setup>
-import {
-  onMounted,
-  onUnmounted,
-  Teleport,
-  useTemplateRef,
-  watchPostEffect,
-} from "vue";
+import { onMounted, onUnmounted, useTemplateRef, watchPostEffect } from "vue";
 import { createFocusTrap, type FocusTrap } from "focus-trap";
-import { createSheet } from "@/composables/useSheet";
+import { useSheet } from "@/composables/useSheet";
 
-const {
-  id,
-  to = "body",
-  type = undefined,
-  modalBreakpoint = undefined,
-} = defineProps<{
+const { id } = defineProps<{
   id: string;
-  to?: string;
-  type?: "modal" | "standard";
-  modalBreakpoint?: number;
 }>();
-
-const open = defineModel<boolean>("open", { default: false });
-const expanded = defineModel<boolean>("expanded", { default: false });
 
 const sheetRef = useTemplateRef("sheetRef");
 
-const sheet = createSheet(id, { open, expanded, type, modalBreakpoint });
+const sheet = useSheet(id);
 
 let trap: FocusTrap | undefined;
 
 function close() {
-  if (sheet.isOpen && sheet.isModal) {
-    sheet.toggle();
+  if (sheet.value?.isOpen && sheet.value?.isModal) {
+    sheet.value.toggle();
   }
 }
 
 // Function to handle link clicks and close the sheet
 function handleContentClick(event: MouseEvent) {
   // 1. Check if the sheet is in modal mode and open
-  if (!sheet.isModal || !sheet.isOpen) {
+  if (!sheet.value?.isModal || !sheet.value?.isOpen) {
     return;
   }
 
@@ -59,7 +42,7 @@ onMounted(() => {
   });
 
   watchPostEffect(() => {
-    if (sheet.isOpen && sheet.isModal) {
+    if (sheet.value?.isOpen && sheet.value?.isModal) {
       trap?.activate();
     } else {
       trap?.deactivate();
@@ -73,24 +56,22 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <Teleport :disabled="!sheet?.isModal" :to>
-    <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -->
+  <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -->
+  <div
+    :id
+    ref="sheetRef"
+    :="$attrs"
+    @click="handleContentClick"
+    @keydown.esc="close"
+  >
+    <slot />
+  </div>
+  <Transition name="fade">
+    <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events, vuejs-accessibility/no-static-element-interactions -->
     <div
-      :id
-      ref="sheetRef"
-      :="$attrs"
-      @click="handleContentClick"
-      @keydown.esc="close"
-    >
-      <slot />
-    </div>
-    <Transition name="fade">
-      <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events, vuejs-accessibility/no-static-element-interactions -->
-      <div
-        v-show="sheet.isModal && sheet.isOpen"
-        class="sheet__scrim"
-        @click="close"
-      />
-    </Transition>
-  </Teleport>
+      v-show="sheet?.isModal && sheet?.isOpen"
+      class="sheet__scrim"
+      @click="close"
+    />
+  </Transition>
 </template>
