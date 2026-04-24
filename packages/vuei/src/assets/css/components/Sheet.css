@@ -27,10 +27,10 @@
 }
 
 .sheet--type-standard {
-  @apply sticky top-0 w-0 shrink-0;
+  @apply sticky top-0 w-0;
 
   &.sheet--open {
-    @apply w-2xs;
+    @apply md:w-2xs;
   }
 }
 
