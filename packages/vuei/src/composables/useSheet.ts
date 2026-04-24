@@ -9,6 +9,7 @@ import {
   watchEffect,
 } from "vue";
 import useMediaQuery from "./useMediaQuery.ts";
+import { BREAKPOINTS, type WindowSizeClass } from "@/lib/constants.ts";
 
 interface BaseSheet {
   isOpen?: Ref<boolean>;
@@ -29,7 +30,7 @@ interface SheetsState {
 interface UseSheetOptions extends Pick<BaseSheet, "type"> {
   open?: Ref<boolean>;
   expanded?: Ref<boolean>;
-  modalBreakpoint?: number;
+  modalBreakpoint?: WindowSizeClass;
 }
 
 const sheets = reactive<SheetsState>({});
@@ -39,7 +40,9 @@ const hasOpenModals = computed(() => openSheetIds.value.size > 0);
 export const useSheet = (id: string) => computed(() => sheets[id]);
 
 export function createSheet(id: string, options: UseSheetOptions) {
-  const breakpoint = options.modalBreakpoint ?? 600;
+  const breakpoint = options.modalBreakpoint
+    ? BREAKPOINTS[options.modalBreakpoint]
+    : BREAKPOINTS.ex;
   const isOpen = options.open ?? ref(false);
   const isExpanded = options.expanded ?? ref(false);
   const isNarrow = useMediaQuery(`(width < ${breakpoint}px)`);

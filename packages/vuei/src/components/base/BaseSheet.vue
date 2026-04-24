@@ -3,9 +3,7 @@ import { onMounted, onUnmounted, useTemplateRef, watchPostEffect } from "vue";
 import { createFocusTrap, type FocusTrap } from "focus-trap";
 import { useSheet } from "@/composables/useSheet";
 
-const { id } = defineProps<{
-  id: string;
-}>();
+const { id } = defineProps<{ id: string }>();
 
 const sheetRef = useTemplateRef("sheetRef");
 

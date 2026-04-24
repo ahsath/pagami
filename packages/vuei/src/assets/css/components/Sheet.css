@@ -30,7 +30,22 @@
   @apply sticky top-0 w-0;
 
   &.sheet--open {
-    @apply md:w-2xs;
+    /* Prevents layout shift (modal opened on mobile and quickly closing) */
+    &[data-breakpoint="md"] {
+      @apply md:w-2xs;
+    }
+
+    &[data-breakpoint="ex"] {
+      @apply ex:w-2xs;
+    }
+
+    &[data-breakpoint="lg"] {
+      @apply lg:w-2xs;
+    }
+
+    &[data-breakpoint="xl"] {
+      @apply xl:w-2xs;
+    }
   }
 }
 

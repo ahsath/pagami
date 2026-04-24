@@ -1,18 +1,19 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 import { createSheet } from "@/composables/useSheet";
+import { type WindowSizeClass } from "@/lib/constants.ts";
 import BaseSheet from "@/components/base/BaseSheet.vue";
 
 const {
   id,
   side = "left",
   type = undefined,
-  modalBreakpoint = undefined,
+  modalBreakpoint = "ex",
 } = defineProps<{
   id: string;
   side?: "left" | "right";
-  type?: "modal" | "standard" | undefined;
-  modalBreakpoint?: number;
+  type?: "modal" | "standard";
+  modalBreakpoint?: WindowSizeClass;
 }>();
 
 const open = defineModel<boolean>("open", { default: false });
@@ -34,6 +35,7 @@ const inert = computed(() =>
   <BaseSheet
     :id
     class="sheet"
+    :data-breakpoint="modalBreakpoint"
     :class="{
       'sheet--type-modal': sheet.isModal,
       'sheet--type-standard': !sheet.isModal,

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { provide } from "vue";
 import { createSheet } from "@/composables/useSheet";
+import { type WindowSizeClass } from "@/lib/constants.ts";
 import BaseSheet from "@/components/base/BaseSheet.vue";
 import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
 import MenuOpenRounded from "~icons/material-symbols/menu-open-rounded?width=24&height=24";
@@ -8,11 +9,11 @@ import MenuOpenRounded from "~icons/material-symbols/menu-open-rounded?width=24&
 const {
   id,
   type = undefined,
-  modalBreakpoint = undefined,
+  modalBreakpoint = "ex",
 } = defineProps<{
   id: string;
-  type?: "modal" | "standard" | undefined;
-  modalBreakpoint?: number;
+  type?: "modal" | "standard";
+  modalBreakpoint?: WindowSizeClass;
 }>();
 
 const open = defineModel<boolean>("open", { default: false });
@@ -40,7 +41,6 @@ const sheet = createSheet(id, {
     }"
     :role="sheet.isModal ? 'dialog' : undefined"
     :aria-modal="sheet.isModal ? 'true' : undefined"
-    :tabindex="sheet.isModal ? -1 : undefined"
     :inert="!open && sheet.isModal ? true : undefined"
   >
     <div class="nav-rail__header">
