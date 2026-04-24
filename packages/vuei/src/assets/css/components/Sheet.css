@@ -7,7 +7,7 @@
 }
 
 .sheet--type-modal {
-  @apply fixed z-4 top-0 w-2xs;
+  @apply fixed z-4 top-0 w-xs;
 
   &.sheet--side-left {
     @apply left-0 -translate-x-full rounded-r-2xl;
@@ -32,25 +32,29 @@
   &.sheet--open {
     /* Prevents layout shift (modal opened on mobile and quickly closing) */
     &[data-breakpoint="md"] {
-      @apply md:w-2xs;
+      @apply md:w-xs;
     }
 
     &[data-breakpoint="ex"] {
-      @apply ex:w-2xs;
+      @apply ex:w-xs;
     }
 
     &[data-breakpoint="lg"] {
-      @apply lg:w-2xs;
+      @apply lg:w-xs;
     }
 
     &[data-breakpoint="xl"] {
-      @apply xl:w-2xs;
+      @apply xl:w-xs;
     }
+  }
+
+  &.sheet--inset {
+    @apply top-16 h-[calc(100dvh-_--spacing(16))];
   }
 }
 
 .sheet__container {
-  @apply w-2xs;
+  @apply w-xs;
 }
 
 .sheet__header {

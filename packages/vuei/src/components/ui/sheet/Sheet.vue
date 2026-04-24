@@ -9,11 +9,13 @@ const {
   side = "left",
   type = undefined,
   modalBreakpoint = "ex",
+  inset = false,
 } = defineProps<{
   id: string;
   side?: "left" | "right";
   type?: "modal" | "standard";
   modalBreakpoint?: WindowSizeClass;
+  inset?: boolean;
 }>();
 
 const open = defineModel<boolean>("open", { default: false });
@@ -39,6 +41,7 @@ const inert = computed(() =>
     :class="{
       'sheet--type-modal': sheet.isModal,
       'sheet--type-standard': !sheet.isModal,
+      'sheet--inset': inset,
       'sheet--side-left': side === 'left',
       'sheet--side-right': side === 'right',
       'sheet--open': open,
