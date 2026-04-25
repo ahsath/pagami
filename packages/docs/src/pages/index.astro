@@ -1,11 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import DocsLayout from "../layouts/DocsLayout.astro";
 import Test from "../components/Test.vue";
 ---
 
-<Layout>
-  <a href="#main-content" class="sr-only focus:not-sr-only">
-    Saltar al contenido
-  </a>
+<DocsLayout>
   <Test client:load />
-</Layout>
+</DocsLayout>
