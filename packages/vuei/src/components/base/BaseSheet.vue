@@ -3,7 +3,9 @@ import { onMounted, onUnmounted, useTemplateRef, watchPostEffect } from "vue";
 import { createFocusTrap, type FocusTrap } from "focus-trap";
 import { useSheet } from "@/composables/useSheet";
 
-const { id } = defineProps<{ id: string }>();
+defineOptions({ inheritAttrs: false });
+
+const { id, is } = defineProps<{ id: string; is: string }>();
 
 const sheetRef = useTemplateRef("sheetRef");
 
@@ -55,7 +57,8 @@ onUnmounted(() => {
 
 <template>
   <!-- eslint-disable-next-line vuejs-accessibility/no-static-element-interactions -->
-  <div
+  <component
+    :is
     :id
     ref="sheetRef"
     :="$attrs"
@@ -63,7 +66,7 @@ onUnmounted(() => {
     @keydown.esc="close"
   >
     <slot />
-  </div>
+  </component>
   <Transition name="fade">
     <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events, vuejs-accessibility/no-static-element-interactions -->
     <div

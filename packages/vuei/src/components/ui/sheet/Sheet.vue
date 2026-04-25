@@ -10,8 +10,10 @@ const {
   type = undefined,
   modalBreakpoint = "ex",
   inset = false,
+  is = "div",
 } = defineProps<{
   id: string;
+  is?: string;
   side?: "left" | "right";
   type?: "modal" | "standard";
   modalBreakpoint?: WindowSizeClass;
@@ -35,6 +37,7 @@ const inert = computed(() =>
 
 <template>
   <BaseSheet
+    :is
     :id
     class="sheet"
     :data-breakpoint="modalBreakpoint"

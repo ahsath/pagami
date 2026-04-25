@@ -8,10 +8,12 @@ import MenuOpenRounded from "~icons/material-symbols/menu-open-rounded?width=24&
 
 const {
   id,
+  is = "div",
   type = undefined,
   modalBreakpoint = "ex",
 } = defineProps<{
   id: string;
+  is?: string;
   type?: "modal" | "standard";
   modalBreakpoint?: WindowSizeClass;
 }>();
@@ -31,6 +33,7 @@ const sheet = createSheet(id, {
 
 <template>
   <BaseSheet
+    :is
     :id
     class="nav-rail"
     :class="{
