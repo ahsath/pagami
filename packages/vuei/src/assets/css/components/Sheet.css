@@ -48,6 +48,10 @@
     }
   }
 
+  & .sheet__content {
+    @apply pr-0;
+  }
+
   &.sheet--inset {
     @apply top-16 h-[calc(100dvh-_--spacing(16))];
   }
