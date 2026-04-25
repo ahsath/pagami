@@ -1,0 +1,29 @@
+---
+import "../assets/styles/global.css";
+import Header from "../components/layout/Header.vue";
+import Sidebar from "../components/layout/Sidebar.vue";
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Basics</title>
+  </head>
+  <body class="mx-auto max-w-xl">
+    <a href="#main-content" class="sr-only focus:not-sr-only">
+      Saltar al contenido principal
+    </a>
+    <Header client:load />
+    <div class="flex">
+      <Sidebar client:load />
+      <main id="main-content" class="grow">
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>
