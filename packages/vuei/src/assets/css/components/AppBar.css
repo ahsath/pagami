@@ -1,5 +1,5 @@
 .app-bar {
-  @apply flex items-center gap-2 h-16 px-4 md:px-6 bg-surface;
+  @apply flex items-center gap-2 h-16 px-4 md:px-6 bg-surface sticky top-0 z-3;
 
   &:has(.app-bar__leading .icon-button) {
     @apply pl-1 md:pl-3;
