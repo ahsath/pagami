@@ -1,0 +1,12 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import Test from "../../components/Test.vue";
+
+export function getStaticPaths() {
+  return [{ params: { locale: "es" } }, { params: { locale: "en" } }];
+}
+---
+
+<DocsLayout>
+  <Test client:load />
+</DocsLayout>
