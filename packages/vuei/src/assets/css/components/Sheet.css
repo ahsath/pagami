@@ -1,5 +1,5 @@
 .sheet {
-  @apply h-dvh text-on-surface-variant transition-all ease-in-out duration-300 bg-surface overflow-hidden;
+  @apply h-dvh text-on-surface-variant transition-all ease-in-out duration-300 bg-surface overflow-hidden shrink-0;
 }
 
 .sheet__container {
