@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import vue from "@astrojs/vue";
+import mdx from "@astrojs/mdx";
 import tailwindcss from "@tailwindcss/vite";
 import Icons from "unplugin-icons/vite";
 
@@ -8,5 +9,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss(), Icons({ compiler: "vue3" })],
   },
-  integrations: [vue()],
+  integrations: [vue(), mdx()],
 });
