@@ -20,7 +20,7 @@ const sidebar = useSheet("sidebar");
       </button>
     </div>
     <div class="app-bar__content">
-      <a href="/" class="text-title-large">Vuei</a>
+      <a href="/" class="text-title-large max-ex:ml-1">Vuei</a>
     </div>
   </header>
 </template>
