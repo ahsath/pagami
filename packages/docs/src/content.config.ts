@@ -5,8 +5,10 @@ import { z } from "astro/zod";
 const docs = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/docs" }),
   schema: z.object({
+    /** @required Title for the page */
     title: z.string(),
-    description: z.string().optional(),
+    /** @required Description for the page */
+    description: z.string(),
   }),
 });
 
