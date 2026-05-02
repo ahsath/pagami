@@ -6,6 +6,7 @@ import Icons from "unplugin-icons/vite";
 
 // https://astro.build/config
 export default defineConfig({
+  trailingSlash: "never",
   i18n: {
     locales: ["es", "en"],
     defaultLocale: "es",
