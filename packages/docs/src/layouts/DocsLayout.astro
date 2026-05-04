@@ -3,14 +3,14 @@ import "../assets/styles/global.css";
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import type { SidebarMenuGroup } from "../types/nav";
-import Header from "../components/layout/Header.vue";
 import Sidebar from "../components/layout/Sidebar.vue";
 
 interface Props {
   title?: string;
 }
 
-const { title = "Vuei Docs" } = Astro.props;
+const { title } = Astro.props;
+
 const locale = Astro.currentLocale ?? "es";
 
 const docs = await getCollection("docs", ({ id }) => id.startsWith(locale));
@@ -47,7 +47,7 @@ for (const doc of docs) {
     <a href="#main-content" class="sr-only focus:not-sr-only">
       Saltar al contenido principal
     </a>
-    <Header client:load />
+    <slot name="header" />
     <div class="flex">
       <Sidebar
         client:load
@@ -57,6 +57,7 @@ for (const doc of docs) {
       <main id="main-content" class="grow">
         <slot />
       </main>
+      <slot name="toc" />
     </div>
   </body>
 </html>

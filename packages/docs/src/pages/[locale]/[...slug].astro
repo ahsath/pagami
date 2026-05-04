@@ -1,6 +1,10 @@
 ---
 import { getCollection, render } from "astro:content";
 import DocsLayout from "../../layouts/DocsLayout.astro";
+import { TOC } from "astro-toc";
+import Header from "../../components/layout/Header.vue";
+import ToC from "../../components/layout/ToC.vue";
+import TocToggle from "../../components/layout/TocToggle.vue";
 
 export async function getStaticPaths() {
   const docs = await getCollection("docs");
@@ -20,10 +24,23 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
+const toc = headings.map(({ depth, slug, text }) => ({
+  depth,
+  title: text,
+  url: "#" + slug,
+}));
 ---
 
 <DocsLayout title={entry.data.title}>
-  <section class="pane">
+  <Header client:load slot="header">
+    <TocToggle client:load slot="trailing" />
+  </Header>
+
+  <article class="pane">
     <Content />
-  </section>
+  </article>
+
+  <ToC client:load slot="toc">
+    <TOC toc={toc} />
+  </ToC>
 </DocsLayout>

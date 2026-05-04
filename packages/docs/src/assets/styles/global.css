@@ -1,3 +1,19 @@
 @import "tailwindcss";
 @import "@pagami/vuei/styles/vuei.no-preflight.css";
 @import "@pagami/vuei/styles/utilities.css";
+
+/* ─── Table of Contents – nested indentation ─────────────────────────────── */
+
+li[data-astro-toc] > ul[data-astro-toc] {
+  @apply pl-3;
+}
+
+[data-astro-toc] {
+  a {
+    @apply inline-block text-body-medium text-on-surface-variant hover:text-on-surface py-1 transition-colors duration-200;
+
+    &.active {
+      @apply text-primary font-medium;
+    }
+  }
+}

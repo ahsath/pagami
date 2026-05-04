@@ -2,6 +2,8 @@
 import { useSheet } from "@pagami/vuei";
 import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
 
+defineOptions({ inheritAttrs: false });
+
 const sidebar = useSheet("sidebar");
 </script>
 
@@ -21,6 +23,9 @@ const sidebar = useSheet("sidebar");
     </div>
     <div class="app-bar__content">
       <a href="/" class="text-title-large max-ex:ml-1">Vuei</a>
+    </div>
+    <div class="app-bar__trailing">
+      <slot name="trailing" />
     </div>
   </header>
 </template>
