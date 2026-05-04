@@ -1,29 +1,15 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
-import { Checkbox, useSheet } from "@pagami/vuei";
+import { ref } from "vue";
+import { Checkbox } from "@pagami/vuei";
 import StarsOutlineRounded from "~icons/material-symbols/stars-outline-rounded?width=24&height=24";
-import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
+import ArrowDropdownRounded from "~icons/material-symbols/arrow-drop-down-rounded?width=24&height=24";
+import WidgetsOutlineRounded from "~icons/material-symbols/widgets-outline-rounded?width=24&height=24&stroke-width=0.4&stroke=currentColor";
 
-const nav = useSheet("nav");
 const radioModel = ref(true);
-
-watch(radioModel, () => {
-  console.log(radioModel.value);
-});
 </script>
 
 <template>
-  <div class="max-w-90 mx-auto pt-4 px-4 pb-24 bg-surface-container">
-    <button
-      aria-label="Abrir menu"
-      :aria-expanded="nav?.isOpen"
-      aria-controls="nav"
-      class="button icon-button"
-      type="button"
-      @click="nav?.toggle"
-    >
-      <MenuRounded aria-hidden="true" />
-    </button>
+  <section class="pane max-w-90">
     <fieldset class="list mb-4">
       <label class="list__item" for="checkbox">
         <div class="list__leading">
@@ -56,7 +42,7 @@ watch(radioModel, () => {
       </a>
     </nav>
 
-    <a href="#" class="list__item mb-4" aria-disabled="true">
+    <a href="#" class="list__item mb-4" aria-disabled="true" tabindex="-1">
       <div class="list__leading">
         <button class="button icon-button" type="button">
           <StarsOutlineRounded />
@@ -145,5 +131,5 @@ watch(radioModel, () => {
         </div>
       </li>
     </ul>
-  </div>
+  </section>
 </template>

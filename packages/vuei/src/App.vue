@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { ref, useId } from "vue";
+import { ref, useId, watch } from "vue";
 import AppBar from "@/components/ui/app-bar/AppBar.vue";
 import IconButton from "@/components/ui/button/IconButton.vue";
 import Sheet from "@/components/ui/sheet/Sheet.vue";
 import NavRail from "@/components/ui/nav-rail/NavRail.vue";
 import NavItem from "@/components/ui/nav-item/NavItem.vue";
 import SelectSimple from "@/components/ui/select/SelectSimple.vue";
-import { useSheet, inert } from "@/composables/useSheet";
+import { useSheet } from "@/composables/useSheet";
 import InputFieldSimple from "@/components/ui/input-field/InputFieldSimple.vue";
 import LoadingIndicator from "@/components/loaders/LoadingIndicator.vue";
 import SearchRounded from "~icons/material-symbols/search-rounded?width=24&height=24";
@@ -53,6 +53,8 @@ const navRailId = useId();
 const rightSheetId = useId();
 const navRail = useSheet(navRailId);
 const rightSheet = useSheet(rightSheetId);
+const navRailOpen = ref(false);
+const rightSheetOpen = ref(true);
 const checkbox = ref(false);
 const radioButtonModel = ref("");
 
@@ -60,8 +62,8 @@ const isPasswordVisible = ref(false);
 </script>
 
 <template>
-  <div class="layout" :inert>
-    <NavRail :id="navRailId">
+  <div class="layout">
+    <NavRail :id="navRailId" v-model:open="navRailOpen">
       <nav class="nav-rail__nav">
         <NavItem label="Recibidos" aria-current="page" selected>
           <template #icon-selected>
@@ -92,7 +94,7 @@ const isPasswordVisible = ref(false);
             v-if="navRail?.isModal"
             class="button icon-button icon-button--size-m"
             aria-label="Cerrar navegación"
-            :aria-expanded="navRail?.isOpen"
+            :aria-expanded="navRail?.isOpen ? 'true' : 'false'"
             :aria-controls="navRailId"
             @click="navRail?.toggle"
           >
@@ -120,7 +122,7 @@ const isPasswordVisible = ref(false);
           <button class="button"><span>Text</span></button>
           <button
             aria-label="Configurar"
-            :aria-expanded="rightSheet?.isOpen"
+            :aria-expanded="rightSheet?.isOpen ? 'true' : 'false'"
             :aria-controls="rightSheetId"
             class="button icon-button"
             type="button"
@@ -135,6 +137,22 @@ const isPasswordVisible = ref(false);
           class="pane grid grid-cols-4 md:grid-cols-8 ex:grid-cols-12 gap-4 md:gap-6"
         >
           <div class="col-span-full md:col-[2/8] ex:col-[3/11] lg:col-[4/10]">
+            <NavItem
+              label="Recibidos"
+              aria-current="page"
+              selected
+              horizontal
+              compact
+            >
+              <template #icon-selected>
+                <InboxRounded aria-hidden="true" />
+              </template>
+            </NavItem>
+            <NavItem label="Recibidos" horizontal>
+              <template #icon-selected>
+                <InboxRounded aria-hidden="true" />
+              </template>
+            </NavItem>
             <LoadingIndicator class="text-primary" aria-label="Cargando" />
             <ChoiceControlGroup v-model="radioButtonModel" type="radio">
               <legend>Radio button group</legend>
@@ -182,6 +200,10 @@ const isPasswordVisible = ref(false);
             </button>
             <button class="button button--outline">
               <span>Outline</span>
+            </button>
+            <button class="button button--outline">
+              <StarsRounded />
+              <span>Outline with icon</span>
             </button>
             <button class="button button--filled">
               <StarsRounded />
@@ -273,10 +295,10 @@ const isPasswordVisible = ref(false);
             </InputFieldSimple>
             <br />
             <label
-              class="list__item"
               v-for="val in ['single-select-list1', 'single-select-list2']"
-              :for="val"
               :key="val"
+              class="list__item"
+              :for="val"
             >
               <div class="list__leading">
                 <PersonOutlineRounded />
@@ -299,7 +321,12 @@ const isPasswordVisible = ref(false);
         </section>
       </main>
     </div>
-    <Sheet :id="rightSheetId" side="right">
+    <Sheet
+      :id="rightSheetId"
+      v-model:open="rightSheetOpen"
+      side="right"
+      is="aside"
+    >
       <div class="sheet__container">
         <div class="sheet__header">
           <h2 class="text-title-large">Title</h2>
