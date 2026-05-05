@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted } from "vue";
 import { SelectSimple } from "@pagami/vuei";
-import LanguageRounded from "~icons/material-symbols/language-rounded?width=20&height=20";
+import LanguageRounded from "~icons/material-symbols/language?width=20&height=20";
 
 const currentLocale = ref("es");
 
@@ -12,11 +12,13 @@ onMounted(() => {
   }
 });
 
-watch(currentLocale, (newLocale) => {
+const changeLanguage = (newLocale: string) => {
   const pathParts = window.location.pathname.split("/");
-  pathParts[1] = newLocale;
-  window.location.pathname = pathParts.join("/");
-});
+  if (pathParts[1] !== newLocale) {
+    pathParts[1] = newLocale;
+    window.location.pathname = pathParts.join("/");
+  }
+};
 </script>
 
 <template>
@@ -28,6 +30,7 @@ watch(currentLocale, (newLocale) => {
         { value: 'en', label: 'English' },
         { value: 'es', label: 'Español' },
       ]"
+      @update:model-value="changeLanguage"
     >
       <template #leading-icon>
         <LanguageRounded />
