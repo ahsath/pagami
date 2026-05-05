@@ -54,7 +54,11 @@ const toc = headings.map(({ depth, slug, text }) => ({
     locale={Astro.currentLocale}
     translations={translationMap}
   >
-    <TocToggle client:load slot="trailing" />
+    <TocToggle
+      client:load
+      slot="trailing"
+      label={Astro.locals.t("toc.toggle")}
+    />
   </Header>
 
   <article class="pane">

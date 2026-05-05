@@ -29,6 +29,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
       interpolation: {
         escapeValue: false,
       },
+      keySeparator: false,
     });
 
     masterInstance = newInstance;
