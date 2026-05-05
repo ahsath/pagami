@@ -4,7 +4,6 @@ import ArrowDropDownRounded from "~icons/material-symbols/arrow-drop-down-rounde
 defineOptions({ inheritAttrs: false });
 
 defineProps<{
-  id: string;
   options?: Array<{ value: string; label: string }>;
 }>();
 
@@ -16,7 +15,8 @@ const model = defineModel<string>({ required: true });
     <div v-if="$slots['leading-icon']" class="select-simple__leading-icon">
       <slot name="leading-icon" />
     </div>
-    <select :id v-model="model" class="select-simple__select" :="$attrs">
+    <!-- eslint-disable-next-line vuejs-accessibility/form-control-has-label -->
+    <select v-model="model" class="select-simple__select" v-bind="$attrs">
       <slot name="options" :options="options">
         <option
           v-for="option in options"
