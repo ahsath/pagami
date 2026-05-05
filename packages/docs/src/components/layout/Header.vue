@@ -31,7 +31,7 @@ const sidebar = useSheet("sidebar");
       <a href="/" class="text-title-large max-ex:ml-1">Vuei</a>
     </div>
     <div class="app-bar__trailing">
-      <LanguageSelector :locale="locale" :translations="translations" />
+      <LanguageSelector :locale :translations />
       <slot name="trailing" />
     </div>
   </header>
