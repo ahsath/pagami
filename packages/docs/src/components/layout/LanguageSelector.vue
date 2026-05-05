@@ -6,6 +6,7 @@ import LanguageRounded from "~icons/material-symbols/language?width=24&height=24
 const props = defineProps<{
   locale?: string;
   translations?: Record<string, string>;
+  selectorLabel?: string;
 }>();
 
 const currentLocale = ref(props.locale || "es");
@@ -26,8 +27,8 @@ const changeLanguage = (newLocale: string) => {
 
 <template>
   <SelectSimple
-    id="language-select"
     v-model="currentLocale"
+    :aria-label="selectorLabel"
     :options="[
       { value: 'en', label: 'English' },
       { value: 'es', label: 'Español' },

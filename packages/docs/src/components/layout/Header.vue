@@ -9,6 +9,7 @@ defineProps<{
   locale?: string;
   translations?: Record<string, string>;
   openMenuLabel?: string;
+  selectorLabel?: string;
 }>();
 
 const sidebar = useSheet("sidebar");
@@ -32,7 +33,7 @@ const sidebar = useSheet("sidebar");
       <a href="/" class="text-title-large max-ex:ml-1">Vuei</a>
     </div>
     <div class="app-bar__trailing">
-      <LanguageSelector :locale :translations />
+      <LanguageSelector :locale :translations :selectorLabel />
       <slot name="trailing" />
     </div>
   </header>

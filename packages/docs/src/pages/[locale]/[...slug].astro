@@ -54,6 +54,7 @@ const toc = headings.map(({ depth, slug, text }) => ({
     locale={Astro.currentLocale}
     translations={translationMap}
     openMenuLabel={Astro.locals.t("common.openMenu")}
+    selectorLabel={Astro.locals.t("common.languageSelector")}
   >
     <TocToggle
       client:load
