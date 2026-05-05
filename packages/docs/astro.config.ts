@@ -3,6 +3,7 @@ import vue from "@astrojs/vue";
 import mdx from "@astrojs/mdx";
 import tailwindcss from "@tailwindcss/vite";
 import Icons from "unplugin-icons/vite";
+import i18nLoader from "./src/integrations/i18n-loader";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,5 +19,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss(), Icons({ compiler: "vue3" })],
   },
-  integrations: [vue(), mdx()],
+  integrations: [vue(), mdx(), i18nLoader()],
 });
