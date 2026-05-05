@@ -7,10 +7,9 @@ import Sidebar from "../components/layout/Sidebar.vue";
 
 interface Props {
   title?: string;
-  translations?: Record<string, string>;
 }
 
-const { title, translations } = Astro.props;
+const { title } = Astro.props;
 
 const locale = Astro.currentLocale ?? "es";
 

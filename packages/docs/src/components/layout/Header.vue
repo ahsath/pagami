@@ -2,7 +2,6 @@
 import { useSheet } from "@pagami/vuei";
 import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
 import LanguageSelector from "./LanguageSelector.vue";
-import type { i18n } from "i18next";
 
 defineOptions({ inheritAttrs: false });
 

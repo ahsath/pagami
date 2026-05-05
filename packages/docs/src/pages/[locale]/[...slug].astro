@@ -12,31 +12,33 @@ export async function getStaticPaths() {
   return docs.map((entry) => {
     const [locale, ...slugParts] = entry.id.split("/");
 
+    // Find all translations for this entry using the shared key
+    const translations = docs.filter(
+      (d) => d.data.key === entry.data.key && d.data.key !== undefined,
+    );
+
+    const translationMap = Object.fromEntries(
+      translations.map((t) => {
+        const [loc, ...tSlugParts] = t.id.split("/");
+        return [loc, `/${loc}/${tSlugParts.join("/")}`];
+      }),
+    );
+
     return {
       params: {
         locale,
         slug: slugParts.join("/"),
       },
-      props: { entry },
+      props: {
+        entry,
+        translationMap,
+      },
     };
   });
 }
 
-const { entry } = Astro.props;
+const { entry, translationMap } = Astro.props;
 const { Content, headings } = await render(entry);
-
-// Get all documents to find translations
-const allDocs = await getCollection("docs");
-const translations = allDocs.filter(
-  (d) => d.data.key === entry.data.key && d.data.key !== undefined,
-);
-
-const translationMap = Object.fromEntries(
-  translations.map((t) => {
-    const [loc, ...slugParts] = t.id.split("/");
-    return [loc, `/${loc}/${slugParts.join("/").replace(/\.mdx?$/, "")}`];
-  }),
-);
 
 const toc = headings.map(({ depth, slug, text }) => ({
   depth,
@@ -45,7 +47,7 @@ const toc = headings.map(({ depth, slug, text }) => ({
 }));
 ---
 
-<DocsLayout title={entry.data.title} translations={translationMap}>
+<DocsLayout title={entry.data.title}>
   <Header
     client:load
     slot="header"

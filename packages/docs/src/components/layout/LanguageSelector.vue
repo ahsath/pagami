@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { SelectSimple } from "@pagami/vuei";
-import LanguageRounded from "~icons/material-symbols/language?width=20&height=20";
+import LanguageRounded from "~icons/material-symbols/language?width=24&height=24";
 
 const props = defineProps<{
   locale?: string;
@@ -11,9 +11,12 @@ const props = defineProps<{
 const currentLocale = ref(props.locale || "es");
 
 // Sync currentLocale if prop changes (though it shouldn't often in SSR)
-watch(() => props.locale, (newLoc) => {
-  if (newLoc) currentLocale.value = newLoc;
-});
+watch(
+  () => props.locale,
+  (newLoc) => {
+    if (newLoc) currentLocale.value = newLoc;
+  },
+);
 
 const changeLanguage = (newLocale: string) => {
   if (props.translations && props.translations[newLocale]) {
@@ -40,7 +43,7 @@ const changeLanguage = (newLocale: string) => {
     @update:model-value="changeLanguage"
   >
     <template #leading-icon>
-      <LanguageRounded />
+      <LanguageRounded aria-hidden="true" />
     </template>
   </SelectSimple>
 </template>
