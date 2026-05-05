@@ -40,7 +40,7 @@ const toc = headings.map(({ depth, slug, text }) => ({
     <Content />
   </article>
 
-  <ToC client:load slot="toc">
+  <ToC client:load slot="toc" label={Astro.locals.t("toc.onThisPage")}>
     <TOC toc={toc} />
   </ToC>
 </DocsLayout>

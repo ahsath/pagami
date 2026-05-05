@@ -5,6 +5,10 @@ import CloseRounded from "~icons/material-symbols/close-rounded?width=24&height=
 
 defineOptions({ inheritAttrs: false });
 
+const props = defineProps<{
+  label?: string;
+}>();
+
 const toc = useSheet("toc");
 const open = ref(true);
 
@@ -55,7 +59,7 @@ onUnmounted(() => {
   <Sheet is="aside" id="toc" v-model:open="open" side="right" inset>
     <nav class="sheet__container" aria-labelledby="toc-heading">
       <div class="sheet__header">
-        <div id="toc-heading" class="text-title-large">En esta página</div>
+        <div id="toc-heading" class="text-title-large">{{ label }}</div>
         <button
           class="button icon-button ex:hidden"
           type="button"
