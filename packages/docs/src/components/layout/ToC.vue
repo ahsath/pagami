@@ -7,6 +7,7 @@ defineOptions({ inheritAttrs: false });
 
 const props = defineProps<{
   label?: string;
+  closeLabel?: string;
 }>();
 
 const toc = useSheet("toc");
@@ -63,7 +64,7 @@ onUnmounted(() => {
         <button
           class="button icon-button ex:hidden"
           type="button"
-          aria-label="Cerrar menu"
+          :aria-label="closeLabel"
           @click="toc?.toggle"
         >
           <CloseRounded aria-hidden="true" />

@@ -6,7 +6,11 @@ import CloseRounded from "~icons/material-symbols/close-rounded?width=24&height=
 import ArrowDropdownRounded from "~icons/material-symbols/arrow-drop-down-rounded?width=24&height=24";
 import WidgetsOutlineRounded from "~icons/material-symbols/widgets-outline-rounded?width=24&height=24&stroke-width=0.4&stroke=currentColor";
 
-const props = defineProps<{ menu: SidebarMenuGroup[]; currentPath: string }>();
+const props = defineProps<{
+  menu: SidebarMenuGroup[];
+  currentPath: string;
+  closeLabel?: string;
+}>();
 
 const sidebar = useSheet("sidebar");
 const open = ref(true);
@@ -18,7 +22,7 @@ const open = ref(true);
       <div class="sheet__header ex:hidden">
         <button
           class="button icon-button ml-auto"
-          aria-label="Cerrar menu"
+          :aria-label="closeLabel"
           @click="sidebar?.toggle"
         >
           <CloseRounded aria-hidden="true" />

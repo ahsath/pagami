@@ -53,6 +53,7 @@ for (const doc of docs) {
         client:load
         menu={[...sidebarMenu.values()]}
         currentPath={Astro.url.pathname}
+        closeLabel={Astro.locals.t("common.closeMenu")}
       />
       <main id="main-content" class="grow">
         <slot />

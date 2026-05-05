@@ -53,6 +53,7 @@ const toc = headings.map(({ depth, slug, text }) => ({
     slot="header"
     locale={Astro.currentLocale}
     translations={translationMap}
+    openMenuLabel={Astro.locals.t("common.openMenu")}
   >
     <TocToggle
       client:load
@@ -65,7 +66,12 @@ const toc = headings.map(({ depth, slug, text }) => ({
     <Content />
   </article>
 
-  <ToC client:load slot="toc" label={Astro.locals.t("toc.onThisPage")}>
+  <ToC
+    client:load
+    slot="toc"
+    label={Astro.locals.t("toc.onThisPage")}
+    closeLabel={Astro.locals.t("common.closeMenu")}
+  >
     <TOC toc={toc} />
   </ToC>
 </DocsLayout>

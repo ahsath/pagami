@@ -8,6 +8,7 @@ defineOptions({ inheritAttrs: false });
 defineProps<{
   locale?: string;
   translations?: Record<string, string>;
+  openMenuLabel?: string;
 }>();
 
 const sidebar = useSheet("sidebar");
@@ -18,7 +19,7 @@ const sidebar = useSheet("sidebar");
     <div class="app-bar__leading">
       <button
         class="button icon-button ex:hidden"
-        aria-label="Abrir menu"
+        :aria-label="openMenuLabel"
         :aria-expanded="sidebar?.isOpen ? 'true' : 'false'"
         aria-controls="sidebar"
         type="button"
