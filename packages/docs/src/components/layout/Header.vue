@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { useSheet } from "@pagami/vuei";
 import MenuRounded from "~icons/material-symbols/menu-rounded?width=24&height=24";
-
 import LanguageSelector from "./LanguageSelector.vue";
+import type { i18n } from "i18next";
 
 defineOptions({ inheritAttrs: false });
+
+defineProps<{
+  locale?: string;
+  translations?: Record<string, string>;
+}>();
 
 const sidebar = useSheet("sidebar");
 </script>
@@ -27,7 +32,7 @@ const sidebar = useSheet("sidebar");
       <a href="/" class="text-title-large max-ex:ml-1">Vuei</a>
     </div>
     <div class="app-bar__trailing">
-      <LanguageSelector />
+      <LanguageSelector :locale="locale" :translations="translations" />
       <slot name="trailing" />
     </div>
   </header>

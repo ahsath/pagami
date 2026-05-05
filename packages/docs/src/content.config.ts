@@ -9,6 +9,8 @@ const docs = defineCollection({
     title: z.string(),
     /** @required Description for the page */
     description: z.string(),
+    /** @optional Unique key to link translated pages together */
+    key: z.string().optional(),
   }),
 });
 
