@@ -12,6 +12,12 @@ const docs = defineCollection({
   }),
 });
 
+const i18n = defineCollection({
+  loader: glob({ pattern: "**/*.{yml,yaml}", base: "./src/content/i18n" }),
+  schema: z.any(),
+});
+
 export const collections = {
   docs,
+  i18n,
 };
