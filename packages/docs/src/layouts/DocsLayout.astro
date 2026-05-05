@@ -45,7 +45,7 @@ for (const doc of docs) {
   </head>
   <body class="mx-auto max-w-xl">
     <a href="#main-content" class="sr-only focus:not-sr-only">
-      Saltar al contenido principal
+      {Astro.locals.t("common.skipToContent")}
     </a>
     <slot name="header" />
     <div class="flex">
