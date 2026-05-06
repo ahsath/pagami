@@ -9,10 +9,10 @@ import TocToggle from "../../components/layout/TocToggle.vue";
 export async function getStaticPaths() {
   const docs = await getCollection("docs");
 
-  // --- Real page paths ---
-  const pagePaths = docs.map((entry) => {
+  return docs.map((entry) => {
     const [locale, ...slugParts] = entry.id.split("/");
 
+    // Find all translations for this entry using the shared key
     const translations = docs.filter(
       (d) => d.data.key === entry.data.key && d.data.key !== undefined,
     );
@@ -25,96 +25,54 @@ export async function getStaticPaths() {
     );
 
     return {
-      params: { locale, slug: slugParts.join("/") },
-      props: { entry, translationMap, redirectTo: null as string | null },
+      params: {
+        locale,
+        slug: slugParts.join("/"),
+      },
+      props: {
+        entry,
+        translationMap,
+      },
     };
   });
-
-  // --- Section-level redirect paths ---
-  // Collect all unique parent folder slugs (e.g. "componentes", "components")
-  const realSlugs = new Set(
-    pagePaths.map((p) => `${p.params.locale}/${p.params.slug}`),
-  );
-
-  const sectionRedirects: typeof pagePaths = [];
-  const seenSections = new Set<string>();
-
-  for (const doc of docs) {
-    const [locale, ...parts] = doc.id.split("/");
-    // Walk each ancestor folder (everything except the last filename segment)
-    for (let i = 1; i < parts.length; i++) {
-      const sectionSlug = parts.slice(0, i).join("/");
-      const key = `${locale}/${sectionSlug}`;
-      if (seenSections.has(key) || realSlugs.has(key)) continue;
-      seenSections.add(key);
-
-      // Find first doc under this section to redirect to
-      const firstDoc = docs.find((d) =>
-        d.id.startsWith(`${locale}/${sectionSlug}/`),
-      );
-      if (!firstDoc) continue;
-      const [, ...targetParts] = firstDoc.id.split("/");
-      sectionRedirects.push({
-        params: { locale, slug: sectionSlug },
-        props: {
-          entry: null,
-          translationMap: {},
-          redirectTo: `/${locale}/${targetParts.join("/")}`,
-        },
-      });
-    }
-  }
-
-  return [...pagePaths, ...sectionRedirects];
 }
 
-const { entry, translationMap, redirectTo } = Astro.props;
+const { entry, translationMap } = Astro.props;
+const { Content, headings } = await render(entry);
 
-// If it's a section redirect, we don't need to render content
-const rendered = entry ? await render(entry) : null;
-const toc = rendered
-  ? rendered.headings.map(({ depth, slug, text }) => ({
-      depth,
-      title: text,
-      url: "#" + slug,
-    }))
-  : [];
-
-const Content = rendered?.Content;
+const toc = headings.map(({ depth, slug, text }) => ({
+  depth,
+  title: text,
+  url: "#" + slug,
+}));
 ---
 
-{
-  redirectTo ? (
-    <meta http-equiv="refresh" content={`0;url=${redirectTo}`} />
-  ) : (
-    <DocsLayout title={entry?.data.title}>
-      <Header
-        client:load
-        slot="header"
-        locale={Astro.currentLocale}
-        translations={translationMap}
-        openMenuLabel={Astro.locals.t("common.openMenu")}
-        selectorLabel={Astro.locals.t("common.languageSelector")}
-      >
-        <TocToggle
-          client:load
-          slot="trailing"
-          label={Astro.locals.t("toc.toggle")}
-        />
-      </Header>
+<DocsLayout title={entry.data.title}>
+  <Header
+    client:load
+    slot="header"
+    locale={Astro.currentLocale}
+    translations={translationMap}
+    openMenuLabel={Astro.locals.t("common.openMenu")}
+    selectorLabel={Astro.locals.t("common.languageSelector")}
+  >
+    <TocToggle
+      client:load
+      slot="trailing"
+      label={Astro.locals.t("toc.toggle")}
+    />
+  </Header>
 
-      <article class="pane">
-        {Content && <Content />}
-      </article>
+  <article class="pane">
+    <Content />
+  </article>
 
-      <ToC
-        client:load
-        slot="toc"
-        label={Astro.locals.t("toc.onThisPage")}
-        closeLabel={Astro.locals.t("common.closeMenu")}
-      >
-        <TOC toc={toc} />
-      </ToC>
-    </DocsLayout>
-  )
-}
+  <ToC
+    client:load
+    slot="toc"
+    label={Astro.locals.t("toc.onThisPage")}
+    closeLabel={Astro.locals.t("common.closeMenu")}
+  >
+    <TOC toc={toc} />
+  </ToC>
+</DocsLayout>
