@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs");
+  const locales = ["es", "en"];
+  
+  return locales.map((locale) => {
+    // Find the first document for this locale to redirect to
+    const firstDoc = docs.find((d) => d.id.startsWith(locale + "/"));
+    let redirectUrl = `/${locale}/`;
+    
+    if (firstDoc) {
+      const slugParts = firstDoc.id.split("/").slice(1);
+      redirectUrl = `/${locale}/${slugParts.join("/")}`;
+    }
+    
+    return {
+      params: { locale },
+      props: { redirectUrl },
+    };
+  });
+}
+
+const { redirectUrl } = Astro.props;
+---
+
+<meta http-equiv="refresh" content={`0;url=${redirectUrl}`} />
