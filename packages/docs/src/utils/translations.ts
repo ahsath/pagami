@@ -24,8 +24,8 @@ export function buildTranslationMap(
         (d) => d.data.key === keyedEntry.data.key && d.data.key !== undefined,
       )
       .map((t) => {
-        const [loc] = t.id.split("/");
-        return [loc, pathExtractor(t.id)];
+        const [locale] = t.id.split("/");
+        return [locale, pathExtractor(t.id)];
       }),
   );
 }
