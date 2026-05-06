@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Header from "./Header.vue";
+import TocToggle from "./TocToggle.vue";
+import { buildTranslationMap } from "../../utils/translations";
+
+interface Props {
+  entry?: CollectionEntry<"docs">;
+  pathExtractor?: (id: string) => string;
+}
+
+const { entry, pathExtractor = (id) => "/" + id } = Astro.props;
+
+let translationMap: Record<string, string> = {};
+if (entry) {
+  const docs = await getCollection("docs");
+  translationMap = buildTranslationMap(docs, entry, pathExtractor);
+}
+---
+
+<Header
+  client:load
+  slot="header"
+  locale={Astro.currentLocale}
+  translations={translationMap}
+  openMenuLabel={Astro.locals.t("common.openMenu")}
+  selectorLabel={Astro.locals.t("common.languageSelector")}
+>
+  <TocToggle
+    client:load
+    slot="trailing"
+    label={Astro.locals.t("toc.toggle")}
+  />
+</Header>

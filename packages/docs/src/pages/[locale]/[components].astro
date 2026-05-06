@@ -1,0 +1,61 @@
+---
+import { getCollection } from "astro:content";
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import DocsHeader from "../../components/layout/DocsHeader.astro";
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs");
+
+  const componentsMap = new Map<string, CollectionEntry<"docs">[]>();
+
+  for (const doc of docs) {
+    const [locale, components] = doc.id.split("/");
+    if (!components) continue;
+    const key = `${locale}/${components}`;
+    if (!componentsMap.has(key)) componentsMap.set(key, []);
+    componentsMap.get(key)!.push(doc);
+  }
+
+  return Array.from(componentsMap.entries()).map(([key, entries]) => {
+    const [locale, components] = key.split("/");
+    return {
+      params: { locale, components },
+      props: { entries },
+    };
+  });
+}
+
+const { entries } = Astro.props;
+const { components } = Astro.params;
+const keyedEntry = entries.find((e) => e.data.key !== undefined);
+const sectionLabel = components.charAt(0).toUpperCase() + components.slice(1);
+---
+
+<DocsLayout title={sectionLabel}>
+  <DocsHeader
+    slot="header"
+    entry={keyedEntry}
+    pathExtractor={(id) => {
+      const [loc, category] = id.split("/");
+      return `/${loc}/${category}`;
+    }}
+  />
+
+  <article class="pane">
+    <h1>{sectionLabel}</h1>
+    <ul>
+      {
+        entries.map((entry) => {
+          const [, ...slugParts] = entry.id.split("/");
+          const href = `/${Astro.currentLocale}/${slugParts.join("/")}`;
+          return (
+            <li>
+              <a href={href}>{entry.data.title}</a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </article>
+</DocsLayout>
