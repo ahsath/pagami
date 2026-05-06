@@ -14,8 +14,11 @@ const { entry, pathExtractor = (id) => "/" + id } = Astro.props;
 
 let translationMap: Record<string, string> = {};
 if (entry) {
-  const docs = await getCollection("docs");
-  translationMap = buildTranslationMap(docs, entry, pathExtractor);
+  translationMap = buildTranslationMap(
+    await getCollection("docs"),
+    entry,
+    pathExtractor,
+  );
 }
 ---
 
@@ -27,9 +30,5 @@ if (entry) {
   openMenuLabel={Astro.locals.t("common.openMenu")}
   selectorLabel={Astro.locals.t("common.languageSelector")}
 >
-  <TocToggle
-    client:load
-    slot="trailing"
-    label={Astro.locals.t("toc.toggle")}
-  />
+  <TocToggle client:load slot="trailing" label={Astro.locals.t("toc.toggle")} />
 </Header>

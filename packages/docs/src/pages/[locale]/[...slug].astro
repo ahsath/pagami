@@ -28,14 +28,7 @@ const toc = headings.map(({ depth, slug, text }) => ({
 ---
 
 <DocsLayout title={entry.data.title}>
-  <DocsHeader
-    slot="header"
-    entry={entry}
-    pathExtractor={(id) => {
-      const [loc, ...rest] = id.split("/");
-      return `/${loc}/${rest.join("/")}`;
-    }}
-  />
+  <DocsHeader slot="header" entry={entry} />
 
   <article class="pane">
     <Content />
