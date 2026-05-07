@@ -1,20 +1,19 @@
 ---
 import { getCollection } from "astro:content";
+import { toCodes } from "astro:i18n";
+import { i18n } from "astro:config/client";
 
 export async function getStaticPaths() {
   const docs = await getCollection("docs");
-  const locales = ["es", "en"];
-  
+  const locales = toCodes(i18n!.locales);
+
   return locales.map((locale) => {
     // Find the first document for this locale to redirect to
     const firstDoc = docs.find((d) => d.id.startsWith(locale + "/"));
-    let redirectUrl = `/${locale}/`;
-    
-    if (firstDoc) {
-      const slugParts = firstDoc.id.split("/").slice(1);
-      redirectUrl = `/${locale}/${slugParts.join("/")}`;
-    }
-    
+    const redirectUrl = firstDoc
+      ? `/${locale}/${firstDoc.id.split("/").slice(1).join("/")}`
+      : `/${locale}/`;
+
     return {
       params: { locale },
       props: { redirectUrl },
