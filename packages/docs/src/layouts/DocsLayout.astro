@@ -1,17 +1,52 @@
 ---
+import { SEO } from "astro-seo";
 import "../assets/styles/global.css";
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import type { CollectionEntry } from "astro:content";
+import { buildTranslationMap } from "../utils/translations";
 import type { SidebarMenuGroup } from "../types/nav";
 import Sidebar from "../components/layout/Sidebar.vue";
 
 interface Props {
   title?: string;
+  description?: string;
+  entry?: CollectionEntry<"docs">;
 }
 
-const { title } = Astro.props;
+const { title, description, entry } = Astro.props;
+const { slug } = Astro.params;
 
 const locale = Astro.currentLocale ?? "es";
+
+// Build translation map for SEO
+let translationMap: Record<string, string> = {};
+if (entry) {
+  const allDocs = await getCollection("docs");
+  const pathExtractor = slug
+    ? (id: string) => "/" + id
+    : (id: string) => {
+        const [loc, category] = id.split("/");
+        return `/${loc}/${category}`;
+      };
+
+  translationMap = buildTranslationMap(allDocs, entry, pathExtractor);
+}
+
+const languageAlternates = Object.entries(translationMap).map(
+  ([loc, path]) => ({
+    href: new URL(path, Astro.site).toString(),
+    hrefLang: loc,
+  }),
+);
+
+// Add x-default fallback
+if (translationMap["es"]) {
+  languageAlternates.push({
+    href: new URL(translationMap["es"], Astro.site).toString(),
+    hrefLang: "x-default",
+  });
+}
 
 const docs = await getCollection("docs", ({ id }) => id.startsWith(locale));
 
@@ -41,7 +76,12 @@ for (const doc of docs) {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <SEO
+      title={title}
+      description={description}
+      canonical={new URL(Astro.url.pathname, Astro.site).toString()}
+      languageAlternates={languageAlternates}
+    />
   </head>
   <body class="mx-auto max-w-xl">
     <a href="#main-content" class="sr-only focus:not-sr-only">

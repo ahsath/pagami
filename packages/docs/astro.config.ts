@@ -7,6 +7,7 @@ import i18nLoader from "./src/integrations/i18n-loader";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://pagami.dev",
   trailingSlash: "never",
   i18n: {
     locales: ["es", "en"],

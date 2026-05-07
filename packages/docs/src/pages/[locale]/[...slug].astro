@@ -27,7 +27,7 @@ const toc = headings.map(({ depth, slug, text }) => ({
 }));
 ---
 
-<DocsLayout title={entry.data.title}>
+<DocsLayout title={entry.data.title} entry={entry}>
   <DocsHeader slot="header" entry={entry} />
 
   <article class="pane">

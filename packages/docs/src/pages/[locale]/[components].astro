@@ -32,7 +32,7 @@ const keyedEntry = entries.find((e) => e.data.key !== undefined);
 const sectionLabel = components.charAt(0).toUpperCase() + components.slice(1);
 ---
 
-<DocsLayout title={sectionLabel}>
+<DocsLayout title={sectionLabel} entry={keyedEntry}>
   <DocsHeader
     slot="header"
     entry={keyedEntry}
