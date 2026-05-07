@@ -36,6 +36,7 @@ const sectionLabel = components.charAt(0).toUpperCase() + components.slice(1);
   <DocsHeader
     slot="header"
     entry={keyedEntry}
+    hideToc
     pathExtractor={(id) => {
       const [loc, category] = id.split("/");
       return `/${loc}/${category}`;

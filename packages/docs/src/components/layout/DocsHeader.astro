@@ -8,9 +8,10 @@ import { buildTranslationMap } from "../../utils/translations";
 interface Props {
   entry?: CollectionEntry<"docs">;
   pathExtractor?: (id: string) => string;
+  hideToc?: boolean;
 }
 
-const { entry, pathExtractor = (id) => "/" + id } = Astro.props;
+const { entry, pathExtractor = (id) => "/" + id, hideToc = false } = Astro.props;
 
 let translationMap: Record<string, string> = {};
 if (entry) {
@@ -22,13 +23,28 @@ if (entry) {
 }
 ---
 
-<Header
-  client:load
-  slot="header"
-  locale={Astro.currentLocale}
-  translations={translationMap}
-  openMenuLabel={Astro.locals.t("common.openMenu")}
-  selectorLabel={Astro.locals.t("common.languageSelector")}
->
-  <TocToggle client:load slot="trailing" label={Astro.locals.t("toc.toggle")} />
-</Header>
+{
+  hideToc ? (
+    <Header
+      client:load
+      locale={Astro.currentLocale}
+      translations={translationMap}
+      openMenuLabel={Astro.locals.t("common.openMenu")}
+      selectorLabel={Astro.locals.t("common.languageSelector")}
+    />
+  ) : (
+    <Header
+      client:load
+      locale={Astro.currentLocale}
+      translations={translationMap}
+      openMenuLabel={Astro.locals.t("common.openMenu")}
+      selectorLabel={Astro.locals.t("common.languageSelector")}
+    >
+      <TocToggle
+        client:load
+        slot="trailing"
+        label={Astro.locals.t("toc.toggle")}
+      />
+    </Header>
+  )
+}
