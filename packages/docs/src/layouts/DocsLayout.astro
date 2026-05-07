@@ -16,13 +16,13 @@ interface Props {
 
 const { title, description, entry } = Astro.props;
 const { slug } = Astro.params;
-
 const locale = Astro.currentLocale ?? "es";
+
+const allDocs = await getCollection("docs");
 
 // Build translation map for SEO
 let translationMap: Record<string, string> = {};
 if (entry) {
-  const allDocs = await getCollection("docs");
   const pathExtractor = slug
     ? (id: string) => "/" + id
     : (id: string) => {
@@ -48,11 +48,11 @@ if (translationMap["es"]) {
   });
 }
 
-const docs = await getCollection("docs", ({ id }) => id.startsWith(locale));
-
 const sidebarMenu = new Map<string, SidebarMenuGroup>();
 
-for (const doc of docs) {
+for (const doc of allDocs) {
+  if (!doc.id.startsWith(locale)) continue;
+
   const idParts = doc.id.split("/");
   const label = idParts[1].charAt(0).toUpperCase() + idParts[1].slice(1);
   const [, ...pathRest] = idParts;
