@@ -24,6 +24,11 @@ if (entry) {
 ---
 
 {
+  /* 
+    We render two different Header versions instead of a conditional slot 
+    to prevent Astro from generating an empty <astro-slot> container.
+    This avoids Vue hydration mismatch errors when the slot is empty.
+  */
   hideToc ? (
     <Header
       client:load
