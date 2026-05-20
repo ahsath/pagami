@@ -44,7 +44,7 @@ onMounted(() => {
 
   document
     .querySelectorAll(
-      "#main-content h2[id], #main-content h3[id], #main-content h4[id], #main-content h5[id], #main-content h6[id]",
+      "#main h2[id], #main h3[id], #main h4[id], #main h5[id], #main h6[id]",
     )
     .forEach((heading) => observer!.observe(heading));
 });

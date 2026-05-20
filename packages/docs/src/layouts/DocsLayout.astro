@@ -1,9 +1,8 @@
 ---
-import { SEO } from "astro-seo";
 import "../assets/styles/global.css";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import type { CollectionEntry } from "astro:content";
+import { SEO } from "astro-seo";
 import { buildTranslationMap } from "../utils/translations";
 import type { SidebarMenuGroup } from "../types/nav";
 import Sidebar from "../components/layout/Sidebar.vue";
@@ -64,6 +63,7 @@ for (const doc of allDocs) {
   sidebarMenu.get(label)!.items.push({
     label: doc.data.title,
     slug: getRelativeLocaleUrl(locale, pathRest.join("/")),
+    pattern: doc.data.pattern,
   });
 }
 ---
@@ -77,14 +77,14 @@ for (const doc of allDocs) {
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <SEO
-      title={title}
+      title={title + " - Vuei"}
       description={description}
       canonical={new URL(Astro.url.pathname, Astro.site).toString()}
       languageAlternates={languageAlternates}
     />
   </head>
   <body class="mx-auto max-w-xl">
-    <a href="#main-content" class="sr-only focus:not-sr-only">
+    <a href="#main" class="sr-only focus:not-sr-only">
       {Astro.locals.t("common.skipToContent")}
     </a>
     <slot name="header" />
@@ -95,7 +95,7 @@ for (const doc of allDocs) {
         currentPath={Astro.url.pathname}
         closeLabel={Astro.locals.t("common.closeMenu")}
       />
-      <main id="main-content" class="grow">
+      <main id="main" class="grow min-w-0">
         <slot />
       </main>
       <slot name="toc" />

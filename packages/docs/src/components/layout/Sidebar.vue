@@ -47,14 +47,19 @@ const open = ref(true);
             </div>
           </summary>
           <a
-            v-for="{ slug, label: itemLabel } in items"
-            :key="slug"
-            :href="slug"
+            v-for="menuItem in items"
+            :key="menuItem.slug"
+            :href="menuItem.slug"
             class="list__item"
-            :aria-current="currentPath === slug ? 'page' : undefined"
+            :aria-current="currentPath === menuItem.slug ? 'page' : undefined"
           >
             <div class="list__content list__content--indent">
-              <div class="list__label-text">{{ itemLabel }}</div>
+              <div class="list__label-text">{{ menuItem.label }}</div>
+            </div>
+            <div class="list__trailing">
+              <div class="list__trailing-text font-mono">
+                {{ menuItem.pattern }}
+              </div>
             </div>
           </a>
         </details>

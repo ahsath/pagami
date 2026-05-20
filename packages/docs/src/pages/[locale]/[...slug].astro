@@ -40,6 +40,6 @@ const toc = headings.map(({ depth, slug, text }) => ({
     label={Astro.locals.t("toc.onThisPage")}
     closeLabel={Astro.locals.t("common.closeMenu")}
   >
-    <TOC toc={toc} />
+    <TOC toc={toc} depth={2} />
   </ToC>
 </DocsLayout>
