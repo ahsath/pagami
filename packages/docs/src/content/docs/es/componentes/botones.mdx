@@ -1,17 +1,63 @@
 ---
 title: Botones
-description: Una implementación ligera y solo CSS del botón de Material 3.
+description: Botón solo con CSS basado en el diseño Material 3 de Google.
 key: buttons
+pattern: CSS
 ---
+
+import StarRounded from "~icons/material-symbols/star-rounded?width=24&height=24";
 
 # Botones
 
-Esta es la documentación de botones en Español.
+Los botones permiten realizar acciones, como enviar un correo, compartir un documento o dar "me gusta". Aplica estas clases CSS a elementos `<button>` o `<a>` para integrar los estilos de Google Material 3, desde botones rellenos de énfasis alto hasta variantes de texto de énfasis bajo.
 
-## Tipos de botones
+## Referencia rápida
 
-### Texto
+{/* prettier-ignore */}
+<div class="border border-outline-variant rounded-3xl">
+| Class              | Estilos                                                                 |
+| :----------------- | :---------------------------------------------------------------------- |
+| `button--elevated` | <button class="button button--elevated"><span>Elevado</span></button>   |
+| `button--filled`   | <button class="button button--filled"><span>Relleno</span></button>     |
+| `button--tonal`    | <button class="button button--tonal"><span>Tonal</span></button>        |
+| `button--outline`  | <button class="button button--outline"><span>Delineado</span></button>  |
+| `button`           | <button class="button"><span>Texto</span></button>                      |
+</div>
 
-### Desprevenido
+<aside class="list__item items-start bg-secondary-container text-on-secondary-container">
+  <div class="list__leading">
+    <StarRounded class="list__leading-icon" />
+  </div>
+  <div class="list__content">
+    <div class="list__label-text text-on-secondary-container">Nota</div>
+    <div class="list__supporting-text whitespace-normal">
+      La clase `button` es la clase base (tipo texto por defecto) y **siempre
+      debe incluirse**, incluso si utilizas otros tipos de botones.
+    </div>
+  </div>
+</aside>
 
-### Relleno
+## [Uso](#uso)
+
+Para crear un botón, añade la clase `button` a cualquier elemento interactivo nativo. El estilo por defecto del botón es texto.
+
+{/* prettier-ignore */}
+```html
+<button class="button">Botón</button>
+<a href="#" class="button">Link</a>
+```
+
+```typescript
+const button = document.querySelector(".button");
+button.addEventListener("click", () => {
+  alert("¡Botón clickeado!");
+});
+
+import firebase from "firebase/compat/app";
+// Required for side-effects
+import "firebase/firestore";
+
+interface HasLength {
+  length: number;
+}
+```

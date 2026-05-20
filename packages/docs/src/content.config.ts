@@ -11,6 +11,8 @@ const docs = defineCollection({
     description: z.string(),
     /** @optional Unique key to link translated pages together */
     key: z.string().optional(),
+    /** @optional Pattern for the page */
+    pattern: z.string().optional(),
   }),
 });
 
