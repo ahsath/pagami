@@ -12,10 +12,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/mdx": "^5.0.6",
     "@astrojs/vue": "^6.0.1",
     "@pagami/vuei": "^0.1.54",
-    "astro": "^6.2.2",
+    "astro": "^6.3.5",
     "astro-seo": "^1.1.0",
     "astro-toc": "^0.2.0",
     "i18next": "^26.0.8",

@@ -17,3 +17,136 @@ li[data-astro-toc] > ul[data-astro-toc] {
     }
   }
 }
+
+#main {
+  @apply text-body-large text-on-surface;
+
+  .list__item {
+    @apply max-w-ex;
+
+    .list__supporting-text p {
+      @apply mb-0;
+    }
+
+    & code {
+      @apply bg-transparent text-current;
+    }
+  }
+
+  p {
+    @apply max-w-ex;
+  }
+
+  p,
+  ul,
+  ol,
+  blockquote,
+  pre,
+  details,
+  figure {
+    @apply mb-5;
+  }
+
+  h1 {
+    @apply text-display-medium font-medium mt-0 mb-6;
+  }
+
+  h2 {
+    @apply text-headline-large font-medium mt-10 mb-4;
+  }
+
+  h3 {
+    @apply text-headline-medium font-medium mt-8 mb-4;
+  }
+
+  h4 {
+    @apply text-title-large font-medium mt-6 mb-3;
+  }
+
+  h5 {
+    @apply text-title-medium font-medium mt-6 mb-2;
+  }
+
+  a:not([class]) {
+    @apply text-primary hover:text-primary-hover underline underline-offset-2 transition-colors;
+  }
+
+  ul {
+    @apply list-disc pl-6;
+  }
+
+  ol {
+    @apply list-decimal pl-6;
+  }
+
+  li {
+    @apply mb-2;
+  }
+
+  li > ul,
+  li > ol {
+    @apply mb-0 mt-2;
+  }
+
+  blockquote {
+    @apply border-l-4 border-outline pl-5 py-1 my-6 italic text-on-surface-variant;
+  }
+
+  aside {
+    @apply my-6;
+  }
+
+  code {
+    @apply bg-surface-container-highest text-on-surface px-1.5 py-0.5 rounded text-body-medium font-mono;
+  }
+
+  pre {
+    @apply bg-surface-container-highest rounded-xl p-5 my-6 overflow-x-auto;
+  }
+
+  pre code {
+    @apply bg-transparent p-0 text-on-surface;
+  }
+
+  table {
+    @apply w-full text-left border-collapse text-body-medium;
+  }
+
+  thead {
+    @apply border-b border-outline-variant;
+  }
+
+  th {
+    @apply py-4.5 px-6 font-medium text-on-surface-variant text-label-large;
+  }
+
+  tbody tr {
+    @apply border-b border-outline-variant;
+  }
+
+  tbody tr:last-child {
+    @apply border-b-0;
+  }
+
+  td {
+    @apply py-1 px-6 align-middle;
+  }
+
+  > *:first-child {
+    @apply mt-0;
+  }
+
+  > *:last-child {
+    @apply mb-0;
+  }
+}
+
+html .astro-code,
+html .astro-code span {
+  @apply bg-surface-container!;
+}
+
+html.dark .astro-code,
+html.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+}

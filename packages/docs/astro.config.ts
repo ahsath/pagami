@@ -21,4 +21,12 @@ export default defineConfig({
     plugins: [tailwindcss(), Icons({ compiler: "vue3" })],
   },
   integrations: [vue(), mdx(), i18nLoader()],
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: "light-plus",
+        dark: "dark-plus",
+      },
+    },
+  },
 });
