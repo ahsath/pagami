@@ -14,6 +14,28 @@ const toc = useSheet("toc");
 const open = ref(true);
 
 let observer: IntersectionObserver | null = null;
+let tocLinks: HTMLAnchorElement[] = [];
+
+function setActiveLink(link: HTMLAnchorElement | null) {
+  document.querySelectorAll("[data-astro-toc] a.active").forEach((a) => {
+    a.classList.remove("active");
+  });
+
+  if (link) link.classList.add("active");
+}
+
+function onTocLinkClick(this: HTMLAnchorElement, e: Event) {
+  setActiveLink(this);
+}
+
+function onHashChange() {
+  const hash = location.hash;
+  if (!hash) return;
+  const tocLink = document.querySelector(
+    `[data-astro-toc] a[href="${hash}"]`,
+  ) as HTMLAnchorElement | null;
+  setActiveLink(tocLink);
+}
 
 onMounted(() => {
   observer = new IntersectionObserver(
@@ -47,12 +69,22 @@ onMounted(() => {
       "#main h2[id], #main h3[id], #main h4[id], #main h5[id], #main h6[id]",
     )
     .forEach((heading) => observer!.observe(heading));
+
+  tocLinks = Array.from(
+    document.querySelectorAll("[data-astro-toc] a"),
+  ) as HTMLAnchorElement[];
+  tocLinks.forEach((a) => a.addEventListener("click", onTocLinkClick));
+
+  window.addEventListener("hashchange", onHashChange);
+  onHashChange();
 });
 
 onUnmounted(() => {
   if (observer) {
     observer.disconnect();
   }
+  tocLinks.forEach((a) => a.removeEventListener("click", onTocLinkClick));
+  window.removeEventListener("hashchange", onHashChange);
 });
 </script>
 

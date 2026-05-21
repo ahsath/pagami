@@ -5,24 +5,32 @@ key: buttons
 pattern: CSS
 ---
 
-import StarRounded from "~icons/material-symbols/star-rounded?width=24&height=24";
+import MorphingIndicator from "../../../../components/demos/button/MorphingIndicator.astro";
+import StarRounded from "~icons/material-symbols/star-rounded";
+import StarsRounded from "~icons/material-symbols/stars-rounded";
+import SendRounded from "~icons/material-symbols/send-rounded";
+import AccessibilityNewRounded from "~icons/material-symbols/accessibility-new-rounded";
 
 # Botones
 
-Los botones permiten realizar acciones, como enviar un correo, compartir un documento o dar "me gusta". Aplica estas clases CSS a elementos `<button>` o `<a>` para integrar los estilos de Google Material 3, desde botones rellenos de énfasis alto hasta variantes de texto de énfasis bajo.
+Los botones son componentes básicos que permiten al usuario realizar acciones concretas. Hay cinco variantes (relleno, tonal, elevado, delineado y texto) y dos tamaños; añade la clase `button` a elementos interactivos nativos para aplicar los estilos de botones.
 
-## Referencia rápida
+## [Uso](#uso)
+
+Para crear un botón, añade la clase `button` a cualquier elemento interactivo nativo. El tipo por defecto del botón es texto.
+
+<div class="preview-dots">
+  <button class="button">Botón</button>
+  <a href="#" class="button">
+    <span>Link</span>
+  </a>
+</div>
 
 {/* prettier-ignore */}
-<div class="border border-outline-variant rounded-3xl">
-| Class              | Estilos                                                                 |
-| :----------------- | :---------------------------------------------------------------------- |
-| `button--elevated` | <button class="button button--elevated"><span>Elevado</span></button>   |
-| `button--filled`   | <button class="button button--filled"><span>Relleno</span></button>     |
-| `button--tonal`    | <button class="button button--tonal"><span>Tonal</span></button>        |
-| `button--outline`  | <button class="button button--outline"><span>Delineado</span></button>  |
-| `button`           | <button class="button"><span>Texto</span></button>                      |
-</div>
+```html
+<button class="button">Botón</button>
+<a href="#" class="button">Link</a>
+```
 
 <aside class="list__item items-start bg-secondary-container text-on-secondary-container">
   <div class="list__leading">
@@ -37,27 +45,198 @@ Los botones permiten realizar acciones, como enviar un correo, compartir un docu
   </div>
 </aside>
 
-## [Uso](#uso)
+## [Tipos](#tipos)
 
-Para crear un botón, añade la clase `button` a cualquier elemento interactivo nativo. El estilo por defecto del botón es texto.
+<div class="preview-dots">
+  <button class="button button--elevated">Elevado</button>
+  <button class="button button--filled">Relleno</button>
+  <button class="button button--tonal">Tonal</button>
+  <button class="button button--outline">Delineado</button>
+  <button class="button">Texto</button>
+</div>
+
+```html
+<button class="button button--elevated">Elevado</button>
+<button class="button button--filled">Relleno</button>
+<button class="button button--tonal">Tonal</button>
+<button class="button button--outline">Delineado</button>
+<button class="button">Texto</button>
+```
+
+## [Tamaños](#tamaños)
+
+Solo hay 2 tamaños disponibles.
+
+<div class="preview-dots">
+  <button class="button button--filled">Pequeño</button>
+  <button class="button button--filled button--size-m">Mediano</button>
+</div>
+
+```html
+<button class="button button--filled">Pequeño</button>
+<button class="button button--filled button--size-m">Mediano</button>
+```
+
+## [Iconos](#iconos)
+
+Los iconos deben colocarse en la parte delantera, antes del texto.
+
+<div class="preview-dots">
+  <button class="button button--filled">
+    <SendRounded />
+    <span>Enviar</span>
+  </button>
+</div>
+
+```html
+<button class="button button--filled">
+  <svg aria-hidden="true"><!-- ... --></svg>
+  Enviar
+</button>
+```
+
+## [Deshabilitado](#deshabilitado)
+
+Para deshabilitar un botón, añade el atributo `disabled` al elemento.
+
+<div class="preview-dots">
+  <button class="button" disabled>
+    <span>Deshabilitado</span>
+  </button>
+</div>
+
+```html
+<button class="button" disabled>Deshabilitado</button>
+```
+
+<aside class="list__item items-start bg-secondary-container text-on-secondary-container">
+  <div class="list__leading">
+    <StarRounded class="list__leading-icon" />
+  </div>
+  <div class="list__content">
+    <div class="list__label-text text-on-secondary-container">Nota</div>
+    <div class="list__supporting-text whitespace-normal">
+      Todavía no existen estilos para deshabilitar visualmente los elementos `<a>`.
+    </div>
+  </div>
+</aside>
+
+## [Indicadores de carga](#indicadores-de-carga)
+
+Si quieres ocultar el icono mientras se muestra el indicador de carga, asegurate de aplicar el atributo `aria-busy` al botón y la clase `button__icon` al icono (`svg` o cualquier otro). De lo contrario, ambos son opcionales, aunque siempre se recomienda aplicar el atributo `aria-busy` para garantizar la accesibilidad.
+
+### [Transformación de formas (Morphing)](#transformación-de-formas)
+
+Disponible como componente, este indicador alterna entre 7 formas `svg` diferentes; es extremadamente pesado, no lo usaría si me importara el peso final de mi aplicación.
+
+<div class="preview-dots">
+  <MorphingIndicator />
+</div>
+
+```vue
+<script lang="ts" setup>
+import { ref } from "vue";
+import { LoadingIndicator } from "@pagami/vuei";
+
+const busy = ref(false);
+</script>
+
+<template>
+  <button
+    class="button button--filled button--size-m"
+    :aria-busy="busy"
+    @click="busy = true"
+  >
+    <LoadingIndicator aria-hidden="true" />
+    <!-- Icono (opcional) -->
+    <svg class="button__icon" aria-hidden="true"><!-- ... --></svg>
+    {{ busy ? "Cargando" : "Haz click en mi!" }}
+  </button>
+</template>
+```
+
+<aside class="list__item items-start bg-secondary-container text-on-secondary-container">
+  <div class="list__leading">
+    <StarRounded class="list__leading-icon" />
+  </div>
+  <div class="list__content">
+    <div class="list__label-text text-on-secondary-container">Nota</div>
+    <div class="list__supporting-text whitespace-normal">
+      El componente `<LoadingIndicator>` no soporta renderizado en el servidor (SSR), solo puede ser utilizado en el cliente.
+    </div>
+  </div>
+</aside>
+
+#### [Propiedades](#propiedades)
+
+`<LoadingIndicator>`
 
 {/* prettier-ignore */}
+<div class="border border-outline-variant rounded-3xl overflow-x-scroll">
+| Propiedad   | Tipo                    | Por defecto | Descripción                                     |
+| :---------- | :---------------------- | :---------- | :---------------------------------------------- |
+| `iconClass` | `string` \| `undefined` | `undefined` | Clase CSS aplicada al elemento `svg` subyacente |
+</div>
+
+### [Animación de giro](#animación-de-giro)
+
+Como alternativa, también puedes usar una animación de giro ligera solo con CSS, como `animate-spin` de tailwindcss:
+
+<div class="preview-dots">
+  <button class="button button--filled" aria-busy="true">
+    <svg
+      class="animate-spin"
+      fill="none"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <circle
+        class="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        stroke-width="4"
+      ></circle>
+      <path
+        class="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      ></path>
+    </svg>
+    <span>Cargando</span>
+  </button>
+</div>
+
 ```html
-<button class="button">Botón</button>
-<a href="#" class="button">Link</a>
+<button class="button button--filled" aria-busy="true">
+  <svg class="animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+    <!-- ... -->
+  </svg>
+  Cargando
+</button>
 ```
 
-```typescript
-const button = document.querySelector(".button");
-button.addEventListener("click", () => {
-  alert("¡Botón clickeado!");
-});
+## [Accesibilidad](#accesibilidad)
 
-import firebase from "firebase/compat/app";
-// Required for side-effects
-import "firebase/firestore";
-
-interface HasLength {
-  length: number;
-}
-```
+<aside class="list__item items-start bg-tertiary text-on-tertiary">
+  <div class="list__leading">
+    <AccessibilityNewRounded class="list__leading-icon" />
+  </div>
+  <div class="list__content">
+    <div class="list__label-text text-on-tertiary mb-2">Consejos</div>
+    <div class="list__supporting-text whitespace-normal">
+      Evita deshabilitar botones con el atributo `aria-busy`, los navegadores
+      eliminan los botones deshabilitados del orden de tabulación del teclado y
+      del árbol de accesibilidad, es mejor usar `aria-disabled="true"` (por el
+      momento no hay estilos para este atributo) y evita la acción
+      predeterminada con `preventDefault`.
+      <br />
+      Utiliza el atributo `aria-hidden="true"` para ocultar los iconos de los
+      lectores de pantalla, a menos que el icono transmita información
+      importante que no se encuentra en el texto del botón. En ese caso,
+      asegúrate de proporcionar una descripción accesible utilizando
+      `aria-label` o `aria-labelledby` en el botón.
+    </div>
+  </div>
+</aside>

@@ -1,0 +1,20 @@
+---
+import MorphingIndicatorButton from "./MorphingIndicatorButton.vue";
+import { LoadingIndicator } from "@pagami/vuei";
+
+const ariaLabels: Record<string, { loading: string }> = {
+  es: { loading: "Cargando" },
+  en: { loading: "Loading" },
+};
+
+const locale = Astro.currentLocale ?? "es";
+---
+
+<LoadingIndicator
+  client:only="vue"
+  class="text-primary"
+  role="status"
+  aria-live="polite"
+  aria-label={ariaLabels[locale].loading}
+/>
+<MorphingIndicatorButton client:only="vue" />

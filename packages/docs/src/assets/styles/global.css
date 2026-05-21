@@ -2,6 +2,11 @@
 @import "@pagami/vuei/styles/vuei.no-preflight.css";
 @import "@pagami/vuei/styles/utilities.css";
 
+/* header height variable used to offset anchor jumps for sticky header */
+:root {
+  --site-header-h: 4rem; /* matches .app-bar h-16 */
+}
+
 /* ─── Table of Contents – nested indentation ─────────────────────────────── */
 
 li[data-astro-toc] > ul[data-astro-toc] {
@@ -17,6 +22,8 @@ li[data-astro-toc] > ul[data-astro-toc] {
     }
   }
 }
+
+/* ─── Main content styles ──────────────────────────────────────────────── */
 
 #main {
   @apply text-body-large text-on-surface;
@@ -53,22 +60,22 @@ li[data-astro-toc] > ul[data-astro-toc] {
 
   h2 {
     @apply text-headline-large font-medium mt-10 mb-4;
+    scroll-margin-top: var(--site-header-h);
   }
 
   h3 {
     @apply text-headline-medium font-medium mt-8 mb-4;
+    scroll-margin-top: calc(var(--site-header-h) + 0.5rem);
   }
 
   h4 {
     @apply text-title-large font-medium mt-6 mb-3;
+    scroll-margin-top: calc(var(--site-header-h) + 0.5rem);
   }
 
   h5 {
     @apply text-title-medium font-medium mt-6 mb-2;
-  }
-
-  a:not([class]) {
-    @apply text-primary hover:text-primary-hover underline underline-offset-2 transition-colors;
+    scroll-margin-top: calc(var(--site-header-h) + 0.5rem);
   }
 
   ul {
@@ -93,7 +100,7 @@ li[data-astro-toc] > ul[data-astro-toc] {
   }
 
   aside {
-    @apply my-6;
+    @apply my-6 py-4;
   }
 
   code {
@@ -101,7 +108,7 @@ li[data-astro-toc] > ul[data-astro-toc] {
   }
 
   pre {
-    @apply bg-surface-container-highest rounded-xl p-5 my-6 overflow-x-auto;
+    @apply bg-surface-container-highest rounded-2xl p-5 my-6 overflow-x-auto;
   }
 
   pre code {
@@ -129,7 +136,7 @@ li[data-astro-toc] > ul[data-astro-toc] {
   }
 
   td {
-    @apply py-1 px-6 align-middle;
+    @apply py-4.5 px-6 align-middle;
   }
 
   > *:first-child {
@@ -139,7 +146,26 @@ li[data-astro-toc] > ul[data-astro-toc] {
   > *:last-child {
     @apply mb-0;
   }
+
+  /* preview dot pattern for live examples */
+  .preview-dots {
+    @apply flex flex-wrap gap-6 items-center justify-center relative py-12 px-6 bg-surface-container-low rounded-2xl;
+
+    &::before {
+      content: "";
+      @apply absolute inset-0 rounded-2xl;
+      background-image: radial-gradient(
+        var(--md-sys-color-on-surface) 0.6px,
+        transparent 0.6px
+      );
+      background-size: 12px 12px;
+      opacity: 0.2;
+      pointer-events: none;
+    }
+  }
 }
+
+/* ─── Code block overrides for Shiki themes ──────────────────────────────── */
 
 html .astro-code,
 html .astro-code span {
