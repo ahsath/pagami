@@ -8,6 +8,10 @@
   --md-ref-palette-secondary40: oklch(0.4834 0.0709 263.99);
   --md-ref-palette-secondary80: oklch(0.8279 0.0712 267.17);
   --md-ref-palette-secondary90: oklch(0.8547 0.0697 266.07);
+  --md-ref-palette-tertiary20: oklch(0.3178 0.0566 322.85);
+  --md-ref-palette-tertiary40: oklch(0.4084 0.163 315.51);
+  --md-ref-palette-tertiary80: oklch(0.8353 0.0607 325.22);
+  --md-ref-palette-tertiary100: #fff;
   --md-ref-palette-neutral6: oklch(0.1879 0.01465 272.464);
   --md-ref-palette-neutral10: oklch(0.2232 0.01401 272.683);
   --md-ref-palette-neutral12: oklch(0.243 0.0123 264.31);
@@ -67,6 +71,8 @@
     from var(--md-ref-palette-secondary30) l c h /
       var(--md-sys-state-pressed-state-layer-opacity)
   );
+  --md-sys-color-tertiary: var(--md-ref-palette-tertiary40);
+  --md-sys-color-on-tertiary: var(--md-ref-palette-tertiary100);
   --md-sys-color-surface: var(--md-ref-palette-neutral98);
   --md-sys-color-surface-container-highest: var(--md-ref-palette-neutral90);
   --md-sys-color-on-surface: var(--md-ref-palette-neutral10);

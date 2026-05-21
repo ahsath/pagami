@@ -104,7 +104,7 @@ watch(
 </script>
 
 <template>
-  <span class="loading-indicator" role="progressbar">
+  <span class="loading-indicator">
     <LazyMotion :features="domAnimation">
       <svg
         viewBox="0 0 38 38"

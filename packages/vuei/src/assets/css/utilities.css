@@ -150,6 +150,7 @@
   /* Colors */
   --color-primary: var(--md-sys-color-primary);
   --color-secondary: var(--md-sys-color-secondary);
+  --color-tertiary: var(--md-sys-color-tertiary);
   --color-primary-hover: var(--md-sys-color-primary-hover);
   --color-primary-focused: var(--md-sys-color-primary-focused);
   --color-primary-pressed: var(--md-sys-color-primary-pressed);
@@ -168,6 +169,7 @@
   --color-on-secondary-container-pressed: var(
     --md-sys-color-on-secondary-container-pressed
   );
+  --color-on-tertiary: var(--md-sys-color-on-tertiary);
   --color-surface: var(--md-sys-color-surface);
   --color-surface-container-highest: var(
     --md-sys-color-surface-container-highest

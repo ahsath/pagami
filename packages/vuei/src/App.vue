@@ -119,7 +119,7 @@ const isPasswordVisible = ref(false);
               <img v-show="selectModel === 'VE'" src="/venezuela.svg" alt="" />
             </template>
           </SelectSimple>
-          <button class="button"><span>Text</span></button>
+          <button class="button">Text</button>
           <button
             aria-label="Configurar"
             :aria-expanded="rightSheet?.isOpen ? 'true' : 'false'"
@@ -190,14 +190,12 @@ const isPasswordVisible = ref(false);
             >
               <LoadingIndicator aria-label="Cargando" />
               <StarsRounded />
-              <span>Filled with loading indicator</span>
+              Filled with loading indicator
             </button>
             <button class="button button--filled">
               <span>Filled</span>
             </button>
-            <button class="button button--tonal">
-              <span>Tonal</span>
-            </button>
+            <button class="button button--tonal">Tonal</button>
             <button class="button button--outline">
               <span>Outline</span>
             </button>

@@ -43,6 +43,8 @@
     from var(--md-ref-palette-secondary90) l c h /
       var(--md-sys-state-pressed-state-layer-opacity)
   );
+  --md-sys-color-tertiary: var(--md-ref-palette-tertiary80);
+  --md-sys-color-on-tertiary: var(--md-ref-palette-tertiary20);
   --md-sys-color-surface: var(--md-ref-palette-neutral6);
   --md-sys-color-surface-container-highest: var(--md-ref-palette-neutral22);
   --md-sys-color-on-surface: var(--md-ref-palette-neutral90);
