@@ -99,7 +99,7 @@ onUnmounted(() => {
   >
     <nav class="sheet__container" aria-labelledby="toc-heading">
       <div class="sheet__header">
-        <div id="toc-heading" class="text-title-large">{{ label }}</div>
+        <h2 id="toc-heading" class="text-title-large">{{ label }}</h2>
         <button
           class="button icon-button lg:hidden"
           type="button"

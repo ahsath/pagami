@@ -7,7 +7,7 @@ const ariaLabels: Record<string, { loading: string }> = {
   en: { loading: "Loading" },
 };
 
-const locale = Astro.currentLocale ?? "es";
+const locale: "es" | "en" = Astro.currentLocale === "en" ? "en" : "es";
 ---
 
 <LoadingIndicator
@@ -17,4 +17,4 @@ const locale = Astro.currentLocale ?? "es";
   aria-live="polite"
   aria-label={ariaLabels[locale].loading}
 />
-<MorphingIndicatorButton !lang={locale} client:only="vue" />
+<MorphingIndicatorButton lang={locale} client:only="vue" />

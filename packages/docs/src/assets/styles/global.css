@@ -7,6 +7,16 @@
   --site-header-h: 4rem; /* matches .app-bar h-16 */
 }
 
+/* ─── Skip link styles ──────────────────────────────────────────────── */
+.skip-link {
+  @apply sr-only z-50;
+
+  &:focus {
+    @apply w-auto h-auto;
+    clip-path: none;
+  }
+}
+
 /* ─── Table of Contents – nested indentation ─────────────────────────────── */
 
 li[data-astro-toc] > ul[data-astro-toc] {
@@ -26,7 +36,7 @@ li[data-astro-toc] > ul[data-astro-toc] {
 /* ─── Main content styles ──────────────────────────────────────────────── */
 
 #main {
-  @apply text-body-large text-on-surface;
+  @apply text-body-large text-on-surface scroll-mt-16;
 
   .list__item {
     @apply max-w-ex;
@@ -60,28 +70,31 @@ li[data-astro-toc] > ul[data-astro-toc] {
     @apply mb-5;
   }
 
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply scroll-mt-16.5;
+  }
+
   h1 {
     @apply text-display-medium font-medium mt-0 mb-6;
   }
 
   h2 {
     @apply text-headline-large font-medium mt-10 mb-4;
-    scroll-margin-top: var(--site-header-h);
   }
 
   h3 {
     @apply text-headline-medium font-medium mt-8 mb-4;
-    scroll-margin-top: calc(var(--site-header-h) + 0.5rem);
   }
 
   h4 {
     @apply text-title-large font-medium mt-6 mb-3;
-    scroll-margin-top: calc(var(--site-header-h) + 0.5rem);
   }
 
   h5 {
     @apply text-title-medium font-medium mt-6 mb-2;
-    scroll-margin-top: calc(var(--site-header-h) + 0.5rem);
   }
 
   ul {
