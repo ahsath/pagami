@@ -21,7 +21,7 @@ To create a button, add the `button` class to any native interactive element. Th
 
 <div class="preview-dots">
   <button class="button">Button</button>
-  <a href="#" class="button">
+  <a href="/en/components/buttons" class="button">
     <span>Link</span>
   </a>
 </div>
@@ -29,7 +29,7 @@ To create a button, add the `button` class to any native interactive element. Th
 {/* prettier-ignore */}
 ```html
 <button class="button">Button</button>
-<a href="#" class="button">Link</a>
+<a href="/en/components/buttons" class="button">Link</a>
 ```
 
 <aside class="list__item items-start bg-secondary-container text-on-secondary-container">
@@ -226,15 +226,18 @@ Alternatively, you can also use a lightweight CSS-only spin animation like tailw
   <div class="list__content">
     <div class="list__label-text text-on-tertiary mb-2">Tips</div>
     <div class="list__supporting-text whitespace-normal">
-      Avoid disabling buttons with `aria-busy`; browsers remove disabled buttons
-      from keyboard tab order and accessibility tree, so it is better to use
-      `aria-disabled="true"` (there are no styles for this attribute yet) and
-      prevent the default action with `preventDefault`.
-      <br />
-      Use `aria-hidden="true"` to hide icons from screen readers unless the icon
-      conveys important information not present in the button text. If it does,
-      provide an accessible description using `aria-label` or `aria-labelledby`
-      on the button.
+      <div>
+        Avoid disabling buttons with `aria-busy`; browsers remove disabled
+        buttons from keyboard tab order and accessibility tree, so it is better
+        to use `aria-disabled="true"` (there are no styles for this attribute
+        yet) and prevent the default action with `preventDefault`.
+      </div>
+      <div>
+        Use `aria-hidden="true"` to hide icons from screen readers unless the
+        icon conveys important information not present in the button text. If it
+        does, provide an accessible description using `aria-label` or
+        `aria-labelledby` on the button.
+      </div>
     </div>
   </div>
 </aside>

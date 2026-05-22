@@ -21,7 +21,7 @@ Para crear un botón, añade la clase `button` a cualquier elemento interactivo 
 
 <div class="preview-dots">
   <button class="button">Botón</button>
-  <a href="#" class="button">
+  <a href="/es/componentes/botones" class="button">
     <span>Link</span>
   </a>
 </div>
@@ -29,7 +29,7 @@ Para crear un botón, añade la clase `button` a cualquier elemento interactivo 
 {/* prettier-ignore */}
 ```html
 <button class="button">Botón</button>
-<a href="#" class="button">Link</a>
+<a href="/es/componentes/botones" class="button">Link</a>
 ```
 
 <aside class="list__item items-start bg-secondary-container text-on-secondary-container">
@@ -226,17 +226,20 @@ Como alternativa, también puedes usar una animación de giro ligera solo con CS
   <div class="list__content">
     <div class="list__label-text text-on-tertiary mb-2">Consejos</div>
     <div class="list__supporting-text whitespace-normal">
-      Evita deshabilitar botones con el atributo `aria-busy`, los navegadores
-      eliminan los botones deshabilitados del orden de tabulación del teclado y
-      del árbol de accesibilidad, es mejor usar `aria-disabled="true"` (por el
-      momento no hay estilos para este atributo) y evita la acción
-      predeterminada con `preventDefault`.
-      <br />
-      Utiliza el atributo `aria-hidden="true"` para ocultar los iconos de los
-      lectores de pantalla, a menos que el icono transmita información
-      importante que no se encuentra en el texto del botón. En ese caso,
-      asegúrate de proporcionar una descripción accesible utilizando
-      `aria-label` o `aria-labelledby` en el botón.
+      <div>
+        Evita deshabilitar botones con el atributo `aria-busy`, los navegadores
+        eliminan los botones deshabilitados del orden de tabulación del teclado
+        y del árbol de accesibilidad, es mejor usar `aria-disabled="true"` (por
+        el momento no hay estilos para este atributo) y evita la acción
+        predeterminada con `preventDefault`.
+      </div>
+      <div>
+        Utiliza el atributo `aria-hidden="true"` para ocultar los iconos de los
+        lectores de pantalla, a menos que el icono transmita información
+        importante que no se encuentra en el texto del botón. En ese caso,
+        asegúrate de proporcionar una descripción accesible utilizando
+        `aria-label` o `aria-labelledby` en el botón.
+      </div>
     </div>
   </div>
 </aside>

@@ -31,8 +31,14 @@ li[data-astro-toc] > ul[data-astro-toc] {
   .list__item {
     @apply max-w-ex;
 
-    .list__supporting-text p {
-      @apply mb-0;
+    .list__supporting-text p,
+    .list__supporting-text > div {
+      @apply mt-0 mb-0;
+    }
+
+    .list__supporting-text p + p,
+    .list__supporting-text > div + div {
+      @apply mt-3;
     }
 
     & code {
