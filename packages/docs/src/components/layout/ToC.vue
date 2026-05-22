@@ -89,12 +89,19 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <Sheet is="aside" id="toc" v-model:open="open" side="right" inset>
+  <Sheet
+    is="aside"
+    id="toc"
+    v-model:open="open"
+    side="right"
+    modal-breakpoint="lg"
+    inset
+  >
     <nav class="sheet__container" aria-labelledby="toc-heading">
       <div class="sheet__header">
         <div id="toc-heading" class="text-title-large">{{ label }}</div>
         <button
-          class="button icon-button ex:hidden"
+          class="button icon-button lg:hidden"
           type="button"
           :aria-label="closeLabel"
           @click="toc?.toggle"
