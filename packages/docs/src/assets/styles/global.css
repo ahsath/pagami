@@ -2,11 +2,6 @@
 @import "@pagami/vuei/styles/vuei.no-preflight.css";
 @import "@pagami/vuei/styles/utilities.css";
 
-/* header height variable used to offset anchor jumps for sticky header */
-:root {
-  --site-header-h: 4rem; /* matches .app-bar h-16 */
-}
-
 /* ─── Skip link styles ──────────────────────────────────────────────── */
 .skip-link {
   @apply sr-only z-50;
