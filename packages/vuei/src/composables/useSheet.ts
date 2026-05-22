@@ -85,19 +85,13 @@ export function createSheet(id: string, options: UseSheetOptions) {
 
   watch(isNarrow, (newNarrow) => {
     if (newNarrow) {
-      for (const sheetId in sheets) {
-        // Close all sheets when the screen size changes from wide to narrow
-        if (sheets[sheetId].isOpen) {
-          sheets[sheetId].toggle();
-          openSheetIds.value.delete(sheetId);
-        }
+      if (isOpen.value && sheets[id].isModal) {
+        // Close this sheet when its breakpoint moves it into modal mode.
+        isOpen.value = false;
       }
     } else {
-      for (const sheetId in sheets) {
-        // Open sheets that were initially open when the screen size changes from wide to narrow
-        if (sheets[sheetId].initiallyOpen && !sheets[sheetId].isOpen) {
-          sheets[sheetId].toggle();
-        }
+      if (sheets[id].initiallyOpen && !isOpen.value) {
+        sheets[id].toggle();
       }
     }
   });
