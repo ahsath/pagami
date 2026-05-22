@@ -17,4 +17,4 @@ const locale = Astro.currentLocale ?? "es";
   aria-live="polite"
   aria-label={ariaLabels[locale].loading}
 />
-<MorphingIndicatorButton client:only="vue" />
+<MorphingIndicatorButton !lang={locale} client:only="vue" />

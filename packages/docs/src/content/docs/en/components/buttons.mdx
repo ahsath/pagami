@@ -1,11 +1,240 @@
 ---
 title: Buttons
-description: A lightweight, CSS-only implementation of the Material 3 Button.
+description: A CSS-only button implementation inspired by Google Material 3.
 key: buttons
 pattern: CSS
 ---
 
+import MorphingIndicator from "../../../../components/demos/button/MorphingIndicator.astro";
+import StarRounded from "~icons/material-symbols/star-rounded";
+import StarsRounded from "~icons/material-symbols/stars-rounded";
+import SendRounded from "~icons/material-symbols/send-rounded";
+import AccessibilityNewRounded from "~icons/material-symbols/accessibility-new-rounded";
+
 # Buttons
 
-This is the buttons documentation in English.
-URL: [link](/es/componentes/botones)
+Buttons are a CSS-only implementation that enable users to perform actions. There are five variants (filled, tonal, elevated, outlined, and text) and two sizes; add the `button` class to native interactive elements to apply the button styles.
+
+## [Usage](#usage)
+
+To create a button, add the `button` class to any native interactive element. The default button style is text.
+
+<div class="preview-dots">
+  <button class="button">Button</button>
+  <a href="#" class="button">
+    <span>Link</span>
+  </a>
+</div>
+
+{/* prettier-ignore */}
+```html
+<button class="button">Button</button>
+<a href="#" class="button">Link</a>
+```
+
+<aside class="list__item items-start bg-secondary-container text-on-secondary-container">
+  <div class="list__leading">
+    <StarRounded class="list__leading-icon" />
+  </div>
+  <div class="list__content">
+    <div class="list__label-text text-on-secondary-container">Note</div>
+    <div class="list__supporting-text whitespace-normal">
+      The `button` class is the base class (defaults to text style) and **must
+      always be included**, even when using other button types.
+    </div>
+  </div>
+</aside>
+
+## [Variants](#variants)
+
+<div class="preview-dots">
+  <button class="button button--elevated">Elevated</button>
+  <button class="button button--filled">Filled</button>
+  <button class="button button--tonal">Tonal</button>
+  <button class="button button--outline">Outlined</button>
+  <button class="button">Text</button>
+</div>
+
+```html
+<button class="button button--elevated">Elevated</button>
+<button class="button button--filled">Filled</button>
+<button class="button button--tonal">Tonal</button>
+<button class="button button--outline">Outlined</button>
+<button class="button">Text</button>
+```
+
+## [Sizes](#sizes)
+
+There are only 2 sizes available.
+
+<div class="preview-dots">
+  <button class="button button--filled">Small</button>
+  <button class="button button--filled button--size-m">Medium</button>
+</div>
+
+```html
+<button class="button button--filled">Small</button>
+<button class="button button--filled button--size-m">Medium</button>
+```
+
+## [Icons](#icons)
+
+Icons should be placed at the start, before the button text.
+
+<div class="preview-dots">
+  <button class="button button--filled">
+    <SendRounded />
+    <span>Send</span>
+  </button>
+</div>
+
+```html
+<button class="button button--filled">
+  <svg aria-hidden="true"><!-- ... --></svg>
+  Send
+</button>
+```
+
+## [Disabled](#disabled)
+
+To disable a button, add the `disabled` attribute to the element.
+
+<div class="preview-dots">
+  <button class="button" disabled>
+    <span>Disabled</span>
+  </button>
+</div>
+
+```html
+<button class="button" disabled>Disabled</button>
+```
+
+<aside class="list__item items-start bg-secondary-container text-on-secondary-container">
+  <div class="list__leading">
+    <StarRounded class="list__leading-icon" />
+  </div>
+  <div class="list__content">
+    <div class="list__label-text text-on-secondary-container">Note</div>
+    <div class="list__supporting-text whitespace-normal">
+      There are no available styles to visually disable `<a>` elements yet.
+    </div>
+  </div>
+</aside>
+
+## [Loading indicators](#loading-indicators)
+
+If you want to hide the icon while the loading indicator is visible, make sure to apply the `aria-busy` attribute to the button and the `button__icon` class to the icon (`svg` or whatever). Otherwise both are optional, though `aria-busy` is still recommended for accessibility.
+
+### [Morphing indicator](#morphing-indicator)
+
+Available as a component, this indicator alternates between 7 different `svg` shapes; it is heavy as fuck, so I would not use it if bundle size matters for your app.
+
+<div class="preview-dots">
+  <MorphingIndicator />
+</div>
+
+```vue
+<script lang="ts" setup>
+import { ref } from "vue";
+import { LoadingIndicator } from "@pagami/vuei";
+
+const busy = ref(false);
+</script>
+
+<template>
+  <button
+    class="button button--filled button--size-m"
+    :aria-busy="busy"
+    @click="busy = true"
+  >
+    <LoadingIndicator aria-hidden="true" />
+    <!-- Icon (optional) -->
+    <svg class="button__icon" aria-hidden="true"><!-- ... --></svg>
+    {{ busy ? "Loading" : "Click me!" }}
+  </button>
+</template>
+```
+
+<aside class="list__item items-start bg-secondary-container text-on-secondary-container">
+  <div class="list__leading">
+    <StarRounded class="list__leading-icon" />
+  </div>
+  <div class="list__content">
+    <div class="list__label-text text-on-secondary-container">Note</div>
+    <div class="list__supporting-text whitespace-normal">
+      The `<LoadingIndicator>` component does not support SSR; it can only be used on the client.
+    </div>
+  </div>
+</aside>
+
+#### [Props](#props)
+
+`<LoadingIndicator>`
+
+{/* prettier-ignore */}
+<div class="border border-outline-variant rounded-3xl overflow-x-scroll">
+| Prop        | Type                    | Default      | Description                                        |
+| :---------- | :---------------------- | :---------- | :---------------------------------------------- |
+| `iconClass` | `string` \| `undefined` | `undefined` | CSS class applied to the underlying `svg` element |
+</div>
+
+### [Spin animation](#spin-animation)
+
+Alternatively, you can also use a lightweight CSS-only spin animation like tailwindcss's `animate-spin`:
+
+<div class="preview-dots">
+  <button class="button button--filled" aria-busy="true">
+    <svg
+      class="animate-spin"
+      fill="none"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <circle
+        class="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        stroke-width="4"
+      ></circle>
+      <path
+        class="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      ></path>
+    </svg>
+    <span>Loading</span>
+  </button>
+</div>
+
+```html
+<button class="button button--filled" aria-busy="true">
+  <svg class="animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+    <!-- ... -->
+  </svg>
+  Loading
+</button>
+```
+
+## [Accessibility](#accessibility)
+
+<aside class="list__item items-start bg-tertiary text-on-tertiary">
+  <div class="list__leading">
+    <AccessibilityNewRounded class="list__leading-icon" />
+  </div>
+  <div class="list__content">
+    <div class="list__label-text text-on-tertiary mb-2">Tips</div>
+    <div class="list__supporting-text whitespace-normal">
+      Avoid disabling buttons with `aria-busy`; browsers remove disabled buttons
+      from keyboard tab order and accessibility tree, so it is better to use
+      `aria-disabled="true"` (there are no styles for this attribute yet) and
+      prevent the default action with `preventDefault`.
+      <br />
+      Use `aria-hidden="true"` to hide icons from screen readers unless the icon
+      conveys important information not present in the button text. If it does,
+      provide an accessible description using `aria-label` or `aria-labelledby`
+      on the button.
+    </div>
+  </div>
+</aside>
