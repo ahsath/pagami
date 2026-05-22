@@ -153,14 +153,12 @@ li[data-astro-toc] > ul[data-astro-toc] {
 
     &::before {
       content: "";
-      @apply absolute inset-0 rounded-2xl;
+      @apply absolute inset-0 rounded-2xl pointer-events-none opacity-[0.2];
       background-image: radial-gradient(
         var(--md-sys-color-on-surface) 0.6px,
         transparent 0.6px
       );
       background-size: 12px 12px;
-      opacity: 0.2;
-      pointer-events: none;
     }
   }
 }
