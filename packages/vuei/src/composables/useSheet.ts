@@ -117,12 +117,12 @@ if (typeof window !== "undefined") {
       document.body.style.overflow = "hidden";
       document.body.style.paddingRight = `${scrollbarWidth}px`;
     } else {
-      // setTimeout(() => {
-      if (!hasOpenModals.value) {
-        document.body.style.overflow = "";
-        document.body.style.paddingRight = "";
-      }
-      // }, 300);
+      setTimeout(() => {
+        if (!hasOpenModals.value) {
+          document.body.style.overflow = "";
+          document.body.style.paddingRight = "";
+        }
+      }, 300);
     }
   });
 }

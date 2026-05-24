@@ -1,5 +1,5 @@
 .icon-button {
-  @apply text-on-surface w-12 px-0;
+  @apply text-on-surface-variant w-12 px-0;
 
   & > svg {
     @apply size-6;

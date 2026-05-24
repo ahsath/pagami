@@ -1,0 +1,73 @@
+---
+title: Botones de iconos
+description: Botón de icono solo con CSS basado en el diseño Material 3 de Google
+key: icon-buttons
+pattern: CSS
+---
+
+import StarsRounded from "~icons/material-symbols/stars-rounded";
+
+# Botones de iconos
+
+Los botones de iconos permiten a los usuarios ejecutar acciones de forma rápida y compacta. Deben utilizar símbolos gráficos con un significado claro y reconocible, representando generalmente comandos interactivos de uso frecuente.
+
+## [Uso](#uso)
+
+Para agregar un botón con icono, agrega las clases `button` y `icon-button`. Solo hay 1 estilo disponible; estándar:
+
+<div class="preview-dots">
+  <button class="button icon-button" aria-label="Añadir a favoritos">
+    <StarsRounded />
+  </button>
+</div>
+
+```html
+<button class="button icon-button" aria-label="Añadir a favoritos">
+  <svg aria-hidden="true"><!-- ... --></svg>
+</button>
+```
+
+## [Tamaños](#tamaños)
+
+Solo hay 2 tamaños disponible.
+
+<div class="preview-dots">
+  <button class="button icon-button" aria-label="Añadir a favoritos">
+    <StarsRounded />
+  </button>
+  <button
+    class="button icon-button icon-button--size-m"
+    aria-label="Añadir a favoritos"
+  >
+    <StarsRounded />
+  </button>
+</div>
+
+{/* prettier-ignore */}
+```html
+<!-- Pequeño (por defecto) -->
+<button class="button icon-button" aria-label="Añadir a favoritos">
+  <svg aria-hidden="true"><!-- ... --></svg>
+</button>
+
+<!-- Mediano -->
+<button class="button icon-button icon-button--size-m" aria-label="Añadir a favoritos">
+  <svg aria-hidden="true"><!-- ... --></svg>
+</button>
+```
+
+## [Deshabilitado](#deshabilitado)
+
+Para deshabilitar un botón con icono, añade el atributo `disabled` al elemento.
+
+<div class="preview-dots">
+  <button class="button icon-button" aria-label="Añadir a favoritos" disabled>
+    <StarsRounded />
+  </button>
+</div>
+
+```html
+<button class="button icon-button" aria-label="Añadir a favoritos" disabled>
+  <svg aria-hidden="true"><!-- ... --></svg>
+</button>
+```

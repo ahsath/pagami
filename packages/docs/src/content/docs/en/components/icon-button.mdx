@@ -1,0 +1,73 @@
+---
+title: Icon buttons
+description: A CSS-only icon button implementation inspired by Google Material 3.
+key: icon-buttons
+pattern: CSS
+---
+
+import StarsRounded from "~icons/material-symbols/stars-rounded";
+
+# Icon buttons
+
+Icon buttons allow users to perform actions in a quick, compact format. They must use visual symbols with a clear and recognizable meaning, typically representing frequently used interactive commands.
+
+## [Usage](#usage)
+
+To add an icon button, apply both the `button` and `icon-button` classes. There is only 1 available style: standard.
+
+<div class="preview-dots">
+  <button class="button icon-button" aria-label="Add to favorites">
+    <StarsRounded />
+  </button>
+</div>
+
+```html
+<button class="button icon-button" aria-label="Add to favorites">
+  <svg aria-hidden="true"><!-- ... --></svg>
+</button>
+```
+
+## [Sizes](#sizes)
+
+There are only 2 sizes available.
+
+<div class="preview-dots">
+  <button class="button icon-button" aria-label="Add to favorites">
+    <StarsRounded />
+  </button>
+  <button
+    class="button icon-button icon-button--size-m"
+    aria-label="Add to favorites"
+  >
+    <StarsRounded />
+  </button>
+</div>
+
+{/* prettier-ignore */}
+```html
+<!-- Small (default) -->
+<button class="button icon-button" aria-label="Add to favorites">
+  <svg aria-hidden="true"><!-- ... --></svg>
+</button>
+
+<!-- Medium -->
+<button class="button icon-button icon-button--size-m" aria-label="Add to favorites">
+  <svg aria-hidden="true"><!-- ... --></svg>
+</button>
+```
+
+## [Disabled](#disabled)
+
+To disable an icon button, add the `disabled` attribute to the element.
+
+<div class="preview-dots">
+  <button class="button icon-button" aria-label="Add to favorites" disabled>
+    <StarsRounded />
+  </button>
+</div>
+
+```html
+<button class="button icon-button" aria-label="Add to favorites" disabled>
+  <svg aria-hidden="true"><!-- ... --></svg>
+</button>
+```
