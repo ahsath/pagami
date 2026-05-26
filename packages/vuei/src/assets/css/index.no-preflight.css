@@ -27,7 +27,7 @@
   @import "./components/NavRail.css";
   @import "./components/NavItem.css";
   @import "./components/Pane.css";
-  @import "./components/TextFieldSimple.css";
+  @import "./components/TextField.css";
   @import "./components/SelectSimple.css";
   @import "./components/List.css";
   @import "./components/Layout.css"; /* TODO: delete */

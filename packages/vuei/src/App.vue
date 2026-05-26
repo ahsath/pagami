@@ -7,7 +7,7 @@ import NavRail from "@/components/ui/nav-rail/NavRail.vue";
 import NavItem from "@/components/ui/nav-item/NavItem.vue";
 import SelectSimple from "@/components/ui/select/SelectSimple.vue";
 import { useSheet } from "@/composables/useSheet";
-import InputFieldSimple from "@/components/ui/input-field/InputFieldSimple.vue";
+import TextField from "@/components/ui/text-field/TextField.vue";
 import LoadingIndicator from "@/components/loaders/LoadingIndicator.vue";
 import SearchRounded from "~icons/material-symbols/search-rounded?width=24&height=24";
 import StarsRounded from "~icons/material-symbols/stars-rounded?width=24&height=24";
@@ -223,7 +223,7 @@ const isPasswordVisible = ref(false);
             <button class="button button--filled" disabled>
               <span>Filled - disabled</span>
             </button>
-            <InputFieldSimple
+            <TextField
               v-model="inputFieldModel"
               label="Label*"
               prefix="$"
@@ -238,8 +238,8 @@ const isPasswordVisible = ref(false);
               <template #trailing-icon>
                 <MoneyBagRounded aria-hidden="true" />
               </template>
-            </InputFieldSimple>
-            <InputFieldSimple
+            </TextField>
+            <TextField
               v-model="inputFieldModel"
               label="Label*"
               prefix="$"
@@ -254,21 +254,17 @@ const isPasswordVisible = ref(false);
               <template #trailing-icon>
                 <MoneyBagRounded aria-hidden="true" />
               </template>
-            </InputFieldSimple>
-            <InputFieldSimple
-              label="Label*"
-              error="Error message"
-              required
-              clearable
-            >
+            </TextField>
+            <TextField label="Label*" error="Error message" required clearable>
               <template #trailing-icon>
                 <MoneyBagRounded aria-hidden="true" />
               </template>
-            </InputFieldSimple>
-            <InputFieldSimple
+            </TextField>
+            <TextField
               label="Password*"
               :type="isPasswordVisible ? 'text' : 'password'"
               required
+              disabled
             >
               <template #trailing-icon="{ disabled }">
                 <button
@@ -290,7 +286,7 @@ const isPasswordVisible = ref(false);
                   />
                 </button>
               </template>
-            </InputFieldSimple>
+            </TextField>
             <br />
             <label
               v-for="val in ['single-select-list1', 'single-select-list2']"
@@ -320,10 +316,10 @@ const isPasswordVisible = ref(false);
       </main>
     </div>
     <Sheet
+      is="aside"
       :id="rightSheetId"
       v-model:open="rightSheetOpen"
       side="right"
-      is="aside"
     >
       <div class="sheet__container">
         <div class="sheet__header">

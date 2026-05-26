@@ -1,0 +1,128 @@
+.text-field {
+  @apply flex flex-col gap-1 grow text-on-surface-variant;
+
+  + & {
+    @apply mt-4;
+  }
+
+  /* prettier-ignore */
+  &:not(:has(.text-field__input:disabled)):not(:has(.text-field__input:focus)):hover {
+    .text-field__label {
+      @apply text-on-surface;
+    }
+
+    .text-field__container {
+      @apply outline-on-surface;
+    }
+  }
+
+  &:has(.text-field__input:focus) {
+    .text-field__label {
+      @apply text-primary;
+    }
+
+    .text-field__container {
+      @apply outline-3 -outline-offset-3 outline-primary;
+    }
+  }
+
+  &:has(.text-field__input:disabled) {
+    @apply text-on-surface opacity-38 cursor-not-allowed **:cursor-not-allowed;
+  }
+
+  /* prettier-ignore */
+  &.text-field--state-error {
+    &:has(.text-field__container:focus-within) .text-field__label,
+    &:has(.text-field__container:focus-within) .text-field__trailing-icon,
+    & .text-field__label,
+    & .text-field__supporting-text,
+    & .text-field__trailing-icon {
+      @apply text-error;
+    }
+
+    &:not(:has(.text-field__input:disabled)):not(:has(.text-field__input:focus)):hover {
+      .text-field__label,
+      .text-field__trailing-icon {
+        @apply text-on-error-container;
+      }
+
+      .text-field__container {
+        @apply outline-on-error-container;
+      }
+    }
+
+    & .text-field__container {
+      @apply outline-error focus-within:outline-error;
+    }
+
+    & .text-field__input {
+      @apply caret-error;
+    }
+  }
+}
+
+.text-field__label {
+  @apply text-label-large;
+}
+
+.text-field__container {
+  @apply flex outline outline-outline -outline-offset-1 rounded-sm cursor-text;
+}
+
+.text-field__leading-icon,
+.text-field__trailing-icon {
+  @apply px-3 my-auto;
+}
+
+.text-field__trailing-icon:has(> .icon-button) {
+  @apply px-0;
+}
+
+.text-field__prefix,
+.text-field__suffix {
+  @apply min-w-fit my-auto;
+}
+
+.text-field__prefix {
+  @apply pl-4 pr-1;
+}
+
+.text-field__leading-icon + .text-field__prefix {
+  @apply pl-1;
+}
+
+.text-field__suffix {
+  @apply pr-4 pl-1;
+}
+
+.text-field__suffix:has(+ .text-field__trailing-icon) {
+  @apply pr-1;
+}
+
+.text-field__input {
+  @apply text-on-surface w-full py-3 placeholder:text-on-surface-variant outline-none caret-primary px-4;
+
+  .text-field__leading-icon + &,
+  .text-field__prefix + & {
+    @apply pl-0;
+  }
+
+  /* If input is preceded by leading-icon AND NOT by a prefix */
+  .text-field__leading-icon + &:not(.text-field__prefix ~ &) {
+    @apply pl-1;
+  }
+
+  &:has(+ .text-field__suffix, + .text-field__trailing-icon) {
+    @apply pr-0;
+  }
+
+  /* If input is followed by a trailing-icon AND NOT by a suffix */
+  /* prettier-ignore */
+  &:has(+ .text-field__trailing-icon):not(:has(+ .text-field__suffix)) {
+    @apply pr-1;
+  }
+}
+
+.text-field__supporting-text {
+  @apply text-body-small;
+}
