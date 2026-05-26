@@ -1,0 +1,216 @@
+---
+title: Campo de texto
+description: Campo de texto basado en el diseño Material 3 de Google
+key: text-field
+---
+
+import TextFieldDemo from "../../../../components/demos/text-field/TextFieldDemo.astro";
+
+# Campo de texto
+
+Los campos de texto permiten a los usuarios ingresar, editar e interactuar con datos textuales en una interfaz. Son elementos fundamentales para la captura de información como formularios y ofrecen una experiencia estructurada y accesible mediante estados visuales e interactivos.
+
+## [Uso](#uso)
+
+Para crear un campo de texto, utiliza el componente `<TextField>`.
+
+<div class="preview-dots">
+  <TextFieldDemo type="usage" />
+</div>
+
+```vue
+<script setup>
+import { ref } from "vue";
+import { TextField } from "@pagami/vuei";
+
+const value = ref("");
+</script>
+
+<template>
+  <TextField v-model="value" label="Nombre" placeholder="Ingresa tu nombre" />
+</template>
+```
+
+## [Prefijo y sufijo](#prefijo-y-sufijo)
+
+Puedes agregar texto estático adicional antes o después del campo de entrada utilizando las propiedades `prefix` y `suffix`.
+
+<div class="preview-dots">
+  <TextFieldDemo type="prefix-suffix" />
+</div>
+
+```vue
+<template>
+  <TextField label="Precio" prefix="$" suffix="USD" placeholder="0.00" />
+</template>
+```
+
+## [Iconos](#iconos)
+
+El componente permite incluir iconos al principio mediante la ranura `#leading-icon` o al final mediante `#trailing-icon` para aportar mayor contexto o acciones rápidas.
+
+<div class="preview-dots">
+  <TextFieldDemo type="icons" />
+</div>
+
+```vue
+<template>
+  <TextField label="Buscar usuario" placeholder="Buscar...">
+    <template #leading-icon>
+      <svg><!-- ... --></svg>
+    </template>
+    <template #trailing-icon>
+      <svg><!-- ... --></svg>
+    </template>
+  </TextField>
+</template>
+```
+
+## [Icono interactivo](#icono-interactivo)
+
+Puedes colocar un botón de icono en la ranura `#trailing-icon` para ejecutar acciones dentro del campo. En el siguiente ejemplo, el botón alterna la visibilidad de una contraseña intercambiando dos iconos con `v-show`.
+
+<div class="preview-dots">
+  <TextFieldDemo type="icon-button" />
+</div>
+
+{/* prettier-ignore */}
+```vue
+<script setup>
+import { ref } from "vue";
+
+const isPasswordVisible = ref(false);
+const value = ref("mi-contraseña-segura");
+</script>
+
+<template>
+  <TextField v-model="value" :type="isPasswordVisible ? 'text' : 'password'" label="Contraseña">
+    <template #trailing-icon>
+      <button
+        class="button icon-button"
+        :aria-label="isPasswordVisible ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+        type="button"
+        @click="isPasswordVisible = !isPasswordVisible"
+      >
+        <svg v-show="isPasswordVisible" aria-hidden="true"><!-- ... --></svg>
+        <svg v-show="!isPasswordVisible" aria-hidden="true"><!-- ... --></svg>
+      </button>
+    </template>
+  </TextField>
+</template>
+```
+
+## [Deshabilitado](#deshabilitado)
+
+Para deshabilitar el campo de texto, añade la propiedad `disabled`. Esto evitará cualquier interacción del usuario y modificará los estilos visuales para reflejar el estado inactivo. La ranura `#trailing-icon` expone la propiedad `disabled` para que puedas propagarla a los elementos interactivos dentro de ella, como botones.
+
+<div class="preview-dots">
+  <TextFieldDemo type="disabled" />
+</div>
+
+```vue
+<template>
+  <TextField label="Contraseña deshabilitada" type="password" disabled>
+    <template #trailing-icon="{ disabled }">
+      <button class="button icon-button" type="button" :disabled>
+        <svg aria-hidden="true"><!-- ... --></svg>
+      </button>
+    </template>
+  </TextField>
+</template>
+```
+
+## [Estado de error](#estado-de-error)
+
+Si pasas un mensaje a la propiedad `error`, el campo cambiará visualmente al estado de error y mostrará automáticamente un icono de advertencia al final, además del mensaje descriptivo debajo. Puedes usar un `computed` para calcular el error de forma reactiva y limpiarlo cuando el valor sea válido.
+
+<div class="preview-dots">
+  <TextFieldDemo type="error" />
+</div>
+
+```vue
+<script setup>
+import { ref, computed } from "vue";
+
+const value = ref("correo-invalido");
+
+const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+const error = computed(() =>
+  value.value && !isValidEmail(value.value)
+    ? "Introduce un correo electrónico válido."
+    : undefined,
+);
+</script>
+
+<template>
+  <TextField
+    v-model="value"
+    type="email"
+    label="Correo electrónico*"
+    placeholder="nombre@ejemplo.com"
+    supporting-text="*Requerido"
+    :error="error"
+  />
+</template>
+```
+
+## [Limpiable](#limpiable)
+
+La propiedad `clearable` agrega automáticamente un botón al final para borrar el contenido del campo cuando este tiene texto.
+
+<div class="preview-dots">
+  <TextFieldDemo type="clearable" />
+</div>
+
+```vue
+<template>
+  <TextField label="Buscador" clear-label="Limpiar campo" clearable />
+</template>
+```
+
+## [Texto de soporte](#texto-de-soporte)
+
+Muestra información aclaratoria o instrucciones de ayuda debajo del campo mediante la propiedad `supporting-text`.
+
+<div class="preview-dots">
+  <TextFieldDemo type="supporting-text" />
+</div>
+
+```vue
+<template>
+  <TextField
+    label="Contraseña"
+    type="password"
+    placeholder="••••••••"
+    supporting-text="Debe incluir al menos 8 caracteres y un número."
+  />
+</template>
+```
+
+## [Propiedades](#propiedades)
+
+{/* prettier-ignore */}
+<div class="border border-outline-variant rounded-3xl overflow-x-scroll">
+| Propiedad           | Tipo                    | Por defecto | Descripción                                                                |
+| :------------------ | :---------------------- | :---------- | :------------------------------------------------------------------------- |
+| `label?`            | `string` \| `undefined` | `undefined` | El texto de la etiqueta flotante superior.                                 |
+| `error?`            | `string` \| `undefined` | `undefined` | Mensaje de error. Si está presente, cambia el campo al estado de error.    |
+| `prefix?`           | `string` \| `undefined` | `undefined` | Texto estático de prefijo al inicio del campo de texto.                    |
+| `suffix?`           | `string` \| `undefined` | `undefined` | Texto estático de sufijo al final del campo de texto.                      |
+| `disabled?`         | `boolean`               | `false`     | Si es verdadero, deshabilita la interacción con el campo.                  |
+| `clearable?`        | `boolean`               | `false`     | Muestra un botón para limpiar el contenido cuando el campo no está vacío.  |
+| `clearLabel?`       | `string` \| `undefined` | `undefined` | Etiqueta accesible (`aria-label`) del botón de limpieza.                   |
+| `supportingText?`   | `string` \| `undefined` | `undefined` | Texto de ayuda o soporte que se muestra debajo del campo.                  |
+| `textFieldClass?`   | `string` \| `undefined` | `undefined` | Clases de utilidad para aplicar estilos adicionales al contenedor.         |
+</div>
+
+## [Ranuras (Slots)](#ranuras)
+
+{/* prettier-ignore */}
+<div class="border border-outline-variant rounded-3xl overflow-x-scroll">
+| Ranura            | Slot props                  | Descripción                                                                |
+| :---------------- | :-------------------------- | :------------------------------------------------------------------------- |
+| `leading-icon`    | -                           | Ranura para colocar un icono al inicio de la entrada de texto.             |
+| `trailing-icon`   | `{ disabled: boolean }`     | Ranura para colocar un icono al final, recibiendo el estado deshabilitado. |
+</div>

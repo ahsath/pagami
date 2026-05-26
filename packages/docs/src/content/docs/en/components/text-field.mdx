@@ -1,0 +1,216 @@
+---
+title: Text field
+description: Text field based on Google's Material 3 design
+key: text-field
+---
+
+import TextFieldDemo from "../../../../components/demos/text-field/TextFieldDemo.astro";
+
+# Text field
+
+Text fields let users enter, edit, and interact with text data in an interface. They are fundamental elements for capturing information such as forms and offer a structured and accessible experience through visual and interactive states.
+
+## [Usage](#usage)
+
+To create a text field, use the `<TextField>` component.
+
+<div class="preview-dots">
+  <TextFieldDemo type="usage" />
+</div>
+
+```vue
+<script setup>
+import { ref } from "vue";
+import { TextField } from "@pagami/vuei";
+
+const value = ref("");
+</script>
+
+<template>
+  <TextField v-model="value" label="Name" placeholder="Enter your name" />
+</template>
+```
+
+## [Prefix and suffix](#prefix-and-suffix)
+
+You can add additional static text before or after the input field using the `prefix` and `suffix` properties.
+
+<div class="preview-dots">
+  <TextFieldDemo type="prefix-suffix" />
+</div>
+
+```vue
+<template>
+  <TextField label="Price" prefix="$" suffix="USD" placeholder="0.00" />
+</template>
+```
+
+## [Icons](#icons)
+
+The component allows including icons at the beginning through the `#leading-icon` slot or at the end through `#trailing-icon` to provide greater context or quick actions.
+
+<div class="preview-dots">
+  <TextFieldDemo type="icons" />
+</div>
+
+```vue
+<template>
+  <TextField label="Search user" placeholder="Search...">
+    <template #leading-icon>
+      <svg><!-- ... --></svg>
+    </template>
+    <template #trailing-icon>
+      <svg><!-- ... --></svg>
+    </template>
+  </TextField>
+</template>
+```
+
+## [Interactive icon](#interactive-icon)
+
+You can place an icon button in the `#trailing-icon` slot to perform actions within the field. In the following example, the button toggles the visibility of a password by swapping two icons with `v-show`.
+
+<div class="preview-dots">
+  <TextFieldDemo type="icon-button" />
+</div>
+
+{/* prettier-ignore */}
+```vue
+<script setup>
+import { ref } from "vue";
+
+const isPasswordVisible = ref(false);
+const value = ref("my-secure-password");
+</script>
+
+<template>
+  <TextField v-model="value" :type="isPasswordVisible ? 'text' : 'password'" label="Password">
+    <template #trailing-icon>
+      <button
+        class="button icon-button"
+        :aria-label="isPasswordVisible ? 'Hide password' : 'Show password'"
+        type="button"
+        @click="isPasswordVisible = !isPasswordVisible"
+      >
+        <svg v-show="isPasswordVisible" aria-hidden="true"><!-- ... --></svg>
+        <svg v-show="!isPasswordVisible" aria-hidden="true"><!-- ... --></svg>
+      </button>
+    </template>
+  </TextField>
+</template>
+```
+
+## [Disabled](#disabled)
+
+To disable the text field, add the `disabled` property. This will prevent any user interaction and modify the visual styles to reflect the inactive state. The `#trailing-icon` slot exposes the `disabled` property so you can propagate it to interactive elements within it, such as buttons.
+
+<div class="preview-dots">
+  <TextFieldDemo type="disabled" />
+</div>
+
+```vue
+<template>
+  <TextField label="Disabled password" type="password" disabled>
+    <template #trailing-icon="{ disabled }">
+      <button class="button icon-button" type="button" :disabled>
+        <svg aria-hidden="true"><!-- ... --></svg>
+      </button>
+    </template>
+  </TextField>
+</template>
+```
+
+## [Error state](#error-state)
+
+If you pass a message to the `error` property, the field will visually change to the error state and automatically show a warning icon at the end, along with the descriptive message below. You can use a `computed` to calculate the error reactively and clear it when the value is valid.
+
+<div class="preview-dots">
+  <TextFieldDemo type="error" />
+</div>
+
+```vue
+<script setup>
+import { ref, computed } from "vue";
+
+const value = ref("invalid-email");
+
+const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+const error = computed(() =>
+  value.value && !isValidEmail(value.value)
+    ? "Please enter a valid email address."
+    : undefined,
+);
+</script>
+
+<template>
+  <TextField
+    v-model="value"
+    type="email"
+    label="Email address*"
+    placeholder="name@example.com"
+    supporting-text="*Required"
+    :error="error"
+  />
+</template>
+```
+
+## [Clearable](#clearable)
+
+The `clearable` property automatically adds a button at the end to clear the field's content when it has text.
+
+<div class="preview-dots">
+  <TextFieldDemo type="clearable" />
+</div>
+
+```vue
+<template>
+  <TextField label="Search" clear-label="Clear field" clearable />
+</template>
+```
+
+## [Supporting text](#supporting-text)
+
+Displays explanatory information or help instructions below the field using the `supporting-text` property.
+
+<div class="preview-dots">
+  <TextFieldDemo type="supporting-text" />
+</div>
+
+```vue
+<template>
+  <TextField
+    label="Password"
+    type="password"
+    placeholder="••••••••"
+    supporting-text="Must include at least 8 characters and a number."
+  />
+</template>
+```
+
+## [Props](#props)
+
+{/* prettier-ignore */}
+<div class="border border-outline-variant rounded-3xl overflow-x-scroll">
+| Property            | Type                    | Default     | Description                                                                |
+| :------------------ | :---------------------- | :---------- | :------------------------------------------------------------------------- |
+| `label?`            | `string` \| `undefined` | `undefined` | The text of the top floating label.                                        |
+| `error?`            | `string` \| `undefined` | `undefined` | Error message. If present, changes the field to the error state.           |
+| `prefix?`           | `string` \| `undefined` | `undefined` | Static prefix text at the start of the text field.                         |
+| `suffix?`           | `string` \| `undefined` | `undefined` | Static suffix text at the end of the text field.                           |
+| `disabled?`         | `boolean`               | `false`     | If true, disables interaction with the field.                              |
+| `clearable?`        | `boolean`               | `false`     | Shows a button to clear the content when the field is not empty.           |
+| `clearLabel?`       | `string` \| `undefined` | `undefined` | Accessible label (`aria-label`) of the clear button.                       |
+| `supportingText?`   | `string` \| `undefined` | `undefined` | Help or supporting text displayed below the field.                         |
+| `textFieldClass?`   | `string` \| `undefined` | `undefined` | Utility classes to apply additional styles to the container.               |
+</div>
+
+## [Slots](#slots)
+
+{/* prettier-ignore */}
+<div class="border border-outline-variant rounded-3xl overflow-x-scroll">
+| Slot              | Slot props                  | Description                                                                |
+| :---------------- | :-------------------------- | :------------------------------------------------------------------------- |
+| `leading-icon`    | -                           | Slot to place an icon at the start of the text input.                      |
+| `trailing-icon`   | `{ disabled: boolean }`     | Slot to place an icon at the end, receiving the disabled state.            |
+</div>

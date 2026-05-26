@@ -1,0 +1,22 @@
+---
+import TextFieldDemoUsage from "./TextFieldDemoUsage.vue";
+import TextFieldDemoPrefixSuffix from "./TextFieldDemoPrefixSuffix.vue";
+import TextFieldDemoIcons from "./TextFieldDemoIcons.vue";
+import TextFieldDemoDisabled from "./TextFieldDemoDisabled.vue";
+import TextFieldDemoError from "./TextFieldDemoError.vue";
+import TextFieldDemoClearable from "./TextFieldDemoClearable.vue";
+import TextFieldDemoSupportingText from "./TextFieldDemoSupportingText.vue";
+import TextFieldDemoIconButton from "./TextFieldDemoIconButton.vue";
+
+const { type } = Astro.props;
+const locale = Astro.currentLocale === "en" ? "en" : "es";
+---
+
+{type === "usage" && <TextFieldDemoUsage lang={locale} client:visible />}
+{type === "prefix-suffix" && <TextFieldDemoPrefixSuffix lang={locale} client:visible />}
+{type === "icons" && <TextFieldDemoIcons lang={locale} client:visible />}
+{type === "disabled" && <TextFieldDemoDisabled lang={locale} client:visible />}
+{type === "error" && <TextFieldDemoError lang={locale} client:visible />}
+{type === "clearable" && <TextFieldDemoClearable lang={locale} client:visible />}
+{type === "supporting-text" && <TextFieldDemoSupportingText lang={locale} client:visible />}
+{type === "icon-button" && <TextFieldDemoIconButton lang={locale} client:visible />}
